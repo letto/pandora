@@ -42,11 +42,11 @@ pa::Color::operator SDL_Color()
     return col;
 }
 
-PaUint pa::Random(PaUint a,PaUint b) {
+PaUint pa::Random(const PaUint& a ,const PaUint& b) {
     return randgen()%(b-a+1)+a;
 }
 
-PaUint pa::Dice(PaUint x) {
+PaUint pa::Dice(const PaUint& x) {
     return randgen()%x + 1;
 }
 

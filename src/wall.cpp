@@ -23,6 +23,6 @@ Image Wall::Get_Image()
     return Image(9532,pa::gray);
 }
 
-Size Wall::Get_Size() {
+Size Wall::Get_Size() const {
     return static_cast<Size>(Terrain::Get_Volume());
 }

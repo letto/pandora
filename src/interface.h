@@ -44,7 +44,7 @@ private:
 	Location cursor;
 	unsigned int player_id;
 	Creature* player;
-	Creature* Add_Player(Location,Entity*);
+	Creature* Add_Player(const Location&,Entity*);
 	
 	
 	PandoraEngine engine;
@@ -53,9 +53,9 @@ private:
 	SDL_Surface* screen;
 	int video_Flags;
 	void Resize();
-	void Event_Handler(const SDL_Event event);
-	static int Event_Filter(const SDL_Event*);
-	void Keyboard_Handler(SDL_keysym);
+	void Event_Handler(const SDL_Event&);
+	static int Event_Filter(const SDL_Event* const);
+	void Keyboard_Handler(const SDL_keysym&);
 };
 
 #endif // INTERFACE_H

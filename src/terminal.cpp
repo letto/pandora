@@ -35,7 +35,7 @@ int Terminal::glyph_rect_w = 0;
 int Terminal::glyph_rect_h = 0;
 SDL_Surface* Terminal::screen = NULL;
 
-void Terminal::Set_Font(char* font_path, int size)
+void Terminal::Set_Font(const std::string& font_path ,const int& size)
 {
     if((TTF_Init() !=0 ) && !TTF_WasInit()) {
 	std::cerr << " SDL_ttf initialization failed! " << std::endl;
@@ -45,7 +45,7 @@ void Terminal::Set_Font(char* font_path, int size)
 	std::cerr << "Trying to reset font" << std::endl;
 	exit(1);
     }
-    font = TTF_OpenFont(font_path ,size);
+    font = TTF_OpenFont(font_path.c_str() ,size);
     if(!font) {
 	std::cerr << "Error loading font!" << std::endl;
 	exit(1);
@@ -90,7 +90,7 @@ int Terminal::Get_Height() {
     return term_rect.h;
 }
 
-void Terminal::Resize(SDL_Rect rec)
+void Terminal::Resize(const SDL_Rect& rec)
 {
     screen = SDL_GetVideoSurface();
     if(!screen) {
@@ -156,14 +156,14 @@ void Terminal::Resize(SDL_Rect rec)
     }
 }
 
-void Terminal::Print_Char(Uint16 ch, int cpos_x ,int cpos_y, SDL_Color fg ,SDL_Color bg)
+void Terminal::Print_Char(const Uint16& ch ,const int& cpos_x ,const int& cpos_y ,const SDL_Color& fg ,const SDL_Color& bg)
 { 
     if(buffer[cpos_x][cpos_y] != TermChar(ch,fg,bg)) {
 	buffer[cpos_x][cpos_y] = TermChar(ch,fg,bg);
     }
 }
 
-void Terminal::Print_Char(Uint16 ch, SDL_Color fg ,SDL_Color bg)
+void Terminal::Print_Char(const Uint16& ch,const SDL_Color& fg ,const SDL_Color& bg)
 {
     Print_Char(ch,cursor_x,cursor_y,fg,bg);
     if(cursor_x >= cursor_max_x) { //needs >= to handle resize
@@ -173,7 +173,7 @@ void Terminal::Print_Char(Uint16 ch, SDL_Color fg ,SDL_Color bg)
     }
 }
 
-void Terminal::Print(std::string str,SDL_Color fg,SDL_Color bg)
+void Terminal::Print(const std::string& str ,const SDL_Color& fg ,const SDL_Color& bg)
 {
     for(int i = 0; i< str.size();i++) {
 	if( str[i]=='\n') {
@@ -271,7 +271,7 @@ void Terminal::Refresh()
 	    buffer[cx][cy].changed = true;
 }
 
-TermGlyph Terminal::Get_Glyph(Uint16 ch) 
+TermGlyph Terminal::Get_Glyph(const Uint16& ch) 
 {
     if(ch == '\0') {
 	return Get_Glyph(' ');

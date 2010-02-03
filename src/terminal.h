@@ -53,17 +53,17 @@ struct TermGlyph {
 class Terminal
 {
 public:
-	static void Set_Font(char* font_path, int size);
+	static void Set_Font(const std::string& font_path ,const int& size);
 	Terminal();
 	
-	void Print_Char(Uint16,SDL_Color = SDL_White,SDL_Color bg = SDL_Black);
-	void Print_Char(Uint16,int cpos_x,int cpos_y,SDL_Color fg, SDL_Color bg);
+	void Print_Char(const Uint16&,const SDL_Color& fg = SDL_White ,const SDL_Color& bg = SDL_Black);
+	void Print_Char(const Uint16&,const int& cpos_x ,const int& cpos_y ,const SDL_Color& fg ,const SDL_Color& bg);
 	void New_Line();
-	void Print(std::string ,SDL_Color = SDL_White,SDL_Color bg = SDL_Black);
+	void Print(const std::string& ,const SDL_Color& = SDL_White ,const SDL_Color& bg = SDL_Black);
 	
 	void Blit();
 	void Refresh();
-	void Resize(SDL_Rect);
+	void Resize(const SDL_Rect&);
 	
 	int Get_Max_X();
 	int Get_Max_Y();
@@ -77,7 +77,7 @@ private:
 	static int glyph_w,glyph_h;
 	static int glyph_rect_w,glyph_rect_h;
 	static std::unordered_map< Uint16, TermGlyph> charmap;
-	static TermGlyph Get_Glyph(Uint16);
+	static TermGlyph Get_Glyph(const Uint16&);
 	
 	static SDL_Surface *screen; //The app screen
 	SDL_Rect term_rect;     // The terminal screen
@@ -89,9 +89,8 @@ private:
 	TermChar buffer[100][buffer_max];
 	
 	
-	
 	//Debug functions
-	void Dump_Charmap();
+	//void Dump_Charmap();
 };
                                                
 #endif // TERMINAL_H

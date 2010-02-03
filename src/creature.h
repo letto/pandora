@@ -31,7 +31,7 @@ public:
 	//Image Get_Image();
 	//Size Get_Size();
 	//~Creature();
-	bool Go_Direction(Direction);
+	bool Go_Direction(const Direction&);
 };
 
 #endif // CREATURE_H

@@ -36,7 +36,7 @@ class EntityContainer : virtual public PaObject
 public:
 	EntityContainer(Volume);
 	
-	bool Has_Space(Entity*);
+	bool Has_Space_For(const Entity*);
 	bool Is_Empty();
 	void Insert_Entity(Entity*);
 	bool Put_Entity(Entity*);

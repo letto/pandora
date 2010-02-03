@@ -34,7 +34,7 @@ void EntityContainer::Insert_Entity(Entity* entity)
 
 bool EntityContainer::Put_Entity(Entity* entity)
 { 
-    if( Has_Space(entity) ) {
+    if( Has_Space_For(entity)) {
 	Insert_Entity(entity);
 	return true;
     }
@@ -63,7 +63,7 @@ bool EntityContainer::Is_Empty() {
     return entities == NULL;
 }
 
-bool EntityContainer::Has_Space(Entity* entity) {
+bool EntityContainer::Has_Space_For(const Entity* entity) {
     return (Volume)entity->Get_Size() <= volume_max - volume_used;
 }
 

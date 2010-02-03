@@ -30,6 +30,6 @@ Location Tree::Get_Location() {
     return Entity::Get_Location();
 }
 
-Size Tree::Get_Size() {
+Size Tree::Get_Size() const {
     return Size::large;
 }

@@ -30,7 +30,7 @@ extern PaInt map_max_y;
 //     //std::cout << "ID " << id <<" Adress " << this << "\n";
 // }
 
-bool Creature::Go_Direction(Direction direction)
+bool Creature::Go_Direction(const Direction& direction)
 {
     Location loc = Get_Location();
     Location dest = loc;
@@ -62,7 +62,7 @@ bool Creature::Go_Direction(Direction direction)
 	return false;
     }
     
-    if(map[dest.x][dest.y].Has_Space(this)){
+    if(map[dest.x][dest.y].Has_Space_For(this)){
 	map[loc.x][loc.y].Remove_Entity(this);
 	map[dest.x][dest.y].Insert_Entity(this);
 	return true;

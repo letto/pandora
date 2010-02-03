@@ -26,7 +26,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class Wall : public Entity
 {
 public:
-    Size Get_Size();
+    Size Get_Size() const;
     Image Get_Image();
 };
 

@@ -83,8 +83,8 @@ enum class Size {
 
 typedef PaUint Volume;
 
-PaUint Random(PaUint,PaUint);
-PaUint Dice(PaUint);
+PaUint Random(const PaUint& ,const PaUint&);
+PaUint Dice(const PaUint&);
 
 void Exit(const std::string&);
 

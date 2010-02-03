@@ -36,7 +36,7 @@ public:
     Location Get_Location();
     //Image  Get_Image();
     PaUint Get_ID();
-    virtual Size Get_Size() = 0;
+    virtual Size Get_Size() const = 0;
     void Set_Holder(PaObject*);
     Entity* next;
 protected:

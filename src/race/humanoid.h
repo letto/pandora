@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class Humanoid : public Creature
 {
 public:
-    Size Get_Size();
+    Size Get_Size() const;
 };
 
 #endif // HUMANOID_H

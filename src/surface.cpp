@@ -30,6 +30,6 @@ Color Surface::Get_Color() {
     return pa::soil_green;
 }
 
-Size Surface::Get_Size() {
+Size Surface::Get_Size() const {
     return Size::tiny;
 }

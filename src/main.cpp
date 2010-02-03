@@ -24,7 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 int main(int argc, char **argv) 
 {
-    Terminal::Set_Font((char*)"/usr/share/fonts/dejavu/DejaVuSansMono.ttf",32);
+    Terminal::Set_Font("/usr/share/fonts/dejavu/DejaVuSansMono.ttf",32);
    
     Interface interface;
     

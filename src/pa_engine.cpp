@@ -57,7 +57,7 @@ PaInt PandoraEngine::Get_Map_Max_Y(){
     return map_max_y;
 }
 
-Entity* PandoraEngine::Add_Entity(Location loc,Entity * entity)
+Entity* PandoraEngine::Add_Entity(const Location& loc ,Entity * entity)
 {
     if (map[loc.x][loc.y].Put_Entity( entity ) == true) {
 	return entity;

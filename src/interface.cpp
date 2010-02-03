@@ -113,7 +113,7 @@ void Interface::Run()
     }
 }
 
-Creature* Interface::Add_Player(Location loc, Entity* entity)
+Creature* Interface::Add_Player(const Location& loc, Entity* entity)
 {
     return static_cast<Creature*>(engine.Add_Entity(loc,entity));
 }
@@ -190,7 +190,7 @@ void Interface::Draw_Info()
     info.Print(ss.str());
 }
 
-int Interface::Event_Filter(const SDL_Event* event)
+int Interface::Event_Filter(const SDL_Event* const event)
 {
     switch(event->type) {
 	case SDL_QUIT:
@@ -204,7 +204,7 @@ int Interface::Event_Filter(const SDL_Event* event)
     }
 }
 
-void Interface::Event_Handler(SDL_Event event)
+void Interface::Event_Handler(const SDL_Event& event)
 {
     switch(event.type) {
 	case SDL_VIDEORESIZE:
@@ -229,7 +229,7 @@ void Interface::Event_Handler(SDL_Event event)
     }
 }
 
-void Interface::Keyboard_Handler(SDL_keysym key)
+void Interface::Keyboard_Handler(const SDL_keysym& key)
 {
     switch(key.sym) {
 	case SDLK_KP4:

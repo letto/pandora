@@ -29,7 +29,7 @@ public:
 	Surface();
 	Color Get_Color();
 	Image Get_Image();
-	Size Get_Size();
+	Size Get_Size() const;
 private:
 	//Color color;
 };

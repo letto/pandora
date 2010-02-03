@@ -19,6 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "humanoid.h"
 
 
-Size Humanoid::Get_Size() {
+Size Humanoid::Get_Size() const {
     return Size::large;
 }

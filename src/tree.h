@@ -29,7 +29,7 @@ public:
     Tree();
     Image Get_Image();
     Location Get_Location();
-    Size Get_Size();
+    Size Get_Size() const;
 };
 
 #endif // TREE_H
