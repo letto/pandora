@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "pa_basics.h"
 #include "entity.h"
 
-using namespace pa;
+using pa::Color;
 
 class Surface : public Entity
 {

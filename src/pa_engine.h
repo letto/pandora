@@ -24,6 +24,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using pa::Location;
 using pa::Image;
+using pa::Random;
 
 typedef std::vector< std::vector<Terrain>> Map;
 

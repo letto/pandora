@@ -28,8 +28,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 extern Map map;
 
 Interface::Interface():display_counter(0),cursor(0,0),cursor_mode(centered)
-{  
-    SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER);
+{
+    if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER) != 0)
+	pa::Exit("SDL_Init failed");
     SDL_WM_SetCaption(" Pandora ",NULL);
     
     video_Flags = SDL_OPENGL;
@@ -38,22 +39,19 @@ Interface::Interface():display_counter(0),cursor(0,0),cursor_mode(centered)
     video_Flags |= SDL_RESIZABLE;
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
     screen = SDL_SetVideoMode( 1000, 800, 32, video_Flags ); 
-    
+    if(!screen)
+	pa::Exit("SDL_SetVideoMode failed");
 
     const SDL_VideoInfo * videoInfo = SDL_GetVideoInfo( );
+    if(!videoInfo)
+	pa::Exit("SDL_GetVideoInfo failed");
     if ( videoInfo->hw_available )
 	video_Flags |= SDL_HWSURFACE;
     else
 	video_Flags |= SDL_SWSURFACE;
     if ( videoInfo->blit_hw )
 	video_Flags |= SDL_HWACCEL;
-    //else 
-    //video_Flags |= SDL_HWACCEL;
 
-    if(!screen) {
-	std::cerr << " Video mode failed: Could not create OpenGL context." << std::endl;
-	exit(1);
-    }
     SDL_SetEventFilter(Event_Filter);
     Resize();
     
@@ -90,28 +88,28 @@ void Interface::Run()
 	i++;
 	if(i >= 1200) i=32;
 	
-    engine.Run();
-    
-    Draw_Display();
-    
-    change.r += 28;change.g += 35;change.b+= 17;
+	engine.Run();
+	
+	Draw_Display();
+	
+	change.r += 28;change.g += 35;change.b+= 17;
 
-    Draw_Info();
-    
-    //events.Print_Char('A'+(i%28),SDL_Black,change);
-    //actions.Print_Char(9472+i-33,SDL_Black,change);
-    //actions.Print_Char(8258+i-33,SDL_Black,change);
+	Draw_Info();
+	
+	//events.Print_Char('A'+(i%28),SDL_Black,change);
+	//actions.Print_Char(9472+i-33,SDL_Black,change);
+	//actions.Print_Char(8258+i-33,SDL_Black,change);
 
-    SDL_Event event;
-    if(SDL_PollEvent(&event)) {
-	Event_Handler(event);
-    }
-    display.Blit();
-    info.Blit();
-    events.Blit();
-    actions.Blit();
-    SDL_Delay( 150 );
-    SDL_GL_SwapBuffers( );
+	SDL_Event event;
+	if(SDL_PollEvent(&event)) {
+	    Event_Handler(event);
+	}
+	display.Blit();
+	info.Blit();
+	events.Blit();
+	actions.Blit();
+	SDL_Delay( 150 );
+	SDL_GL_SwapBuffers( );
     }
 }
 

@@ -37,8 +37,12 @@ SDL_Surface* Terminal::screen = NULL;
 
 void Terminal::Set_Font(char* font_path, int size)
 {
-    if((TTF_Init()==-1) && !TTF_WasInit()) {
+    if((TTF_Init() !=0 ) && !TTF_WasInit()) {
 	std::cerr << " SDL_ttf initialization failed! " << std::endl;
+	exit(1);
+    }
+    if(font != NULL) {
+	std::cerr << "Trying to reset font" << std::endl;
 	exit(1);
     }
     font = TTF_OpenFont(font_path ,size);
@@ -58,9 +62,6 @@ void Terminal::Set_Font(char* font_path, int size)
 
 Terminal::Terminal()
 {
-    SDL_InitSubSystem(SDL_INIT_VIDEO);
-    screen = SDL_GetVideoSurface();
-    
     cursor_y = cursor_max_y;
     cursor_x = 0;
 }
@@ -92,6 +93,10 @@ int Terminal::Get_Height() {
 void Terminal::Resize(SDL_Rect rec)
 {
     screen = SDL_GetVideoSurface();
+    if(!screen) {
+	std::cerr << "SDL_GetVideoSurface failed" << std::endl;
+	exit(1);
+    }
     glViewport(0, 0, screen->w, screen->h);
     
     glShadeModel(GL_SMOOTH);

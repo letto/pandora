@@ -86,6 +86,8 @@ typedef PaUint Volume;
 PaUint Random(PaUint,PaUint);
 PaUint Dice(PaUint);
 
+void Exit(const std::string&);
+
 }//namespace pa
 
 

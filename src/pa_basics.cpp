@@ -50,3 +50,9 @@ PaUint pa::Dice(PaUint x) {
     return randgen()%x + 1;
 }
 
+void pa::Exit(const std::string& msg)
+{
+    std::cerr << msg << std::endl;
+    SDL_Quit();
+    exit(1);
+}
