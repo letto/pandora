@@ -21,12 +21,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "terrain.h"
 #include "tree.h"
+#include "world.h"
 
 using pa::Location;
 using pa::Image;
 using pa::Random;
-
-typedef std::vector< std::vector<Terrain>> Map;
 
 class PandoraEngine
 {

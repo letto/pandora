@@ -28,10 +28,11 @@ class PaObject
 {
 public:
 	virtual Image Get_Image() = 0;
-	virtual Location Get_Location() = 0;
+	virtual Location Get_Location() const = 0;
 protected:
 	PaObject();
 private:
+	//PaObject(PaObject&);
 };
 
 #endif // PAOBJECT_H

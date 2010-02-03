@@ -27,7 +27,7 @@ location(location)
 {
 }
 
-Location Terrain::Get_Location() {
+Location Terrain::Get_Location() const {
     return location;
 }
 

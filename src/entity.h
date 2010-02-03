@@ -33,7 +33,7 @@ class Entity : virtual public PaObject
 {
 public:
     Entity();
-    Location Get_Location();
+    Location Get_Location() const;
     //Image  Get_Image();
     PaUint Get_ID();
     virtual Size Get_Size() const = 0;
@@ -44,7 +44,7 @@ protected:
     //static Size size;
     
 private:
-    Entity(const Entity&);
+    Entity(Entity& );
     PaUint id;
     static std::map<PaUint,Entity*> idmap;
 };

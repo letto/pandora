@@ -25,7 +25,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "wall.h"
 #include "race/race.h"
 
-extern Map map;
+extern World map;
 
 Interface::Interface():display_counter(0),cursor(0,0),cursor_mode(centered)
 {
@@ -72,6 +72,7 @@ Interface::Interface():display_counter(0),cursor(0,0),cursor_mode(centered)
     
     player_id = player->Get_ID();
     cursor = player->Get_Location();
+    
 }
 
 Interface::~Interface()
@@ -82,7 +83,6 @@ Interface::~Interface()
 void Interface::Run()
 {
     Uint16 i = 32 ;
-    
     SDL_Color change = {25,25,25};
     while(i < 61500 ) {
 	i++;
@@ -172,8 +172,8 @@ void Interface::Draw_Display()
 		img = Image('#',Color(35,35,35));
 		col = Color(0,0,0);
 	    } else {
-		img = map[cx+pos_x][cy+pos_y].Get_Next_Display_Image();
-		col = map[cx+pos_x][cy+pos_y].Get_Surface_Color();
+		img = map(cx+pos_x ,cy+pos_y).Get_Next_Display_Image();
+		col = map(cx+pos_x ,cy+pos_y).Get_Surface_Color();
 	    }
 	    display.Print_Char(img.ch, cx, cy, img.color, col);
 	}

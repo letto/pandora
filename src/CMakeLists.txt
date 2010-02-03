@@ -5,6 +5,7 @@ Set (
     pa_object.cpp
     surface.cpp
     terrain.cpp
+    world.cpp
     entity.cpp
     entitycontainer.cpp
     tree.cpp

@@ -2,7 +2,7 @@ project(pandora)
 
 Find_Package ( SDL REQUIRED )
 
-Set (CMAKE_CXX_FLAGS " -std=gnu++0x")
+Set (CMAKE_CXX_FLAGS " -O2 -std=gnu++0x")
 
 Link_Libraries (
    ${SDL_LIBRARY}
@@ -12,5 +12,4 @@ Link_Libraries (
 )
 
 add_subdirectory(src)
-
 

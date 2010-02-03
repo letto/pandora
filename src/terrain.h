@@ -33,11 +33,13 @@ class Terrain : public EntityContainer
 {
 public:
 	Terrain(Location);
+	//Terrain& operator=(const Terrain&);
 	Image  Get_Image();
-	Location Get_Location();
+	Location Get_Location() const;
 	static Volume Get_Volume();
 	Color Get_Surface_Color();
 private:
+	//Terrain& operator=(const Terrain&);
 	static const Volume volume = Volume(350);
 	Location location;
 	Surface *surface;

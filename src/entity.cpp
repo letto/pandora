@@ -31,7 +31,7 @@ Entity::Entity():holder(NULL),next(NULL)
     idmap.insert(std::pair<PaUint,Entity*>( id_number,this));
 }
 
-Location Entity::Get_Location() {
+Location Entity::Get_Location() const {
     return holder->Get_Location();
 }
 

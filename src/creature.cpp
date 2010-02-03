@@ -21,9 +21,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "terrain.h"
 #include "pa_engine.h"
 
-extern Map map;
-extern PaInt map_max_x;
-extern PaInt map_max_y;
+extern World map;
+//extern PaInt map_max_x;
+//extern PaInt map_max_y;
 
 // Creature::Creature()
 // {
@@ -58,13 +58,13 @@ bool Creature::Go_Direction(const Direction& direction)
 	    dest.x++;
 	    break;
     }
-    if(dest.x < 0 || dest.y < 0 || dest.x >= map_max_x || dest.y >= map_max_y) {
+    if(dest.x < 0 || dest.y < 0 || dest.x >= map.max_x || dest.y >= map.max_y) {
 	return false;
     }
     
-    if(map[dest.x][dest.y].Has_Space_For(this)){
-	map[loc.x][loc.y].Remove_Entity(this);
-	map[dest.x][dest.y].Insert_Entity(this);
+    if(map(dest).Has_Space_For(this)){
+	map(loc).Remove_Entity(this);
+	map(dest).Insert_Entity(this);
 	return true;
     } else {
 	return false;

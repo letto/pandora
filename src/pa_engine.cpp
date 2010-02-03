@@ -18,28 +18,18 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "pa_engine.h"
 
-PaUint map_max_x = 931;
-PaUint map_max_y = 863;
-Map map;
+World map{931,863};
 
 PandoraEngine::PandoraEngine()
 {
-    map.reserve(map_max_x);
-    for(int cx = 0; cx< map_max_x;cx++) {
-	map.push_back( std::vector<Terrain>() );
-	map[cx].reserve(map_max_y);
-	for(int cy = 0; cy < map_max_y;cy++) {
-	    map[cx].push_back(Terrain(Location(cx,cy)));
-	}
-    }
     
-    for(PaUint cy = 0;cy < map_max_y - 3; cy+=4)
-	for(PaUint cx = 0; cx < map_max_x - 4 ; cx+=5) {
+    for(PaUint cy = 0;cy < map.max_y - 3; cy+=4)
+	for(PaUint cx = 0; cx < map.max_x - 4 ; cx+=5) {
 	    for(int i = 0; i < 4 ; i++ ) {
 		int x = cx + Random(0,4);
 		int y = cy + Random(0,3);
-		if(map[x][y].Is_Empty())
-		    map[x][y].Put_Entity(new Tree);
+		if(map(x,y).Is_Empty())
+		    map(x,y).Put_Entity(new Tree);
 	    }
 	}
 }
@@ -50,16 +40,16 @@ void PandoraEngine::Run()
 }
 
 PaInt PandoraEngine::Get_Map_Max_X(){
-    return map_max_x;
+    return map.max_x;
 }
 
 PaInt PandoraEngine::Get_Map_Max_Y(){
-    return map_max_y;
+    return map.max_y;
 }
 
 Entity* PandoraEngine::Add_Entity(const Location& loc ,Entity * entity)
 {
-    if (map[loc.x][loc.y].Put_Entity( entity ) == true) {
+    if (map(loc).Put_Entity( entity ) == true) {
 	return entity;
     } else {
 	delete entity;
