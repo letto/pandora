@@ -20,7 +20,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PA_ENGINE_H
 
 #include "terrain.h"
-#include "tree.h"
 #include "world.h"
 
 using pa::Location;

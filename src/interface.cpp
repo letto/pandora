@@ -27,7 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 extern World map;
 
-Interface::Interface():display_counter(0),cursor(0,0),cursor_mode(centered)
+Interface::Interface():display_counter(0),cursor(0,0),cursor_mode(following)
 {
     if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER) != 0)
 	pa::Exit("SDL_Init failed");
@@ -53,7 +53,7 @@ Interface::Interface():display_counter(0),cursor(0,0),cursor_mode(centered)
 	video_Flags |= SDL_HWACCEL;
 
     SDL_SetEventFilter(Event_Filter);
-    Resize();
+    
     
     player = Add_Player(Location(17,11),new Human());
     Add_Player(Location(26,19),new Elf());
@@ -72,6 +72,8 @@ Interface::Interface():display_counter(0),cursor(0,0),cursor_mode(centered)
     
     player_id = player->Get_ID();
     cursor = player->Get_Location();
+    
+    Resize();
     
 }
 
@@ -143,6 +145,7 @@ void Interface::Resize()
     rec.x = 0;
     rec.w = screen->w - events.Get_Width();
     display.Resize(rec);
+    cursor = player->Get_Location();
 }
 
 void Interface::Draw_Display()
@@ -152,10 +155,10 @@ void Interface::Draw_Display()
 	    cursor = player->Get_Location();
 	    break;
 	case following:
-	    if(player->Get_Location().x - cursor.x > display.Get_Max_X()/2 - 3) cursor.x++;
-	    if(player->Get_Location().y - cursor.y > display.Get_Max_Y()/2 - 3) cursor.y++;
-	    if(cursor.x - player->Get_Location().x > display.Get_Max_X()/2 - 3) cursor.x--;
-	    if(cursor.y - player->Get_Location().y > display.Get_Max_Y()/2 - 3) cursor.y--;
+	    if(player->Get_Location().x - cursor.x > display.Get_Max_X()/2 - 5) cursor.x++;
+	    if(player->Get_Location().y - cursor.y > display.Get_Max_Y()/2 - 2) cursor.y++;
+	    if(cursor.x - player->Get_Location().x > display.Get_Max_X()/2 - 5) cursor.x--;
+	    if(cursor.y - player->Get_Location().y > display.Get_Max_Y()/2 - 2) cursor.y--;
 	    break;    
     }
     

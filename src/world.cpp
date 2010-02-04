@@ -35,5 +35,18 @@ Terrain& World::operator()(const PaInt& x ,const PaInt& y) {
 }
 
 Terrain& World::operator()(const pa::Location& loc) {
-    return (*this)(loc.x ,loc.y);
+    return operator()(loc.x ,loc.y);
+}
+
+void World::Generate() 
+{
+    for(PaUint cy = 0;cy < max_y - 3; cy+=4) 
+	for(PaUint cx = 0; cx < max_x - 4 ; cx+=5) {
+	    for(int i = 0; i < 4 ; i++ ) {
+		int x = cx + Random(0,4);
+		int y = cy + Random(0,3);
+		if(operator()(x,y).Is_Empty())
+		    operator()(x,y).Put_Entity(new Tree);
+	    }
+	}
 }

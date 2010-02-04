@@ -60,10 +60,11 @@ void Terminal::Set_Font(const std::string& font_path ,const int& size)
     //std::cout << "glyph size wxh: " << glyph_w << " " << glyph_h << std::endl;
 }
 
-Terminal::Terminal()
+Terminal::Terminal():
+cursor_y(0),cursor_max_y(0),
+cursor_x(0),cursor_max_x(0)
 {
-    cursor_y = cursor_max_y;
-    cursor_x = 0;
+
 }
 
 int Terminal::Get_Max_X() {

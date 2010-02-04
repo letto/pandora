@@ -22,16 +22,7 @@ World map{931,863};
 
 PandoraEngine::PandoraEngine()
 {
-    
-    for(PaUint cy = 0;cy < map.max_y - 3; cy+=4)
-	for(PaUint cx = 0; cx < map.max_x - 4 ; cx+=5) {
-	    for(int i = 0; i < 4 ; i++ ) {
-		int x = cx + Random(0,4);
-		int y = cy + Random(0,3);
-		if(map(x,y).Is_Empty())
-		    map(x,y).Put_Entity(new Tree);
-	    }
-	}
+    map.Generate();
 }
 
 void PandoraEngine::Run()

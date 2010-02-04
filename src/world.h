@@ -19,6 +19,9 @@
 #ifndef WORLD_H
 #define WORLD_H
 #include "terrain.h"
+#include "tree.h"
+
+using pa::Random;
 
 class World
 {
@@ -27,6 +30,7 @@ public:
 	Terrain& operator()(const pa::Location&);
 	World(PaInt max_x,PaInt max_y);
 	PaInt max_x,max_y;
+	void Generate();
 private:
 	std::vector<Terrain> map;
 };
