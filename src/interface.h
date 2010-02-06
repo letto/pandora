@@ -39,8 +39,11 @@ private:
 	unsigned int display_counter;
 	void Draw_Display();
 	void Draw_Info();
+	void Draw_Actions();
 	
-	enum CursorMode {centered,following,controlled} cursor_mode;
+	bool action_succes;
+	enum class Action {none,move} action_type;
+	enum class Cursor {centered,following,controlled} cursor_mode;
 	Location cursor;
 	unsigned int player_id;
 	Creature* player;

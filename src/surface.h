@@ -27,8 +27,9 @@ class Surface : public Entity
 {
 public:
 	Surface();
-	Color Get_Color();
-	Image Get_Image();
+	Color Get_Color() const;
+	Image Get_Image() const;
+	std::string Get_Descripton() const;
 	Size Get_Size() const;
 private:
 	//Color color;

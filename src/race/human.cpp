@@ -18,6 +18,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "human.h"
 
-Image Human::Get_Image() {
+Image Human::Get_Image() const {
     return {'@',pa::gray};
+}
+
+std::string Human::Get_Descripton() const {
+    return "a human";
 }

@@ -27,7 +27,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 extern World map;
 
-Interface::Interface():display_counter(0),cursor(0,0),cursor_mode(following)
+Interface::Interface():
+display_counter(0),cursor(0,0),
+action_succes(false),action_type(Action::none),
+cursor_mode(Cursor::following)
 {
     if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER) != 0)
 	pa::Exit("SDL_Init failed");
@@ -74,7 +77,6 @@ Interface::Interface():display_counter(0),cursor(0,0),cursor_mode(following)
     cursor = player->Get_Location();
     
     Resize();
-    
 }
 
 Interface::~Interface()
@@ -93,6 +95,7 @@ void Interface::Run()
 	engine.Run();
 	
 	Draw_Display();
+	Draw_Actions();
 	
 	change.r += 28;change.g += 35;change.b+= 17;
 
@@ -110,6 +113,7 @@ void Interface::Run()
 	info.Blit();
 	events.Blit();
 	actions.Blit();
+
 	SDL_Delay( 150 );
 	SDL_GL_SwapBuffers( );
     }
@@ -151,13 +155,13 @@ void Interface::Resize()
 void Interface::Draw_Display()
 {
     switch(cursor_mode) {
-	case centered:
+	case Cursor::centered:
 	    cursor = player->Get_Location();
 	    break;
-	case following:
-	    if(player->Get_Location().x - cursor.x > display.Get_Max_X()/2 - 5) cursor.x++;
+	case Cursor::following:
+	    if(player->Get_Location().x - cursor.x > display.Get_Max_X()/2 - 4) cursor.x++;
 	    if(player->Get_Location().y - cursor.y > display.Get_Max_Y()/2 - 2) cursor.y++;
-	    if(cursor.x - player->Get_Location().x > display.Get_Max_X()/2 - 5) cursor.x--;
+	    if(cursor.x - player->Get_Location().x > display.Get_Max_X()/2 - 4) cursor.x--;
 	    if(cursor.y - player->Get_Location().y > display.Get_Max_Y()/2 - 2) cursor.y--;
 	    break;    
     }
@@ -191,6 +195,46 @@ void Interface::Draw_Info()
     ss << " Disp Count " << display_counter;
     ss << " Loc " << loc.x << "," << loc.y;
     info.Print(ss.str());
+}
+
+void Interface::Draw_Actions()
+{
+    if(action_type == Action::none) {
+	return;
+    }
+    action_type = Action::none;
+    if(!action_succes) {
+	actions.Print("\nYou are blocked.");
+	return;
+    }
+
+    std::stringstream ss;
+    ss << "\n";//You see ";
+    EntityContainer* terrain = dynamic_cast<EntityContainer*>(player->Get_Holder());
+    Entity* ent = terrain->Get_First_Entity();
+    if(ent == player) {
+	ent = ent->next;
+    }
+    if (ent == NULL) {
+	ss << terrain->Get_Descripton();
+    } else {
+	while(ent != NULL) {
+	    ss << ent->Get_Descripton();
+	    Entity* ent_next = ent->next;
+	    ent_next = (ent_next != player? ent_next :ent_next->next);
+	    Entity* ent_next_next = (ent_next != NULL? ent_next->next :NULL);
+	    ent_next_next = (ent_next_next != player? ent_next_next :ent_next_next->next);
+	    if(ent_next != NULL) {
+		if(ent_next_next == NULL){
+		    ss << " and ";
+		} else {
+		    ss<< ", ";
+		}
+	    }
+	    ent = ent_next;
+	}
+    }
+    actions.Print(ss.str());
 }
 
 int Interface::Event_Filter(const SDL_Event* const event)
@@ -237,31 +281,41 @@ void Interface::Keyboard_Handler(const SDL_keysym& key)
     switch(key.sym) {
 	case SDLK_KP4:
 	case SDLK_LEFT:
-	    player->Go_Direction(pa::west);
+	    action_type = Action::move;
+	    action_succes = player->Go_Direction(pa::west);
 	    break;
 	case SDLK_KP6:
 	case SDLK_RIGHT:
-	    player->Go_Direction(pa::east);
+	    action_type = Action::move;
+	    action_succes = player->Go_Direction(pa::east);
 	    break;
 	case SDLK_KP8:
 	case SDLK_UP:
-	    player->Go_Direction(pa::north);
+	    action_type = Action::move;
+	    action_succes = player->Go_Direction(pa::north);
 	    break;
 	case SDLK_KP2:
 	case SDLK_DOWN:
-	    player->Go_Direction(pa::south);
+	    action_type = Action::move;
+	    action_succes = player->Go_Direction(pa::south);
 	    break;
 	case SDLK_KP9:
-	    player->Go_Direction(pa::northeast);
+	    action_type = Action::move;
+	    action_succes = player->Go_Direction(pa::northeast);
 	    break;
 	case SDLK_KP7:
-	    player->Go_Direction(pa::northwest);
+	    action_type = Action::move;
+	    action_succes = player->Go_Direction(pa::northwest);
 	    break;
 	case SDLK_KP3:
-	    player->Go_Direction(pa::southeast);
+	    action_type = Action::move;
+	    action_succes = player->Go_Direction(pa::southeast);
 	    break;
 	case SDLK_KP1:
-	    player->Go_Direction(pa::southwest);
+	    action_type = Action::move;
+	    action_succes = player->Go_Direction(pa::southwest);
 	    break;
+	default:
+	    action_type = Action::none;
     }
 }

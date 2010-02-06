@@ -22,11 +22,15 @@ Surface::Surface()
 {
 }
 
-Image Surface::Get_Image() {
+Image Surface::Get_Image() const {
     return Image(9617,pa::dark_green);
 }
 
-Color Surface::Get_Color() {
+std::string Surface::Get_Descripton() const {
+    return "grass surface";
+}
+
+Color Surface::Get_Color() const {
     return pa::soil_green;
 }
 

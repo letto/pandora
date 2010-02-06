@@ -29,6 +29,7 @@ void EntityContainer::Insert_Entity(Entity* entity)
     entity->next = entities;
     entity->Set_Holder(this);
     entities = entity;
+    entities_it = entities;
     entities_display_it = entities;
 }
 
@@ -55,11 +56,11 @@ void EntityContainer::Remove_Entity(Entity* entity) {
     }
     
     entity->next = NULL;
-    //entities.remove(entity);
     entities_display_it = entities;
+    entities_it = entities;
 }
 
-bool EntityContainer::Is_Empty() {
+bool EntityContainer::Is_Empty() const {
     return entities == NULL;
 }
 
@@ -67,17 +68,28 @@ bool EntityContainer::Has_Space_For(const Entity* entity) {
     return (Volume)entity->Get_Size() <= volume_max - volume_used;
 }
 
-/*Entity* EntityContainer::Get_First_Entity() 
+Entity* EntityContainer::Get_First_Entity()
 {
+    entities_it = entities;
+    return entities_it;
 }
 
-Entity* EntityContainer::Get_Next_Entity()
-{
-}*/
+// Entity* EntityContainer::Get_Next_Entity()
+// {
+//     if(Is_Empty()) {
+// 	return NULL;
+//     }
+//     entities_it = entities_it->next;
+//     if(entities_it == NULL) {
+// 	entities_it = entities;
+// 	return NULL;
+//     }
+//     return entities_it;
+// }
 
 Image EntityContainer::Get_Next_Display_Image()
 {
-    if(Is_Empty()){
+    if(Is_Empty()) {
 	return Get_Image();
     }
     entities_display_it = entities_display_it->next;

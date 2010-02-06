@@ -18,7 +18,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "orc.h"
 
-Image Orc::Get_Image() {
+Image Orc::Get_Image() const {
     return {246,pa::green};
 }
 
+std::string Orc::Get_Descripton() const {
+    return "an orc";
+}

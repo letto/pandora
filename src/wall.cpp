@@ -18,9 +18,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "wall.h"
 
-Image Wall::Get_Image()
-{
-    return Image(9532,pa::gray);
+Image Wall::Get_Image() const {
+    return Image(9532,pa::brown);
+}
+
+std::string Wall::Get_Descripton() const {
+    return "a wall";
 }
 
 Size Wall::Get_Size() const {

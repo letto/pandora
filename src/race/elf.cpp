@@ -18,7 +18,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "elf.h"
 
-Image Elf::Get_Image() {
+Image Elf::Get_Image() const {
     return {275,pa::gold};
+}
+
+std::string Elf::Get_Descripton() const {
+    return "an elf";
 }
 

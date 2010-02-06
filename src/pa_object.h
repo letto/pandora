@@ -27,12 +27,14 @@ using pa::Location;
 class PaObject
 {
 public:
-	virtual Image Get_Image() = 0;
+	virtual std::string Get_Descripton() const = 0;
+	virtual Image Get_Image() const = 0;
 	virtual Location Get_Location() const = 0;
 protected:
 	PaObject();
 private:
 	//PaObject(PaObject&);
+	//PaObject& operator=(const PaObject&);
 };
 
 #endif // PAOBJECT_H

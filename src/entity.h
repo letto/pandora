@@ -32,21 +32,21 @@ using pa::Location;
 class Entity : virtual public PaObject
 {
 public:
-    Entity();
-    Location Get_Location() const;
-    //Image  Get_Image();
-    PaUint Get_ID();
-    virtual Size Get_Size() const = 0;
-    void Set_Holder(PaObject*);
-    Entity* next;
+	Entity();
+	Location Get_Location() const;
+	PaUint Get_ID() const;
+	virtual Size Get_Size() const = 0;
+	void Set_Holder(PaObject*);
+	PaObject* Get_Holder() const;
+	Entity* next;
 protected:
-    PaObject* holder;
-    //static Size size;
+	PaObject* holder;
     
 private:
-    Entity(Entity& );
-    PaUint id;
-    static std::map<PaUint,Entity*> idmap;
+	Entity(Entity&);
+	Entity& operator=(Entity&);
+	PaUint id;
+	static std::map<PaUint,Entity*> idmap;
 };
 
 #endif // ENTITY_H

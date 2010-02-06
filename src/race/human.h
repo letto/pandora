@@ -25,7 +25,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class Human : public Humanoid
 {
 public:
-	Image Get_Image();
+	std::string Get_Descripton() const;
+	Image Get_Image() const;
 };
 
 #endif // HUMAN_H

@@ -26,10 +26,10 @@ using pa::Image;
 class Tree : public Entity, public EntityContainer
 {
 public:
-    Tree();
-    Image Get_Image();
-    Location Get_Location();
-    Size Get_Size() const;
+	Tree();
+	std::string Get_Descripton() const;
+	Image Get_Image() const;
+	Size Get_Size() const;
 };
 
 #endif // TREE_H

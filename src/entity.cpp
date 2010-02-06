@@ -19,7 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "entity.h"
 
 std::map<PaUint,Entity*> Entity::idmap;
-//Size Entity::size = pa::large;
 
 Entity::Entity():holder(NULL),next(NULL)
 {
@@ -35,10 +34,14 @@ Location Entity::Get_Location() const {
     return holder->Get_Location();
 }
 
-PaUint Entity::Get_ID() {
+PaUint Entity::Get_ID() const {
     return id;
 }
 
 void Entity::Set_Holder(PaObject* hold) {
     holder = hold;
+}
+
+PaObject* Entity::Get_Holder() const {
+    return holder;
 }

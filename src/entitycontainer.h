@@ -30,20 +30,19 @@ using pa::Size;
 using pa::Image;
 using pa::Volume;
 
-
 class EntityContainer : virtual public PaObject
 {
 public:
 	EntityContainer(Volume);
 	
 	bool Has_Space_For(const Entity*);
-	bool Is_Empty();
+	bool Is_Empty() const;
 	void Insert_Entity(Entity*);
 	bool Put_Entity(Entity*);
 	void Remove_Entity(Entity*);
 	
 	Entity* Get_First_Entity();
-	Entity* Get_Next_Entity();
+	//Entity* Get_Next_Entity();
 	Image Get_Next_Display_Image();
 private:
 	Volume volume_used;

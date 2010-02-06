@@ -21,6 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "terrain.h"
 #include "world.h"
+#include "entitycontainer.h"
 
 using pa::Location;
 using pa::Image;

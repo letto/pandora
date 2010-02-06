@@ -22,14 +22,13 @@ Tree::Tree():Entity(),EntityContainer(200)
 {
 }
 
-Image Tree::Get_Image() {
+Image Tree::Get_Image() const {
     return Image(9035,pa::bright_green);
 }
 
-Location Tree::Get_Location() {
-    return Entity::Get_Location();
+std::string Tree::Get_Descripton() const {
+    return "a tree";
 }
-
 Size Tree::Get_Size() const {
     return Size::large;
 }

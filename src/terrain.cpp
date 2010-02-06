@@ -24,14 +24,14 @@ Surface surface_grass;
 Terrain::Terrain(Location location):EntityContainer(volume),
 surface(const_cast<Surface*>(&surface_grass)),
 location(location)
-{
-}
+{}
 
 Location Terrain::Get_Location() const {
     return location;
 }
 
-Image Terrain::Get_Image() {
+Image Terrain::Get_Image() const
+{
     if(surface != NULL) {
 	return surface->Get_Image();
     } else {
@@ -39,7 +39,19 @@ Image Terrain::Get_Image() {
     }
 }
 
-Color Terrain::Get_Surface_Color() {
+std::string Terrain::Get_Descripton() const
+{
+    std::string desc;
+    if(Is_Empty()) {
+	desc = "an empty patch of land";
+    } else {
+	desc = "a patch of land";
+    }
+    desc += " with " + surface->Get_Descripton();
+    return desc;
+}
+
+Color Terrain::Get_Surface_Color() const {
     return surface->Get_Color();
 }
 

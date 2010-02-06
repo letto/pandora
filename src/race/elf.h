@@ -23,7 +23,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 class Elf : public Humanoid
 {
 public:
-    Image Get_Image();
+	Image Get_Image() const;
+	std::string Get_Descripton() const;
 };
 
 #endif // ELF_H
