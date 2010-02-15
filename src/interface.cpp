@@ -19,11 +19,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "interface.h"
 
 #include <iostream>
-#include <sstream>
+#include <boost/lexical_cast.hpp>
 #include <SDL/SDL.h>
 #include <SDL/SDL_opengl.h>
+
 #include "wall.h"
 #include "race/race.h"
+
+
+using boost::lexical_cast;
 
 extern World map;
 
@@ -190,11 +194,11 @@ void Interface::Draw_Display()
 void Interface::Draw_Info()
 {
     Location loc = player->Get_Location();
-    std::stringstream ss ;
-    ss << "\nID: " << player_id ;
-    ss << " Disp Count " << display_counter;
-    ss << " Loc " << loc.x << "," << loc.y;
-    info.Print(ss.str());
+    std::string ss;// = " " ;
+    ss += "\nID: " + lexical_cast<std::string>(player_id) ;
+    ss += " Disp Count " + lexical_cast<std::string>(display_counter);
+    ss += " Loc " + lexical_cast<std::string>(loc.x) + "," + lexical_cast<std::string>(loc.y);
+    info.Print(ss);
 }
 
 void Interface::Draw_Actions()
@@ -208,33 +212,33 @@ void Interface::Draw_Actions()
 	return;
     }
 
-    std::stringstream ss;
-    ss << "\n";//You see ";
+    std::string ss = "\n";
     EntityContainer* terrain = dynamic_cast<EntityContainer*>(player->Get_Holder());
     Entity* ent = terrain->Get_First_Entity();
     if(ent == player) {
 	ent = ent->next;
     }
+
     if (ent == NULL) {
-	ss << terrain->Get_Descripton();
+	ss += terrain->Get_Descripton();
     } else {
 	while(ent != NULL) {
-	    ss << ent->Get_Descripton();
+	    ss += ent->Get_Descripton();
 	    Entity* ent_next = ent->next;
 	    ent_next = (ent_next != player? ent_next :ent_next->next);
 	    Entity* ent_next_next = (ent_next != NULL? ent_next->next :NULL);
 	    ent_next_next = (ent_next_next != player? ent_next_next :ent_next_next->next);
 	    if(ent_next != NULL) {
 		if(ent_next_next == NULL){
-		    ss << " and ";
+		    ss += " and ";
 		} else {
-		    ss<< ", ";
+		    ss += ", ";
 		}
 	    }
 	    ent = ent_next;
 	}
     }
-    actions.Print(ss.str());
+    actions.Print(ss);
 }
 
 int Interface::Event_Filter(const SDL_Event* const event)

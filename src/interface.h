@@ -36,7 +36,7 @@ private:
 	Terminal info;
 	Terminal actions;
 	
-	unsigned int display_counter;
+	PaUint display_counter;
 	void Draw_Display();
 	void Draw_Info();
 	void Draw_Actions();
@@ -45,7 +45,7 @@ private:
 	enum class Action {none,move} action_type;
 	enum class Cursor {centered,following,controlled} cursor_mode;
 	Location cursor;
-	unsigned int player_id;
+	PaUint player_id;
 	Creature* player;
 	Creature* Add_Player(const Location&,Entity*);
 	

@@ -38,10 +38,10 @@ PaUint Entity::Get_ID() const {
     return id;
 }
 
-void Entity::Set_Holder(PaObject* hold) {
+void Entity::Set_Holder(EntityContainer* hold) {
     holder = hold;
 }
 
-PaObject* Entity::Get_Holder() const {
+EntityContainer* Entity::Get_Holder() const {
     return holder;
 }

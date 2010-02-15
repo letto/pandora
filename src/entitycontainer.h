@@ -23,12 +23,14 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <forward_list>
 #include "pa_basics.h"
 #include "pa_object.h"
-#include "entity.h"
+//#include "entity.h"
 
 using pa::Location;
 using pa::Size;
 using pa::Image;
 using pa::Volume;
+
+class Entity;
 
 class EntityContainer : virtual public PaObject
 {
@@ -52,5 +54,7 @@ private:
 	Entity* entities_it;
 	Entity* entities;
 };
+
+#include "entity.h"
 
 #endif // ENTITYCONTAINER_H

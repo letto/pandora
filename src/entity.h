@@ -23,11 +23,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "pa_basics.h"
 #include "pa_object.h"
+#include "entitycontainer.h"
 
 using pa::Image;
 using pa::Size;
 using pa::Location;
-
 
 class Entity : virtual public PaObject
 {
@@ -36,15 +36,15 @@ public:
 	Location Get_Location() const;
 	PaUint Get_ID() const;
 	virtual Size Get_Size() const = 0;
-	void Set_Holder(PaObject*);
-	PaObject* Get_Holder() const;
+	void Set_Holder(EntityContainer*);
+	EntityContainer* Get_Holder() const;
 	Entity* next;
 protected:
-	PaObject* holder;
+	EntityContainer* holder;
     
 private:
-	Entity(Entity&);
-	Entity& operator=(Entity&);
+	Entity(Entity&) = delete;
+	Entity& operator=(Entity&) = delete;
 	PaUint id;
 	static std::map<PaUint,Entity*> idmap;
 };
