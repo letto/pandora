@@ -26,8 +26,8 @@ Image Tree::Get_Image() const {
     return Image(9035,pa::bright_green);
 }
 
-std::string Tree::Get_Descripton() const {
-    return "a tree";
+std::string Tree::Get_Description() const {
+    return "You see a beautiful tree.";
 }
 Size Tree::Get_Size() const {
     return Size::large;

@@ -27,7 +27,7 @@ using pa::Location;
 class PaObject
 {
 public:
-	virtual std::string Get_Descripton() const = 0;
+	virtual std::string Get_Description() const = 0;
 	virtual Image Get_Image() const = 0;
 	virtual Location Get_Location() const = 0;
 protected:

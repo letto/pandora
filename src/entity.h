@@ -19,15 +19,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef ENTITY_H
 #define ENTITY_H
 
-#include <map>
+#include <unordered_map>
 
 #include "pa_basics.h"
 #include "pa_object.h"
-#include "entitycontainer.h"
 
 using pa::Image;
 using pa::Size;
 using pa::Location;
+
+class EntityContainer;
 
 class Entity : virtual public PaObject
 {
@@ -46,7 +47,9 @@ private:
 	Entity(Entity&) = delete;
 	Entity& operator=(Entity&) = delete;
 	PaUint id;
-	static std::map<PaUint,Entity*> idmap;
+	static std::unordered_map<PaUint,Entity*> idmap;
 };
+
+#include "entitycontainer.h"
 
 #endif // ENTITY_H

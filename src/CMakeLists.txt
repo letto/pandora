@@ -9,6 +9,7 @@ Set (
     entity.cpp
     entitycontainer.cpp
     tree.cpp
+    woodlog.cpp
     creature.cpp
     race/humanoid.cpp
     race/human.cpp

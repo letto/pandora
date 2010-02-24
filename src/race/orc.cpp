@@ -22,6 +22,6 @@ Image Orc::Get_Image() const {
     return {246,pa::green};
 }
 
-std::string Orc::Get_Descripton() const {
+std::string Orc::Get_Description() const {
     return "an orc";
 }

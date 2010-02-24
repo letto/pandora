@@ -22,3 +22,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 Size Humanoid::Get_Size() const {
     return Size::large;
 }
+
+bool Humanoid::Cut_Tree() const {
+    dynamic_cast<Terrain*>(holder)->Cut_Tree();
+}

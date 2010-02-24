@@ -27,7 +27,7 @@ class Tree : public Entity, public EntityContainer
 {
 public:
 	Tree();
-	std::string Get_Descripton() const;
+	std::string Get_Description() const;
 	Image Get_Image() const;
 	Size Get_Size() const;
 };

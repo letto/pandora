@@ -20,10 +20,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define TERRAIN_H
 
 #include <vector>
+#include <typeinfo>
 
 #include "surface.h"
 #include "entitycontainer.h"
 #include "creature.h"
+#include "woodlog.h"
+#include "tree.h"
 
 using pa::Image;
 using pa::Color;
@@ -33,17 +36,19 @@ class Terrain : public EntityContainer
 {
 public:
 	Terrain(Location);
-	//Terrain& operator=(const Terrain&);
 	Image  Get_Image() const;
 	Location Get_Location() const;
 	static Volume Get_Volume();
 	Color Get_Surface_Color() const;
-	std::string Get_Descripton() const;
+	std::string Get_Description() const;
+	
+	Tree* Get_Tree();
+	bool Cut_Tree();
 private:
-	//Terrain& operator=(const Terrain&);
 	static const Volume volume = Volume(350);
 	Location location;
 	Surface *surface;
+	//WoodLog wodo;
 };
 
 #endif // TERRAIN_H

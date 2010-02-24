@@ -107,7 +107,7 @@ void Interface::Run()
 	
 	//events.Print_Char('A'+(i%28),SDL_Black,change);
 	//actions.Print_Char(9472+i-33,SDL_Black,change);
-	//actions.Print_Char(8258+i-33,SDL_Black,change);
+	//actions.Print_Char(8800+i-33,SDL_Black,change);
 
 	SDL_Event event;
 	if(SDL_PollEvent(&event)) {
@@ -123,9 +123,9 @@ void Interface::Run()
     }
 }
 
-Creature* Interface::Add_Player(const Location& loc, Entity* entity)
+Humanoid* Interface::Add_Player(const Location& loc, Entity* entity)
 {
-    return static_cast<Creature*>(engine.Add_Entity(loc,entity));
+    return static_cast<Humanoid*>(engine.Add_Entity(loc,entity));
 }
 
 void Interface::Resize()
@@ -213,17 +213,17 @@ void Interface::Draw_Actions()
     }
 
     std::string ss = "\n";
-    EntityContainer* terrain = dynamic_cast<EntityContainer*>(player->Get_Holder());
+    EntityContainer* terrain = player->Get_Holder();
     Entity* ent = terrain->Get_First_Entity();
     if(ent == player) {
 	ent = ent->next;
     }
 
     if (ent == NULL) {
-	ss += terrain->Get_Descripton();
+	//ss += terrain->Get_Descripton();
     } else {
 	while(ent != NULL) {
-	    ss += ent->Get_Descripton();
+	    ss += ent->Get_Description();
 	    Entity* ent_next = ent->next;
 	    ent_next = (ent_next != player? ent_next :ent_next->next);
 	    Entity* ent_next_next = (ent_next != NULL? ent_next->next :NULL);
@@ -238,7 +238,9 @@ void Interface::Draw_Actions()
 	    ent = ent_next;
 	}
     }
-    actions.Print(ss);
+    if(ss != "\n") {
+	actions.Print(ss);
+    }
 }
 
 int Interface::Event_Filter(const SDL_Event* const event)
@@ -283,6 +285,13 @@ void Interface::Event_Handler(const SDL_Event& event)
 void Interface::Keyboard_Handler(const SDL_keysym& key)
 {
     switch(key.sym) {
+	case SDLK_c:
+	    if(player->Cut_Tree()) {
+		actions.Print("\nYou cut a tree.");
+	    } else {
+		actions.Print("\nNo tree to cut.");
+	    }
+	    break;
 	case SDLK_KP4:
 	case SDLK_LEFT:
 	    action_type = Action::move;

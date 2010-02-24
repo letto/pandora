@@ -22,7 +22,7 @@ Image Wall::Get_Image() const {
     return Image(9532,pa::brown);
 }
 
-std::string Wall::Get_Descripton() const {
+std::string Wall::Get_Description() const {
     return "a wall";
 }
 

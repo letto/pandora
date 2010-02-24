@@ -19,11 +19,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef ENTITYCONTAINER_H
 #define ENTITYCONTAINER_H
 
-//#include<list>
 #include <forward_list>
 #include "pa_basics.h"
 #include "pa_object.h"
-//#include "entity.h"
 
 using pa::Location;
 using pa::Size;
@@ -39,7 +37,7 @@ public:
 	
 	bool Has_Space_For(const Entity*);
 	bool Is_Empty() const;
-	void Insert_Entity(Entity*);
+	
 	bool Put_Entity(Entity*);
 	void Remove_Entity(Entity*);
 	
@@ -47,6 +45,8 @@ public:
 	//Entity* Get_Next_Entity();
 	Image Get_Next_Display_Image();
 private:
+	friend class Creature;
+	void Insert_Entity(Entity*);
 	Volume volume_used;
 	Volume volume_max;
 	

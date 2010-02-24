@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "entity.h"
 
-std::map<PaUint,Entity*> Entity::idmap;
+std::unordered_map<PaUint,Entity*> Entity::idmap;
 
 Entity::Entity():holder(NULL),next(NULL)
 {

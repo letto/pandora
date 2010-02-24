@@ -22,7 +22,7 @@ Image Elf::Get_Image() const {
     return {275,pa::gold};
 }
 
-std::string Elf::Get_Descripton() const {
+std::string Elf::Get_Description() const {
     return "an elf";
 }
 

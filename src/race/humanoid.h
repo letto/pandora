@@ -20,11 +20,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define HUMANOID_H
 
 #include "../creature.h"
+#include "../terrain.h"
+#include "../tree.h"
 
 class Humanoid : public Creature
 {
 public:
     Size Get_Size() const;
+    
+    bool Cut_Tree() const;
 };
 
 #endif // HUMANOID_H

@@ -38,7 +38,7 @@ Terrain& World::operator()(const pa::Location& loc) {
     return operator()(loc.x ,loc.y);
 }
 
-void World::Generate() 
+void World::Generate()
 {
     for(PaUint cy = 0;cy < max_y - 3; cy+=4) 
 	for(PaUint cx = 0; cx < max_x - 4 ; cx+=5) {

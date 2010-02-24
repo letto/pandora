@@ -27,7 +27,7 @@ class Wall : public Entity
 {
 public:
 	Image Get_Image() const;
-	std::string Get_Descripton() const;
+	std::string Get_Description() const;
 	Size Get_Size() const;
 };
 

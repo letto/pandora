@@ -26,7 +26,7 @@ Image Surface::Get_Image() const {
     return Image(9617,pa::dark_green);
 }
 
-std::string Surface::Get_Descripton() const {
+std::string Surface::Get_Description() const {
     return "grass surface";
 }
 

@@ -39,7 +39,7 @@ Image Terrain::Get_Image() const
     }
 }
 
-std::string Terrain::Get_Descripton() const
+std::string Terrain::Get_Description() const
 {
     std::string desc;
     if(Is_Empty()) {
@@ -47,9 +47,35 @@ std::string Terrain::Get_Descripton() const
     } else {
 	desc = "a patch of land";
     }
-    desc += " with " + surface->Get_Descripton();
+    desc += " with " + surface->Get_Description();
     return desc;
 }
+
+Tree* Terrain::Get_Tree()
+{
+    Entity* tree = Get_First_Entity();
+    while(tree != NULL) {
+	if(typeid(*tree)==typeid(Tree)) {
+	    return dynamic_cast<Tree*>(tree);
+	}
+	tree = tree->next;
+    }
+    return NULL;
+}
+
+bool Terrain::Cut_Tree()
+{
+    Tree* tree  = Get_Tree();
+    if (!tree) {
+	return false;
+    }
+    Remove_Entity(tree);
+    delete tree;
+    Put_Entity(new WoodLog);
+    Put_Entity(new WoodLog);
+    return true;
+}
+
 
 Color Terrain::Get_Surface_Color() const {
     return surface->Get_Color();

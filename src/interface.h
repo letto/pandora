@@ -23,6 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "terminal.h"
 
 #include "pa_engine.h"
+#include "race/race.h"
 
 class Interface
 {
@@ -46,8 +47,8 @@ private:
 	enum class Cursor {centered,following,controlled} cursor_mode;
 	Location cursor;
 	PaUint player_id;
-	Creature* player;
-	Creature* Add_Player(const Location&,Entity*);
+	Humanoid* player;
+	Humanoid* Add_Player(const Location&,Entity*);
 	
 	
 	PandoraEngine engine;
