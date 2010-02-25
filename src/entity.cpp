@@ -26,7 +26,7 @@ Entity::Entity():holder(NULL),next(NULL)
     while(idmap.count(id_number) != 0) {
 	id_number++;
     }
-    this->id = id_number;
+    id = id_number;
     idmap.insert(std::pair<PaUint,Entity*>( id_number,this));
 }
 
@@ -36,12 +36,4 @@ Location Entity::Get_Location() const {
 
 PaUint Entity::Get_ID() const {
     return id;
-}
-
-void Entity::Set_Holder(EntityContainer* hold) {
-    holder = hold;
-}
-
-EntityContainer* Entity::Get_Holder() const {
-    return holder;
 }

@@ -8,6 +8,8 @@ Set (
     world.cpp
     entity.cpp
     entitycontainer.cpp
+    item.cpp
+    material.cpp
     tree.cpp
     woodlog.cpp
     creature.cpp

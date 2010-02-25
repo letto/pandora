@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "tree.h"
 
-Tree::Tree():Entity(),EntityContainer(200)
+Tree::Tree():Entity()//,EntityContainer(200)
 {
 }
 
@@ -30,5 +30,5 @@ std::string Tree::Get_Description() const {
     return "You see a beautiful tree.";
 }
 Size Tree::Get_Size() const {
-    return Size::large;
+    return Size::tree;
 }

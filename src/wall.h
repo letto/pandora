@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "terrain.h"
 #include "entity.h"
 
-class Wall : public Entity
+class Wall : public Item
 {
 public:
 	Image Get_Image() const;

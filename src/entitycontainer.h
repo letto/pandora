@@ -38,20 +38,18 @@ public:
 	bool Has_Space_For(const Entity*);
 	bool Is_Empty() const;
 	
-	bool Put_Entity(Entity*);
-	void Remove_Entity(Entity*);
+	bool Add_Entity(Entity*);
+	bool Remove_Entity(Entity*);
 	
 	Entity* Get_First_Entity();
-	//Entity* Get_Next_Entity();
 	Image Get_Next_Display_Image();
-private:
+protected:
 	friend class Creature;
 	void Insert_Entity(Entity*);
 	Volume volume_used;
 	Volume volume_max;
 	
 	Entity* entities_display_it;
-	Entity* entities_it;
 	Entity* entities;
 };
 

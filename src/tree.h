@@ -18,12 +18,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifndef TREE_H
 #define TREE_H
+
 #include "entity.h"
 #include "entitycontainer.h"
 
 using pa::Image;
 
-class Tree : public Entity, public EntityContainer
+class Tree : public Entity//, public EntityContainer
 {
 public:
 	Tree();

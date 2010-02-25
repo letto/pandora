@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "entitycontainer.h"
 
 EntityContainer::EntityContainer(Volume volume):volume_max(volume)
-,volume_used(0),entities(NULL),entities_it(NULL),entities_display_it(NULL)
+,volume_used(0),entities(NULL),entities_display_it(NULL)
 {
 }
 
@@ -27,13 +27,12 @@ void EntityContainer::Insert_Entity(Entity* entity)
 {
     volume_used += (Volume)entity->Get_Size();
     entity->next = entities;
-    entity->Set_Holder(this);
+    entity->holder = this;
     entities = entity;
-    entities_it = entities;
     entities_display_it = entities;
 }
 
-bool EntityContainer::Put_Entity(Entity* entity)
+bool EntityContainer::Add_Entity(Entity* entity)
 { 
     if( Has_Space_For(entity)) {
 	Insert_Entity(entity);
@@ -42,22 +41,29 @@ bool EntityContainer::Put_Entity(Entity* entity)
     return false;
 }
 
-void EntityContainer::Remove_Entity(Entity* entity) {
-    volume_used -= (Volume)entity->Get_Size();
-    
+bool EntityContainer::Remove_Entity(Entity* entity)
+{
+    if(entities == NULL) {
+	return false;
+    }
+
     if( entities == entity) {
 	entities = entity->next;
     } else {
 	Entity* ent  = entities;
-	while( ent->next != entity) { 
+	while( ent->next != entity) {
 	    ent = ent->next;
+	    if (ent == NULL) {
+		return false;
+	    }
 	}
 	ent->next = ent->next->next;
     }
     
     entity->next = NULL;
     entities_display_it = entities;
-    entities_it = entities;
+    volume_used -= (Volume)entity->Get_Size();
+    return true;
 }
 
 bool EntityContainer::Is_Empty() const {
@@ -68,24 +74,9 @@ bool EntityContainer::Has_Space_For(const Entity* entity) {
     return (Volume)entity->Get_Size() <= volume_max - volume_used;
 }
 
-Entity* EntityContainer::Get_First_Entity()
-{
-    entities_it = entities;
-    return entities_it;
+Entity* EntityContainer::Get_First_Entity() {
+    return entities;
 }
-
-// Entity* EntityContainer::Get_Next_Entity()
-// {
-//     if(Is_Empty()) {
-// 	return NULL;
-//     }
-//     entities_it = entities_it->next;
-//     if(entities_it == NULL) {
-// 	entities_it = entities;
-// 	return NULL;
-//     }
-//     return entities_it;
-// }
 
 Image EntityContainer::Get_Next_Display_Image()
 {

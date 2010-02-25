@@ -56,3 +56,7 @@ void pa::Exit(const std::string& msg)
     SDL_Quit();
     exit(1);
 }
+
+bool operator>(pa::Size a,pa::Size b) {
+    return (pa::Volume)a > (pa::Volume)b;
+}

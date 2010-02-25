@@ -77,6 +77,7 @@ enum class Size {
     small = 16, //cats
     medium = 64, //dogs
     large = 128, //humans
+    tree = 132,
     huge = 256, //elephants
     gigantic = 1024 //
 };
@@ -90,5 +91,6 @@ void Exit(const std::string&);
 
 }//namespace pa
 
+bool operator>(pa::Size,pa::Size);
 
 #endif // PA_BASICS_H

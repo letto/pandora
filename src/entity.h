@@ -37,11 +37,11 @@ public:
 	Location Get_Location() const;
 	PaUint Get_ID() const;
 	virtual Size Get_Size() const = 0;
-	void Set_Holder(EntityContainer*);
-	EntityContainer* Get_Holder() const;
+
 	Entity* next;
-protected:
 	EntityContainer* holder;
+protected:
+	
     
 private:
 	Entity(Entity&) = delete;

@@ -1,6 +1,6 @@
 /*
     Copyright (C) 2010  Marius Stoica
-
+    
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
@@ -16,21 +16,5 @@
 
 */
 
-#ifndef WOODLOG_H
-#define WOODLOG_H
-
-#include "pa_basics.h"
 #include "material.h"
 
-using pa::Image;
-
-class WoodLog : public Material
-{
-public:
-	//WoodLog();
-	Size Get_Size() const;
-	Image Get_Image() const;
-	std::string Get_Description() const;
-};
-
-#endif // WOODLOG_H

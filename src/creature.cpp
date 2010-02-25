@@ -22,13 +22,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "pa_engine.h"
 
 extern World map;
-//extern PaInt map_max_x;
-//extern PaInt map_max_y;
-
-// Creature::Creature()
-// {
-//     //std::cout << "ID " << id <<" Adress " << this << "\n";
-// }
 
 bool Creature::Go_Direction(const Direction& direction)
 {
@@ -71,3 +64,19 @@ bool Creature::Go_Direction(const Direction& direction)
     }
 }
 
+bool Creature::Take_Item(Item* item) 
+{
+    if(holding != NULL) {
+	return false;
+    }
+    if(item->Get_Size() > Get_Max_Holding_Size()) {
+	return false;
+    }
+
+    if(!holder->Remove_Entity(item)) {
+	return false;
+    } else {
+	holding = item;
+	return true;
+    }
+}

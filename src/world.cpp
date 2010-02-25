@@ -46,7 +46,7 @@ void World::Generate()
 		int x = cx + Random(0,4);
 		int y = cy + Random(0,3);
 		if(operator()(x,y).Is_Empty())
-		    operator()(x,y).Put_Entity(new Tree);
+		    operator()(x,y).Add_Entity(new Tree);
 	    }
 	}
 }

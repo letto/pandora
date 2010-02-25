@@ -56,7 +56,7 @@ Tree* Terrain::Get_Tree()
     Entity* tree = Get_First_Entity();
     while(tree != NULL) {
 	if(typeid(*tree)==typeid(Tree)) {
-	    return dynamic_cast<Tree*>(tree);
+	    return static_cast<Tree*>(tree);
 	}
 	tree = tree->next;
     }
@@ -71,8 +71,8 @@ bool Terrain::Cut_Tree()
     }
     Remove_Entity(tree);
     delete tree;
-    Put_Entity(new WoodLog);
-    Put_Entity(new WoodLog);
+    Add_Entity(new WoodLog);
+    Add_Entity(new WoodLog);
     return true;
 }
 

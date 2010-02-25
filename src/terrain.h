@@ -48,7 +48,6 @@ private:
 	static const Volume volume = Volume(350);
 	Location location;
 	Surface *surface;
-	//WoodLog wodo;
 };
 
 #endif // TERRAIN_H

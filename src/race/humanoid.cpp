@@ -18,11 +18,31 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "humanoid.h"
 
+extern World map;
 
 Size Humanoid::Get_Size() const {
     return Size::large;
 }
 
-bool Humanoid::Cut_Tree() const {
-    dynamic_cast<Terrain*>(holder)->Cut_Tree();
+Size Humanoid::Get_Max_Holding_Size() const {
+    return Size::large;
 }
+
+bool Humanoid::Cut_Tree() const {
+    static_cast<Terrain*>(holder)->Cut_Tree();
+}
+
+bool Humanoid::Build_Wall()
+{
+    if(holding == NULL ||
+       typeid(*holding) != typeid(WoodLog)||
+       !map(holder->Get_Location().x+1,holder->Get_Location().y).Is_Empty()) {
+	return false;
+    } else {
+	map(holder->Get_Location().x+1,holder->Get_Location().y).Add_Entity(new Wall);
+	delete holding;
+	holding = NULL;
+	return true;
+    }
+}
+

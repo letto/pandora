@@ -16,21 +16,5 @@
 
 */
 
-#ifndef WOODLOG_H
-#define WOODLOG_H
+#include "item.h"
 
-#include "pa_basics.h"
-#include "material.h"
-
-using pa::Image;
-
-class WoodLog : public Material
-{
-public:
-	//WoodLog();
-	Size Get_Size() const;
-	Image Get_Image() const;
-	std::string Get_Description() const;
-};
-
-#endif // WOODLOG_H

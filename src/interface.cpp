@@ -213,7 +213,7 @@ void Interface::Draw_Actions()
     }
 
     std::string ss = "\n";
-    EntityContainer* terrain = player->Get_Holder();
+    EntityContainer* terrain = player->holder;
     Entity* ent = terrain->Get_First_Entity();
     if(ent == player) {
 	ent = ent->next;
@@ -290,6 +290,18 @@ void Interface::Keyboard_Handler(const SDL_keysym& key)
 		actions.Print("\nYou cut a tree.");
 	    } else {
 		actions.Print("\nNo tree to cut.");
+	    }
+	    break;
+	case SDLK_QUOTE:
+	    if(((player->next)!=NULL) && player->Take_Item(static_cast<Item*>(player->next))) {
+		actions.Print("\nYou take an item.");
+	    } else {
+		actions.Print("\nNo item to take.");
+	    }
+	    break;
+	case SDLK_b:
+	    if(player->Build_Wall()) {
+		actions.Print("\nYou build a wall.");
 	    }
 	    break;
 	case SDLK_KP4:

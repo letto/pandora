@@ -20,6 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define CREATURE_H
 
 #include "entity.h"
+#include "item.h"
 
 using pa::Image;
 using pa::Direction;
@@ -27,11 +28,11 @@ using pa::Direction;
 class Creature : public Entity
 {
 public:
-	//Creature();
-	//Image Get_Image();
-	//Size Get_Size();
-	//~Creature();
 	bool Go_Direction(const Direction&);
+	virtual Size Get_Max_Holding_Size() const = 0;
+	bool Take_Item(Item*);
+protected:
+	Item* holding;
 };
 
 #endif // CREATURE_H
