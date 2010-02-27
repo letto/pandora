@@ -19,7 +19,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef ENTITYCONTAINER_H
 #define ENTITYCONTAINER_H
 
-#include <forward_list>
 #include "pa_basics.h"
 #include "pa_object.h"
 
@@ -42,6 +41,7 @@ public:
 	bool Remove_Entity(Entity*);
 	
 	Entity* Get_First_Entity();
+	Entity* Get_First_Entity_Except(Entity*);
 	Image Get_Next_Display_Image();
 protected:
 	friend class Creature;
@@ -52,7 +52,5 @@ protected:
 	Entity* entities_display_it;
 	Entity* entities;
 };
-
-#include "entity.h"
 
 #endif // ENTITYCONTAINER_H

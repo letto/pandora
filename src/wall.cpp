@@ -17,9 +17,42 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "wall.h"
+#include "world.h"
+
+extern World map;
 
 Image Wall::Get_Image() const {
-    return Image(9532,pa::brown);
+    Location loc = holder->Get_Location();
+    Color col = pa::brown;
+    bool wall_up = map(loc.x,loc.y+1).Has_Wall();
+    bool wall_down = map(loc.x,loc.y-1).Has_Wall();
+    bool wall_right = map(loc.x+1,loc.y).Has_Wall();
+    bool wall_left = map(loc.x-1,loc.y).Has_Wall();
+
+    if(wall_up && wall_down && wall_left && wall_right)
+	return Image(9532,col);
+    if(wall_up && wall_down && wall_left)
+	return Image(9508,col);
+    if(wall_up && wall_down && wall_right)
+	return Image(9500,col);
+    if(wall_up && wall_left && wall_right)
+	return Image(9524,col);
+    if(wall_down && wall_left && wall_right)
+	return Image(9516,col);
+    if(wall_up && wall_left)
+	return Image(9496,col);
+    if(wall_up && wall_right)
+	return Image(9492,col);
+    if(wall_down && wall_left)
+	return Image(9488,col);
+    if(wall_down && wall_right)
+	return Image(9484,col);
+    if(wall_up || wall_down)
+	return Image(9474,col);
+    if(wall_left || wall_right)
+	return Image(9472,col);
+
+    return Image(9532,col);
 }
 
 std::string Wall::Get_Description() const {

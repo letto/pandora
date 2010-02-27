@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "entity.h"
+#include "entitycontainer.h"
 
 std::unordered_map<PaUint,Entity*> Entity::idmap;
 
@@ -36,4 +37,13 @@ Location Entity::Get_Location() const {
 
 PaUint Entity::Get_ID() const {
     return id;
+}
+
+Entity* Entity::Get_Next_Entity_Except(Entity* entity)
+{
+    if(next == entity) {
+	return next->next;
+    } else {
+	return next;
+    }
 }

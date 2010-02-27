@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 #include "entitycontainer.h"
+#include "entity.h"
 
 EntityContainer::EntityContainer(Volume volume):volume_max(volume)
 ,volume_used(0),entities(NULL),entities_display_it(NULL)
@@ -76,6 +77,15 @@ bool EntityContainer::Has_Space_For(const Entity* entity) {
 
 Entity* EntityContainer::Get_First_Entity() {
     return entities;
+}
+
+Entity* EntityContainer::Get_First_Entity_Except(Entity* entity)
+{
+    if(entities == entity) {
+	return entity->next;
+    } else {
+	return entities;
+    }
 }
 
 Image EntityContainer::Get_Next_Display_Image()

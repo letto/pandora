@@ -27,6 +27,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include "creature.h"
 #include "woodlog.h"
 #include "tree.h"
+#include "wall.h"
 
 using pa::Image;
 using pa::Color;
@@ -41,7 +42,9 @@ public:
 	static Volume Get_Volume();
 	Color Get_Surface_Color() const;
 	std::string Get_Description() const;
-	
+
+	bool Has_Wall();
+
 	Tree* Get_Tree();
 	bool Cut_Tree();
 private:

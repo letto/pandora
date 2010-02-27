@@ -64,7 +64,7 @@ bool Creature::Go_Direction(const Direction& direction)
     }
 }
 
-bool Creature::Take_Item(Item* item) 
+bool Creature::Take_Entity(Entity* item) 
 {
     if(holding != NULL) {
 	return false;
@@ -78,5 +78,15 @@ bool Creature::Take_Item(Item* item)
     } else {
 	holding = item;
 	return true;
+    }
+}
+
+bool Creature::Drop_Entity()
+{
+    if(holding && holder->Add_Entity(holding)) {
+	holding = NULL;
+	return true;
+    } else {
+	return false;
     }
 }

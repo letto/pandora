@@ -214,21 +214,17 @@ void Interface::Draw_Actions()
 
     std::string ss = "\n";
     EntityContainer* terrain = player->holder;
-    Entity* ent = terrain->Get_First_Entity();
-    if(ent == player) {
-	ent = ent->next;
-    }
+    Entity* ent = terrain->Get_First_Entity_Except(player);
 
     if (ent == NULL) {
 	//ss += terrain->Get_Descripton();
     } else {
+	ss += "You see ";
 	while(ent != NULL) {
 	    ss += ent->Get_Description();
-	    Entity* ent_next = ent->next;
-	    ent_next = (ent_next != player? ent_next :ent_next->next);
-	    Entity* ent_next_next = (ent_next != NULL? ent_next->next :NULL);
-	    ent_next_next = (ent_next_next != player? ent_next_next :ent_next_next->next);
+	    Entity* ent_next = ent->Get_Next_Entity_Except(player);
 	    if(ent_next != NULL) {
+		Entity* ent_next_next = ent_next->Get_Next_Entity_Except(player);
 		if(ent_next_next == NULL){
 		    ss += " and ";
 		} else {
@@ -293,8 +289,8 @@ void Interface::Keyboard_Handler(const SDL_keysym& key)
 	    }
 	    break;
 	case SDLK_QUOTE:
-	    if(((player->next)!=NULL) && player->Take_Item(static_cast<Item*>(player->next))) {
-		actions.Print("\nYou take an item.");
+	    if(player->Take_Entity(player->holder->Get_First_Entity_Except(player))) {
+		actions.Print("\nYou take "+ player->holding->Get_Description());
 	    } else {
 		actions.Print("\nNo item to take.");
 	    }
@@ -302,6 +298,13 @@ void Interface::Keyboard_Handler(const SDL_keysym& key)
 	case SDLK_b:
 	    if(player->Build_Wall()) {
 		actions.Print("\nYou build a wall.");
+	    } else {
+		actions.Print("\nYou fail to build a wall.");
+	    }
+	    break;
+	case SDLK_d:
+	    if(player->Drop_Entity()) {
+		actions.Print("\nYou dropped "+ player->holder->Get_First_Entity()->Get_Description());
 	    }
 	    break;
 	case SDLK_KP4:

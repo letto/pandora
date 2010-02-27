@@ -39,17 +39,13 @@ public:
 	virtual Size Get_Size() const = 0;
 
 	Entity* next;
+	Entity* Get_Next_Entity_Except(Entity*);
 	EntityContainer* holder;
-protected:
-	
-    
 private:
 	Entity(Entity&) = delete;
 	Entity& operator=(Entity&) = delete;
 	PaUint id;
 	static std::unordered_map<PaUint,Entity*> idmap;
 };
-
-#include "entitycontainer.h"
 
 #endif // ENTITY_H

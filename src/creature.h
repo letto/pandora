@@ -30,9 +30,10 @@ class Creature : public Entity
 public:
 	bool Go_Direction(const Direction&);
 	virtual Size Get_Max_Holding_Size() const = 0;
-	bool Take_Item(Item*);
-protected:
-	Item* holding;
+
+	bool Take_Entity(Entity*);
+	bool Drop_Entity();
+	Entity* holding;
 };
 
 #endif // CREATURE_H

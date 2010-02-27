@@ -76,6 +76,17 @@ bool Terrain::Cut_Tree()
     return true;
 }
 
+bool Terrain::Has_Wall()
+{
+    if(!entities) {
+	return false;
+    }
+    if(typeid(*entities) == typeid(Wall)) {
+	return true;
+    } else {
+	return false;
+    }
+}
 
 Color Terrain::Get_Surface_Color() const {
     return surface->Get_Color();
