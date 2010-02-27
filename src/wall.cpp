@@ -39,20 +39,28 @@ Image Wall::Get_Image() const {
 	return Image(9524,col);
     if(wall_down && wall_left && wall_right)
 	return Image(9516,col);
+    if(wall_up && wall_down)
+	return Image(9474,col);
     if(wall_up && wall_left)
 	return Image(9496,col);
     if(wall_up && wall_right)
 	return Image(9492,col);
+    if(wall_left && wall_right)
+	return Image(9472,col);
     if(wall_down && wall_left)
 	return Image(9488,col);
     if(wall_down && wall_right)
 	return Image(9484,col);
-    if(wall_up || wall_down)
-	return Image(9474,col);
-    if(wall_left || wall_right)
-	return Image(9472,col);
+    if(wall_up)
+	return Image(9589,col);
+    if(wall_down)
+	return Image(9591,col);
+    if(wall_left)
+	return Image(9588,col);
+    if(wall_right)
+	return Image(9590,col);
 
-    return Image(9532,col);
+    return Image(10799,col);
 }
 
 std::string Wall::Get_Description() const {

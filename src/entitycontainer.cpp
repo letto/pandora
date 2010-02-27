@@ -21,8 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 EntityContainer::EntityContainer(Volume volume):volume_max(volume)
 ,volume_used(0),entities(NULL),entities_display_it(NULL)
-{
-}
+{}
 
 void EntityContainer::Insert_Entity(Entity* entity)
 {
@@ -35,11 +34,12 @@ void EntityContainer::Insert_Entity(Entity* entity)
 
 bool EntityContainer::Add_Entity(Entity* entity)
 { 
-    if( Has_Space_For(entity)) {
+    if(Has_Space_For(entity)) {
 	Insert_Entity(entity);
 	return true;
+    } else {
+	return false;
     }
-    return false;
 }
 
 bool EntityContainer::Remove_Entity(Entity* entity)

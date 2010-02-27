@@ -107,7 +107,7 @@ void Interface::Run()
 	
 	//events.Print_Char('A'+(i%28),SDL_Black,change);
 	//actions.Print_Char(9472+i-33,SDL_Black,change);
-	//actions.Print_Char(8800+i-33,SDL_Black,change);
+	//actions.Print_Char(8704+i-33,SDL_Black,change);
 
 	SDL_Event event;
 	if(SDL_PollEvent(&event)) {
