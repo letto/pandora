@@ -20,16 +20,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "woodlog.h"
 
-Tree::Tree():Entity()//,EntityContainer(200)
-{
-}
 
 void Tree::Chop()
 {
-    Entity* next_ent = next;
-    next = new WoodLog;
-    next->next = new WoodLog;
-    next->next->next = next_ent;
+    holder->Insert_Entity(new WoodLog);
+    holder->Insert_Entity(new WoodLog);
 
     holder->Remove_Entity(this);
     delete this;

@@ -82,7 +82,7 @@ enum class Size {
     gigantic = 1024 //
 };
 
-typedef PaUint Volume;
+typedef PaInt Volume;
 
 PaUint Random(const PaUint& ,const PaUint&);
 PaUint Dice(const PaUint&);

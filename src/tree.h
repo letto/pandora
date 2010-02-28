@@ -27,7 +27,6 @@ using pa::Image;
 class Tree : public Entity//, public EntityContainer
 {
 public:
-	Tree();
 	std::string Get_Description() const;
 	Image Get_Image() const;
 	Size Get_Size() const;

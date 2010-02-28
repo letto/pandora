@@ -39,13 +39,12 @@ public:
 	
 	bool Add_Entity(Entity*);
 	bool Remove_Entity(Entity*);
+	void Insert_Entity(Entity*); //no volume|size checks
 	
 	Entity* Get_First_Entity();
 	Entity* Get_First_Entity_Except(Entity*);
 	Image Get_Next_Display_Image();
 protected:
-	friend class Creature;
-	void Insert_Entity(Entity*);
 	Volume volume_used;
 	Volume volume_max;
 	
