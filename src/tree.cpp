@@ -18,8 +18,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "tree.h"
 
+#include "woodlog.h"
+
 Tree::Tree():Entity()//,EntityContainer(200)
 {
+}
+
+void Tree::Chop()
+{
+    Entity* next_ent = next;
+    next = new WoodLog;
+    next->next = new WoodLog;
+    next->next->next = next_ent;
+
+    holder->Remove_Entity(this);
+    delete this;
 }
 
 Image Tree::Get_Image() const {
@@ -29,6 +42,7 @@ Image Tree::Get_Image() const {
 std::string Tree::Get_Description() const {
     return "a beautiful tree.";
 }
+
 Size Tree::Get_Size() const {
     return Size::tree;
 }

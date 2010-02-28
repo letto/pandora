@@ -69,10 +69,7 @@ bool Terrain::Cut_Tree()
     if (!tree) {
 	return false;
     }
-    Remove_Entity(tree);
-    delete tree;
-    Add_Entity(new WoodLog);
-    Add_Entity(new WoodLog);
+    tree->Chop();
     return true;
 }
 

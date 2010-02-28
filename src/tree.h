@@ -31,6 +31,7 @@ public:
 	std::string Get_Description() const;
 	Image Get_Image() const;
 	Size Get_Size() const;
+	void Chop();
 };
 
 #endif // TREE_H
