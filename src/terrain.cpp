@@ -18,11 +18,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "terrain.h"
 
-Surface surface_none;
+//Surface surface_none;
 Surface surface_grass;
 
 Terrain::Terrain(Location location):EntityContainer(volume),
-surface(const_cast<Surface*>(&surface_grass)),
+//surface(&surface_grass),
 location(location)
 {}
 
@@ -30,13 +30,8 @@ Location Terrain::Get_Location() const {
     return location;
 }
 
-Image Terrain::Get_Image() const
-{
-    if(surface != NULL) {
-	return surface->Get_Image();
-    } else {
-	return surface_none.Get_Image();
-    }
+Image Terrain::Get_Image() const {
+    return surface_grass.Get_Image();
 }
 
 std::string Terrain::Get_Description() const
@@ -47,7 +42,7 @@ std::string Terrain::Get_Description() const
     } else {
 	desc = "a patch of land";
     }
-    desc += " with " + surface->Get_Description();
+    desc += " with " + surface_grass.Get_Description();
     return desc;
 }
 
@@ -63,7 +58,7 @@ Tree* Terrain::Get_Tree()
     return NULL;
 }
 
-bool Terrain::Cut_Tree()
+bool Terrain::Chop_Tree()
 {
     Tree* tree  = Get_Tree();
     if (!tree) {
@@ -86,7 +81,7 @@ bool Terrain::Has_Wall()
 }
 
 Color Terrain::Get_Surface_Color() const {
-    return surface->Get_Color();
+    return surface_grass.Get_Color();
 }
 
 Volume Terrain::Get_Volume() {

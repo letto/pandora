@@ -46,11 +46,11 @@ public:
 	bool Has_Wall();
 
 	Tree* Get_Tree();
-	bool Cut_Tree();
+	bool Chop_Tree();
 private:
 	static const Volume volume = Volume(350);
 	Location location;
-	Surface *surface;
+	//Surface *surface;
 };
 
 #endif // TERRAIN_H

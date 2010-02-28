@@ -19,6 +19,7 @@ Set (
     race/elf.cpp
     terminal.cpp
     pa_engine.cpp
+    cursor.cpp
     interface.cpp
     main.cpp
 )

@@ -31,7 +31,7 @@ public:
     Size Get_Size() const;
     Size Get_Max_Holding_Size() const;
     
-    bool Cut_Tree() const;
+    bool Chop_Tree() const;
     bool Build_Wall();
 };
 

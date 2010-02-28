@@ -19,11 +19,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef INTERFACE_H
 #define INTERFACE_H
 
-#include <SDL/SDL.h>
 #include "terminal.h"
-
 #include "pa_engine.h"
 #include "race/race.h"
+#include "cursor.h"
 
 class Interface
 {
@@ -43,12 +42,15 @@ private:
 	void Draw_Actions();
 	
 	bool action_succes;
+	enum class Mode { online , cursor} mode;
 	enum class Action {none,move} action_type;
-	enum class Cursor {centered,following,controlled} cursor_mode;
-	Location cursor;
+	enum class FollowMode {centered,following,controlled} follow_mode;
+	Location cursor_loc;
 	PaUint player_id;
 	Humanoid* player;
 	Humanoid* Add_Player(const Location&,Entity*);
+	Cursor* cursor;
+	Creature* current_ent;
 	
 	
 	PandoraEngine engine;

@@ -32,9 +32,9 @@ using boost::lexical_cast;
 extern World map;
 
 Interface::Interface():
-display_counter(0),cursor(0,0),
+display_counter(0),cursor_loc(0,0),mode(Mode::online),
 action_succes(false),action_type(Action::none),
-cursor_mode(Cursor::following)
+follow_mode(FollowMode::following),cursor(new Cursor)
 {
     if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER) != 0)
 	pa::Exit("SDL_Init failed");
@@ -63,6 +63,7 @@ cursor_mode(Cursor::following)
     
     
     player = Add_Player(Location(17,11),new Human());
+    current_ent = player;
     Add_Player(Location(26,19),new Elf());
     Add_Player(Location(27,18),new Human());
     Add_Player(Location(27,19),new Orc());
@@ -76,10 +77,10 @@ cursor_mode(Cursor::following)
     Add_Player(Location(6,11),new Elf());
     
     Add_Player(Location(9,12),new Wall());
-    
+
     player_id = player->Get_ID();
-    cursor = player->Get_Location();
-    
+    cursor_loc = current_ent->Get_Location();
+
     Resize();
 }
 
@@ -96,7 +97,9 @@ void Interface::Run()
 	i++;
 	if(i >= 1200) i=32;
 	
-	engine.Run();
+	if(mode == Mode::online) {
+	    engine.Run();
+	}
 	
 	Draw_Display();
 	Draw_Actions();
@@ -153,26 +156,27 @@ void Interface::Resize()
     rec.x = 0;
     rec.w = screen->w - events.Get_Width();
     display.Resize(rec);
-    cursor = player->Get_Location();
+
+    cursor_loc = current_ent->Get_Location();
 }
 
 void Interface::Draw_Display()
 {
-    switch(cursor_mode) {
-	case Cursor::centered:
-	    cursor = player->Get_Location();
+    switch(follow_mode) {
+	case FollowMode::centered:
+	    cursor_loc = current_ent->Get_Location();
 	    break;
-	case Cursor::following:
-	    if(player->Get_Location().x - cursor.x > display.Get_Max_X()/2 - 4) cursor.x++;
-	    if(player->Get_Location().y - cursor.y > display.Get_Max_Y()/2 - 2) cursor.y++;
-	    if(cursor.x - player->Get_Location().x > display.Get_Max_X()/2 - 4) cursor.x--;
-	    if(cursor.y - player->Get_Location().y > display.Get_Max_Y()/2 - 2) cursor.y--;
+	case FollowMode::following:
+	    if(current_ent->Get_Location().x - cursor_loc.x > display.Get_Max_X()/2 - 4) cursor_loc.x++;
+	    if(current_ent->Get_Location().y - cursor_loc.y > display.Get_Max_Y()/2 - 2) cursor_loc.y++;
+	    if(cursor_loc.x - current_ent->Get_Location().x > display.Get_Max_X()/2 - 4) cursor_loc.x--;
+	    if(cursor_loc.y - current_ent->Get_Location().y > display.Get_Max_Y()/2 - 2) cursor_loc.y--;
 	    break;    
     }
     
     display_counter++;
-    int pos_x = cursor.x - display.Get_Max_X()/2;
-    int pos_y = cursor.y - display.Get_Max_Y()/2;
+    int pos_x = cursor_loc.x - display.Get_Max_X()/2;
+    int pos_y = cursor_loc.y - display.Get_Max_Y()/2;
     Image img('?',pa::red);
     Color col(0,0,0);
     for(int cy = 0; cy <= display.Get_Max_Y();cy++) {
@@ -193,7 +197,7 @@ void Interface::Draw_Display()
 
 void Interface::Draw_Info()
 {
-    Location loc = player->Get_Location();
+    Location loc = current_ent->Get_Location();
     std::string ss;// = " " ;
     ss += "\nID: " + lexical_cast<std::string>(player_id) ;
     ss += " Disp Count " + lexical_cast<std::string>(display_counter);
@@ -213,8 +217,8 @@ void Interface::Draw_Actions()
     }
 
     std::string ss = "\n";
-    EntityContainer* terrain = player->holder;
-    Entity* ent = terrain->Get_First_Entity_Except(player);
+    EntityContainer* terrain = current_ent->holder;
+    Entity* ent = terrain->Get_First_Entity_Except(current_ent);
 
     if (ent == NULL) {
 	//ss += terrain->Get_Descripton();
@@ -222,9 +226,9 @@ void Interface::Draw_Actions()
 	ss += "You see ";
 	while(ent != NULL) {
 	    ss += ent->Get_Description();
-	    Entity* ent_next = ent->Get_Next_Entity_Except(player);
+	    Entity* ent_next = ent->Get_Next_Entity_Except(current_ent);
 	    if(ent_next != NULL) {
-		Entity* ent_next_next = ent_next->Get_Next_Entity_Except(player);
+		Entity* ent_next_next = ent_next->Get_Next_Entity_Except(current_ent);
 		if(ent_next_next == NULL){
 		    ss += " and ";
 		} else {
@@ -281,8 +285,23 @@ void Interface::Event_Handler(const SDL_Event& event)
 void Interface::Keyboard_Handler(const SDL_keysym& key)
 {
     switch(key.sym) {
+	case SDLK_ESCAPE:
+	    switch(mode) {
+		case Mode::online:
+		    mode = Mode::cursor;
+		    current_ent = cursor;
+		    map(player->Get_Location()).Insert_Entity(cursor);
+		    break;
+		case Mode::cursor:
+		    mode = Mode::online;
+		    current_ent = player;
+		    map(cursor->Get_Location()).Remove_Entity(cursor);
+		    break;
+	    }
+	    cursor_loc = current_ent->Get_Location();
+	    break;
 	case SDLK_c:
-	    if(player->Cut_Tree()) {
+	    if(player->Chop_Tree()) {
 		actions.Print("\nYou cut a tree.");
 	    } else {
 		actions.Print("\nNo tree to cut.");
@@ -310,38 +329,38 @@ void Interface::Keyboard_Handler(const SDL_keysym& key)
 	case SDLK_KP4:
 	case SDLK_LEFT:
 	    action_type = Action::move;
-	    action_succes = player->Go_Direction(pa::west);
+	    action_succes = current_ent->Go_Direction(pa::west);
 	    break;
 	case SDLK_KP6:
 	case SDLK_RIGHT:
 	    action_type = Action::move;
-	    action_succes = player->Go_Direction(pa::east);
+	    action_succes = current_ent->Go_Direction(pa::east);
 	    break;
 	case SDLK_KP8:
 	case SDLK_UP:
 	    action_type = Action::move;
-	    action_succes = player->Go_Direction(pa::north);
+	    action_succes = current_ent->Go_Direction(pa::north);
 	    break;
 	case SDLK_KP2:
 	case SDLK_DOWN:
 	    action_type = Action::move;
-	    action_succes = player->Go_Direction(pa::south);
+	    action_succes = current_ent->Go_Direction(pa::south);
 	    break;
 	case SDLK_KP9:
 	    action_type = Action::move;
-	    action_succes = player->Go_Direction(pa::northeast);
+	    action_succes = current_ent->Go_Direction(pa::northeast);
 	    break;
 	case SDLK_KP7:
 	    action_type = Action::move;
-	    action_succes = player->Go_Direction(pa::northwest);
+	    action_succes = current_ent->Go_Direction(pa::northwest);
 	    break;
 	case SDLK_KP3:
 	    action_type = Action::move;
-	    action_succes = player->Go_Direction(pa::southeast);
+	    action_succes = current_ent->Go_Direction(pa::southeast);
 	    break;
 	case SDLK_KP1:
 	    action_type = Action::move;
-	    action_succes = player->Go_Direction(pa::southwest);
+	    action_succes = current_ent->Go_Direction(pa::southwest);
 	    break;
 	default:
 	    action_type = Action::none;

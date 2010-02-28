@@ -28,8 +28,8 @@ Size Humanoid::Get_Max_Holding_Size() const {
     return Size::large;
 }
 
-bool Humanoid::Cut_Tree() const {
-    static_cast<Terrain*>(holder)->Cut_Tree();
+bool Humanoid::Chop_Tree() const {
+    static_cast<Terrain*>(holder)->Chop_Tree();
 }
 
 bool Humanoid::Build_Wall()

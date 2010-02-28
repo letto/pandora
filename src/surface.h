@@ -23,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using pa::Color;
 
-class Surface : public Entity
+class Surface //: public Entity
 {
 public:
 	Surface();
@@ -32,7 +32,6 @@ public:
 	std::string Get_Description() const;
 	Size Get_Size() const;
 private:
-	//Color color;
 };
 
 

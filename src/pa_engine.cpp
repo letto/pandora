@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "pa_engine.h"
 
-World map{931,863};
+World map{431,463};
 
 PandoraEngine::PandoraEngine()
 {
