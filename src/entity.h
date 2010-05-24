@@ -35,7 +35,7 @@ class Entity : virtual public PaObject
 public:
 	Entity();
 	Location Get_Location() const;
-	PaUint Get_ID() const;
+	uint64_t Get_ID() const;
 	virtual Size Get_Size() const = 0;
 
 	Entity* next;
@@ -44,8 +44,8 @@ public:
 private:
 	Entity(Entity&) = delete;
 	Entity& operator=(Entity&) = delete;
-	PaUint id;
-	static std::unordered_map<PaUint,Entity*> idmap;
+	uint64_t id;
+	static std::unordered_map<uint64_t,Entity*> idmap;
 };
 
 #endif // ENTITY_H

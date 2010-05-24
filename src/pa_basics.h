@@ -22,18 +22,15 @@
 #include <iostream>
 #include <SDL/SDL.h>
 
-typedef Uint8 PaUint8;
-typedef Uint16 PaChar;
-typedef int PaInt;
-typedef unsigned int PaUint;
-
 namespace pa
 {
 
+typedef uint16_t Char;
+
 struct Color {
-    Color(PaUint8 r,PaUint8 g,PaUint8 b);
+    Color(uint8_t r,uint8_t g,uint8_t b);
     operator SDL_Color();
-    PaUint8 r,g,b;
+    uint8_t r,g,b;
 };
 
 const Color white(255,255,255);
@@ -57,14 +54,14 @@ const Color bright_green(0,255,0);
 const Color soil_green(0,15,0);
 
 struct Image {
-    Image(PaChar,Color);
-    PaChar ch;
+    Image(Char,Color);
+    Char ch;
     Color color;
 };
 
 struct Location {
-    Location(PaInt x,PaInt y);
-    PaInt x,y;
+    Location(int16_t x,int16_t y):x(x),y(y){}
+    int16_t x,y;
 };
 
 enum Direction {
@@ -82,10 +79,10 @@ enum class Size {
     gigantic = 1024 //
 };
 
-typedef PaInt Volume;
+typedef uint16_t Volume;
 
-PaUint Random(const PaUint& ,const PaUint&);
-PaUint Dice(const PaUint&);
+int_least32_t Random(const int_least32_t, const int_least32_t);
+int_least32_t Dice(const int_least32_t);
 
 void Exit(const std::string&);
 

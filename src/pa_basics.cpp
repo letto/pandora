@@ -24,15 +24,11 @@ std::uniform_int<> distrib(0, 90090000);// 10000*7*9*11*13
 std::mt19937 engine(static_cast<unsigned int>(std::time(0)));
 std::variate_generator<std::mt19937,std::uniform_int<>> randgen(engine,distrib);
 
-pa::Location::Location(PaInt x,PaInt y):x(x),y(y)
+pa::Image::Image(pa::Char ch, Color color):ch(ch),color(color)
 {
 }
 
-pa::Image::Image(PaChar ch, Color color):ch(ch),color(color)
-{
-}
-
-pa::Color::Color(PaUint8 r,PaUint8 g,PaUint8 b):r(r),g(g),b(b)
+pa::Color::Color(uint8_t r,uint8_t g,uint8_t b):r(r),g(g),b(b)
 {
 }
 
@@ -42,11 +38,11 @@ pa::Color::operator SDL_Color()
     return col;
 }
 
-PaUint pa::Random(const PaUint& a ,const PaUint& b) {
+int_least32_t pa::Random(const int_least32_t a ,const int_least32_t b) {
     return randgen()%(b-a+1)+a;
 }
 
-PaUint pa::Dice(const PaUint& x) {
+int_least32_t pa::Dice(const int_least32_t x) {
     return randgen()%x + 1;
 }
 

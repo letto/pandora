@@ -19,29 +19,29 @@
 #include "world.h"
 
 
-World::World(PaInt max_x, PaInt max_y):max_x(max_x),max_y(max_y)
+World::World(int16_t max_x, int16_t max_y):max_x(max_x),max_y(max_y)
 {
     map.reserve(max_x*max_y);
     
     for(int cx = 0; cx< max_x;cx++) {
 	for(int cy = 0; cy < max_y;cy++) {
-	    map.push_back( Terrain(Location(cx,cy)));    
+	    map.push_back(Terrain(Location(cx,cy)));
 	}
     }
 }
 
-Terrain& World::operator()(const PaInt& x ,const PaInt& y) {
+Terrain& World::operator()(const int16_t x ,const int16_t y) {
     return map[x*max_y + y];
 }
 
-Terrain& World::operator()(const pa::Location& loc) {
+Terrain& World::operator()(const pa::Location loc) {
     return operator()(loc.x ,loc.y);
 }
 
 void World::Generate()
 {
-    for(PaUint cy = 0;cy < max_y - 3; cy+=4) 
-	for(PaUint cx = 0; cx < max_x - 4 ; cx+=5) {
+    for(int cy = 0;cy < max_y - 3; cy+=4)
+	for(int cx = 0; cx < max_x - 4 ; cx+=5) {
 	    for(int i = 0; i < 4 ; i++ ) {
 		int x = cx + Random(0,4);
 		int y = cy + Random(0,3);

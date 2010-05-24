@@ -36,7 +36,7 @@ private:
 	Terminal info;
 	Terminal actions;
 	
-	PaUint display_counter;
+	uint64_t display_counter;
 	void Draw_Display();
 	void Draw_Info();
 	void Draw_Actions();
@@ -46,7 +46,7 @@ private:
 	enum class Action {none,move} action_type;
 	enum class FollowMode {centered,following,controlled} follow_mode;
 	Location cursor_loc;
-	PaUint player_id;
+	uint64_t player_id;
 	Humanoid* player;
 	Humanoid* Add_Player(const Location&,Entity*);
 	Cursor* cursor;

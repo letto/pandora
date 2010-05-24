@@ -26,10 +26,10 @@ using pa::Random;
 class World
 {
 public:
-	Terrain& operator()(const PaInt&, const PaInt&);
-	Terrain& operator()(const pa::Location&);
-	World(PaInt max_x,PaInt max_y);
-	PaInt max_x,max_y;
+	Terrain& operator()(const int16_t, const int16_t);
+	Terrain& operator()(const pa::Location);
+	World(const int16_t max_x,const int16_t max_y);
+	int16_t max_x,max_y;
 	void Generate();
 private:
 	std::vector<Terrain> map;

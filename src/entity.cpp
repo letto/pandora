@@ -19,23 +19,23 @@
 #include "entity.h"
 #include "entitycontainer.h"
 
-std::unordered_map<PaUint,Entity*> Entity::idmap;
+std::unordered_map<uint64_t,Entity*> Entity::idmap;
 
 Entity::Entity():holder(NULL),next(NULL)
 {
-    static PaUint id_number = 1;
+    static uint64_t id_number = 1;
     while(idmap.count(id_number) != 0) {
 	id_number++;
     }
     id = id_number;
-    idmap.insert(std::pair<PaUint,Entity*>( id_number,this));
+    idmap.insert(std::pair<uint64_t,Entity*>( id_number,this));
 }
 
 Location Entity::Get_Location() const {
     return holder->Get_Location();
 }
 
-PaUint Entity::Get_ID() const {
+uint64_t Entity::Get_ID() const {
     return id;
 }
 
