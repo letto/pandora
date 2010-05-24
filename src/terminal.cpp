@@ -35,7 +35,7 @@ int Terminal::glyph_rect_w = 0;
 int Terminal::glyph_rect_h = 0;
 SDL_Surface* Terminal::screen = NULL;
 
-void Terminal::Set_Font(const std::string& font_path ,const int& size)
+void Terminal::Set_Font(const char* font_path ,const int& size)
 {
     if((TTF_Init() !=0 ) && !TTF_WasInit()) {
 	std::cerr << " SDL_ttf initialization failed! " << std::endl;
@@ -45,7 +45,7 @@ void Terminal::Set_Font(const std::string& font_path ,const int& size)
 	std::cerr << "Trying to reset font" << std::endl;
 	exit(1);
     }
-    font = TTF_OpenFont(font_path.c_str() ,size);
+    font = TTF_OpenFont(font_path ,size);
     if(!font) {
 	std::cerr << "Error loading font!" << std::endl;
 	exit(1);

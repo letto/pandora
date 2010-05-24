@@ -53,7 +53,7 @@ struct TermGlyph {
 class Terminal
 {
 public:
-	static void Set_Font(const std::string& font_path ,const int& size);
+	static void Set_Font(const char* font_path ,const int& size);
 	Terminal();
 	
 	void Print_Char(const Uint16&,const SDL_Color& fg = SDL_White ,const SDL_Color& bg = SDL_Black);
