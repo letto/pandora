@@ -17,6 +17,7 @@
 */
 
 #include "terrain.h"
+#include "cursor.h"
 
 
 Surface surface_grass;
@@ -72,7 +73,14 @@ bool Terrain::Has_Wall()
     if(!entities) {
 	return false;
     }
-    if(typeid(*entities) == typeid(Wall)) {
+    Entity* ent = entities;
+    while(ent->Get_Size() == Size::none) {
+	ent = ent->next;
+	if( ent == NULL ) {
+	    return false;
+	}
+    }
+    if(typeid(*ent) == typeid(Wall)) {
 	return true;
     } else {
 	return false;

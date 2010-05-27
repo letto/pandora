@@ -81,8 +81,8 @@ enum class Size {
 
 typedef uint16_t Volume;
 
-int_least32_t Random(const int_least32_t, const int_least32_t);
-int_least32_t Dice(const int_least32_t);
+int_fast32_t Random(const int_fast32_t, const int_fast32_t);
+int_fast32_t Dice(const int_fast32_t);
 
 void Exit(const std::string&);
 

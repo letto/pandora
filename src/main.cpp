@@ -24,11 +24,9 @@
 
 int main(int argc, char **argv) 
 {
-    Terminal::Set_Font("/usr/share/fonts/dejavu/DejaVuSansMono.ttf",32);
-   
-    Interface interface;
+    Interface* const interface = Interface::Get_Interface();
     
-    interface.Run();
+    interface->Run();
     return 0;
 }
 

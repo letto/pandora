@@ -176,11 +176,11 @@ void Terminal::Print_Char(const Uint16& ch,const SDL_Color& fg ,const SDL_Color&
 
 void Terminal::Print(const std::string& str ,const SDL_Color& fg ,const SDL_Color& bg)
 {
-    for(int i = 0; i< str.size();i++) {
-	if( str[i]=='\n') {
+    for(auto ch = str.begin(); ch< str.end();ch++) {
+	if( *ch =='\n') {
 	    New_Line();
 	} else {
-	    Print_Char(str[i],fg,bg);
+	    Print_Char(*ch,fg,bg);
 	}
     }
 }

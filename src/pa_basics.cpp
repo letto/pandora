@@ -21,7 +21,7 @@
 #include "pa_basics.h"
 
 std::uniform_int<> distrib(0, 90090000);// 10000*7*9*11*13
-std::mt19937 engine(static_cast<unsigned int>(std::time(0)));
+std::mt19937 engine(static_cast<int_fast32_t>(std::time(0)));
 std::variate_generator<std::mt19937,std::uniform_int<>> randgen(engine,distrib);
 
 pa::Image::Image(pa::Char ch, Color color):ch(ch),color(color)
@@ -38,11 +38,11 @@ pa::Color::operator SDL_Color()
     return col;
 }
 
-int_least32_t pa::Random(const int_least32_t a ,const int_least32_t b) {
+int_fast32_t pa::Random(const int_fast32_t a ,const int_fast32_t b) {
     return randgen()%(b-a+1)+a;
 }
 
-int_least32_t pa::Dice(const int_least32_t x) {
+int_fast32_t pa::Dice(const int_fast32_t x) {
     return randgen()%x + 1;
 }
 

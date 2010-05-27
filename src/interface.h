@@ -27,8 +27,7 @@
 class Interface
 {
 public:
-	Interface();
-	~Interface();
+	static Interface* Get_Interface(); //singleton pattern
 	void Run();
 private:
 	Terminal display;
@@ -52,9 +51,7 @@ private:
 	Cursor* cursor;
 	Creature* current_ent;
 	
-	
 	PandoraEngine engine;
-	
 	
 	SDL_Surface* screen;
 	int video_Flags;
@@ -62,6 +59,13 @@ private:
 	void Event_Handler(const SDL_Event&);
 	static int Event_Filter(const SDL_Event* const);
 	void Keyboard_Handler(const SDL_keysym&);
+	
+	//singleton pattern
+	static Interface* interface_instance;
+	Interface();
+	~Interface();
+	Interface(const Interface&) = delete;
+	Interface operator=(const Interface&) = delete;
 };
 
 #endif // INTERFACE_H

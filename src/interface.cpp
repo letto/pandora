@@ -30,6 +30,14 @@
 using boost::lexical_cast;
 
 extern World map;
+Interface* Interface::interface_instance = NULL;
+
+Interface* Interface::Get_Interface() {
+    if (interface_instance == NULL) {
+	interface_instance = new Interface;
+    }
+    return interface_instance;
+}
 
 Interface::Interface():
 display_counter(0),cursor_loc(0,0),mode(Mode::online),
@@ -39,6 +47,7 @@ follow_mode(FollowMode::following),cursor(new Cursor)
     if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER) != 0)
 	pa::Exit("SDL_Init failed");
     SDL_WM_SetCaption(" Pandora ",NULL);
+    Terminal::Set_Font("/usr/share/fonts/dejavu/DejaVuSansMono.ttf",32);
     
     video_Flags = SDL_OPENGL;
     video_Flags |= SDL_GL_DOUBLEBUFFER ;
