@@ -38,8 +38,8 @@ public:
 	TermChar();
 	TermChar(Uint16 ch,SDL_Color fg ,SDL_Color bg);
 	Uint16 ch;
-	SDL_Color bg;
 	SDL_Color fg;
+	SDL_Color bg;
 	bool changed;
 	friend bool operator==(const TermChar&,const TermChar&);
 	friend bool operator!=(const TermChar&,const TermChar&);
@@ -82,8 +82,8 @@ private:
 	static SDL_Surface *screen; //The app screen
 	SDL_Rect term_rect;     // The terminal screen
 	
-	int cursor_x,cursor_y;    //cursor
-	int cursor_max_x,cursor_max_y;
+	int cursor_x,cursor_max_x;
+	int cursor_y,cursor_max_y;
 	//int buffer_start;
 	static const int buffer_max = 300 ; 
 	TermChar buffer[100][buffer_max];

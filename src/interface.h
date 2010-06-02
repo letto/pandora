@@ -43,7 +43,7 @@ private:
 	bool action_succes;
 	enum class Mode { online , cursor} mode;
 	enum class Action {none,move} action_type;
-	enum class FollowMode {centered,following,controlled} follow_mode;
+	enum class FollowMode {centered,following} follow_mode;
 	Location cursor_loc;
 	uint64_t player_id;
 	Humanoid* player;

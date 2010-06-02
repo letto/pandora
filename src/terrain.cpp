@@ -23,7 +23,8 @@
 Surface surface_grass;
 
 Terrain::Terrain(Location location):
-EntityContainer(volume),location(location)
+	EntityContainer(volume),
+	location(location)
 {}
 
 Location Terrain::Get_Location() const {

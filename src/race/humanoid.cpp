@@ -29,7 +29,8 @@ Size Humanoid::Get_Max_Holding_Size() const {
 }
 
 bool Humanoid::Chop_Tree() const {
-    static_cast<Terrain*>(holder)->Chop_Tree();
+    // TODO: warn if holder is not terrain
+    return static_cast<Terrain*>(holder)->Chop_Tree();
 }
 
 bool Humanoid::Build_Wall()

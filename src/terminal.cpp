@@ -61,10 +61,9 @@ void Terminal::Set_Font(const char* font_path ,const int& size)
 }
 
 Terminal::Terminal():
-cursor_y(0),cursor_max_y(0),
-cursor_x(0),cursor_max_x(0)
+	cursor_x(0),cursor_max_x(0),
+	cursor_y(0),cursor_max_y(0)
 {
-
 }
 
 int Terminal::Get_Max_X() {
@@ -138,13 +137,14 @@ void Terminal::Resize(const SDL_Rect& rec)
     } else if(last_max_y > cursor_max_y) {
 	for(int cy = 0; cy <= cursor_max_y ;cy++) {
 	    for(int cx =0; cx <= cursor_max_x; cx++) {
-		if (cursor_max_y > last_max_y - cursor_y)
+		if (cursor_max_y > last_max_y - cursor_y) {
 		    if(cy > last_max_y - cursor_y) {
 			buffer[cx][cursor_max_y - cy] = TermChar();
 		    } else {
 			buffer[cx][cursor_max_y - cy] = buffer[cx][last_max_y - cy];
 			buffer[cx][cursor_max_y - cy].changed = true;
 		    }
+		}
 	    }
 	}
 	if (cursor_max_y > last_max_y - cursor_y) {
@@ -335,10 +335,12 @@ TermChar::TermChar()
     changed = true;
 }
 
-TermChar::TermChar(Uint16 ch,SDL_Color fg ,SDL_Color bg)
-:ch(ch),fg(fg),bg(bg)
+TermChar::TermChar(Uint16 ch,SDL_Color fg ,SDL_Color bg):
+	ch(ch),
+	fg(fg),
+	bg(bg),
+	changed(true)
 {
-    changed = true;
 }
 
 bool operator==(const TermChar& tb_a,const TermChar& tb_b) 

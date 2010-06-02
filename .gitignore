@@ -1,5 +1,7 @@
 *.[oa]
 *~
+
+*.swp
 build/*
 .kdev4/*
 [pP]andora.kdev4

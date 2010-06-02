@@ -21,7 +21,9 @@
 
 std::unordered_map<uint64_t,Entity*> Entity::idmap;
 
-Entity::Entity():holder(NULL),next(NULL)
+Entity::Entity():
+	next(NULL),
+	holder(NULL)
 {
     static uint64_t id_number = 1;
     while(idmap.count(id_number) != 0) {

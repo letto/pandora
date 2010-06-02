@@ -40,9 +40,13 @@ Interface* Interface::Get_Interface() {
 }
 
 Interface::Interface():
-display_counter(0),cursor_loc(0,0),mode(Mode::online),
-action_succes(false),action_type(Action::none),
-follow_mode(FollowMode::following),cursor(new Cursor)
+	display_counter(0),
+	action_succes(false),
+	mode(Mode::online),
+	action_type(Action::none),
+	follow_mode(FollowMode::following),
+	cursor_loc(0,0),
+	cursor(new Cursor)
 {
     if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER) != 0)
 	pa::Exit("SDL_Init failed");

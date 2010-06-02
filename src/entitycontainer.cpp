@@ -19,9 +19,13 @@
 #include "entitycontainer.h"
 #include "entity.h"
 
-EntityContainer::EntityContainer(Volume volume):volume_max(volume)
-,volume_used(0),entities(NULL),entities_display_it(NULL)
-{}
+EntityContainer::EntityContainer(Volume volume):
+	volume_used(0),
+	volume_max(volume),
+	entities_display_it(NULL),
+	entities(NULL)
+{
+}
 
 void EntityContainer::Insert_Entity(Entity* entity)
 {
@@ -99,3 +103,4 @@ Image EntityContainer::Get_Next_Display_Image()
     }
     return entities_display_it->Get_Image();
 }
+
