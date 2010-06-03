@@ -17,10 +17,11 @@ Set (
     race/human.cpp
     race/orc.cpp
     race/elf.cpp
-    terminal.cpp
     pa_engine.cpp
-    cursor.cpp
-    interface.cpp
+    misc/puid.cpp
+    misc/terminal.cpp
+    misc/cursor.cpp
+    misc/interface.cpp
     main.cpp
 )
 

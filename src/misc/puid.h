@@ -15,6 +15,29 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifndef PUID_H
+#define PUID_H
 
-#include "pa_object.h"
+#include <string>
+#include <cstdint>
+#include <unordered_map>
 
+class Entity;
+
+class Puid
+{
+public:
+	Puid(Entity*);
+	~Puid();
+	operator std::string();
+private:
+	uint64_t id;
+	static std::unordered_map<uint64_t,Entity*> idmap;
+	
+	operator int() = delete;
+	Puid(Puid&) = delete;
+	Puid operator=(Puid&) = delete;
+};
+
+
+#endif // PUID_H

@@ -1,30 +1,25 @@
 /*
-    Copyright (C) 2010  Marius Stoica
+    Copyright (C)  2010  Marius Stoica
 
     This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
+    it under the terms of the GNU Affero General Public License as published by
     the Free Software Foundation, either version 3 of the License, or
     (at your option) any later version.
 
     This program is distributed in the hope that it will be useful,
     but WITHOUT ANY WARRANTY; without even the implied warranty of
     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+    GNU Affero General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
+    You should have received a copy of the GNU Affero General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 */
-
 #include "interface.h"
 
 #include <iostream>
 #include <boost/lexical_cast.hpp>
 #include <SDL/SDL.h>
 #include <SDL/SDL_opengl.h>
-
-#include "wall.h"
-#include "race/race.h"
 
 
 using boost::lexical_cast;
@@ -91,7 +86,6 @@ Interface::Interface():
     
     Add_Player(Location(9,12),new Wall());
 
-    player_id = player->Get_ID();
     cursor_loc = current_ent->Get_Location();
 
     Resize();
@@ -212,7 +206,7 @@ void Interface::Draw_Info()
 {
     Location loc = current_ent->Get_Location();
     std::string ss;// = " " ;
-    ss += "\nID: " + lexical_cast<std::string>(player_id) ;
+    ss += "\nID: " + (std::string)player->id;
     ss += " Disp Count " + lexical_cast<std::string>(display_counter);
     ss += " Loc " + lexical_cast<std::string>(loc.x) + "," + lexical_cast<std::string>(loc.y);
     info.Print(ss);
