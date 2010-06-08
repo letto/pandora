@@ -17,13 +17,27 @@
 
 
 #include "terrain.h"
+#include "tree.h"
+#include "wall.h"
+#include <typeinfo>
 
 Surface surface_grass;
 
-Terrain::Terrain(Location location):
+Terrain::Terrain(Location&& location):
 	EntityContainer(volume),
 	location(location)
 {}
+
+Terrain::Terrain(Terrain&& t):
+EntityContainer(volume),
+location(t.location)
+{
+}
+
+Terrain& Terrain::operator=(Terrain&& t)
+{
+    return t;
+}
 
 Location Terrain::Get_Location() const {
     return location;

@@ -16,6 +16,7 @@
 */
 
 #include "world.h"
+#include <memory>
 
 
 World::World(int16_t max_x, int16_t max_y):max_x(max_x),max_y(max_y)
@@ -24,7 +25,7 @@ World::World(int16_t max_x, int16_t max_y):max_x(max_x),max_y(max_y)
     
     for(int cx = 0; cx< max_x;cx++) {
 	for(int cy = 0; cy < max_y;cy++) {
-	    map.push_back(Terrain(Location(cx,cy)));
+	    map.push_back(std::move(Terrain(Location(cx,cy))));
 	}
     }
 }

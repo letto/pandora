@@ -41,8 +41,6 @@ public:
 	Entity* Get_Next_Entity_Except(Entity*);
 	EntityContainer* holder;
 private:
-	Entity(Entity&) = delete;
-	Entity& operator=(Entity&) = delete;
 };
 
 #endif // ENTITY_H

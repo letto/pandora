@@ -19,8 +19,7 @@
 #define WALL_H
 
 #include "pa_basics.h"
-#include "terrain.h"
-#include "entity.h"
+#include "item.h"
 
 class Wall : public Item
 {

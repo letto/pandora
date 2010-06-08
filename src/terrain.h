@@ -24,19 +24,19 @@
 
 #include "surface.h"
 #include "entitycontainer.h"
-#include "creature.h"
-#include "woodlog.h"
-#include "tree.h"
-#include "wall.h"
 
 using pa::Image;
 using pa::Color;
 using pa::Location;
 
-class Terrain : public EntityContainer
+class Tree;
+
+class Terrain : public EntityContainer,virtual public PaObject
 {
 public:
-	Terrain(Location);
+	Terrain(Location&&);
+	Terrain(Terrain&&);
+	Terrain& operator=(Terrain&& );
 	Image  Get_Image() const;
 	Location Get_Location() const;
 	static Volume Get_Volume();
@@ -50,7 +50,6 @@ public:
 private:
 	static const Volume volume = Volume(350);
 	Location location;
-	//Surface *surface;
 };
 
 #endif // TERRAIN_H
