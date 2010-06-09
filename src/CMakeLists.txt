@@ -1,16 +1,16 @@
 Set (
     SOURCES
     pa_basics.cpp
-    pa_object.cpp
-    puid.cpp
+    container/entitycontainer.cpp
+    container/world.cpp
+    container/puid.cpp
     interface/terminal.cpp
     interface/cursor.cpp
     interface/interface.cpp
+    container/puid.cpp
     surface.cpp
     terrain.cpp
-    world.cpp
     entity.cpp
-    entitycontainer.cpp
     wall.cpp
     item.cpp
     material.cpp

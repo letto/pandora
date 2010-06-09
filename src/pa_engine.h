@@ -18,9 +18,9 @@
 #ifndef PA_ENGINE_H
 #define PA_ENGINE_H
 
+#include "container/world.h"
+#include "container/entitycontainer.h"
 #include "terrain.h"
-#include "world.h"
-#include "entitycontainer.h"
 
 using pa::Location;
 using pa::Image;

@@ -22,7 +22,6 @@
 #include "../creature.h"
 #include "../terrain.h"
 #include "../tree.h"
-#include "../world.h"
 #include "../wall.h"
 
 class Humanoid : public Creature

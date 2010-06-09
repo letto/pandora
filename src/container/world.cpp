@@ -16,6 +16,7 @@
 */
 
 #include "world.h"
+#include "../tree.h"
 #include <memory>
 
 

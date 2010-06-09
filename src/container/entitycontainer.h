@@ -16,23 +16,40 @@
 */
 
 
-#ifndef WORLD_H
-#define WORLD_H
-#include "terrain.h"
-#include "tree.h"
+#ifndef ENTITYCONTAINER_H
+#define ENTITYCONTAINER_H
 
-using pa::Random;
+#include "../pa_basics.h"
+#include "../pa_object.h"
 
-class World
+using pa::Location;
+using pa::Size;
+using pa::Image;
+using pa::Volume;
+
+class Entity;
+
+class EntityContainer : virtual public PaObject
 {
 public:
-	Terrain& operator()(const int16_t, const int16_t);
-	Terrain& operator()(const pa::Location);
-	World(const int16_t max_x,const int16_t max_y);
-	int16_t max_x,max_y;
-	void Generate();
-private:
-	std::vector<Terrain> map;
+	EntityContainer(Volume);
+	
+	bool Has_Space_For(const Entity*);
+	bool Is_Empty() const;
+	
+	bool Add_Entity(Entity*);
+	bool Remove_Entity(Entity*);
+	void Insert_Entity(Entity*); //no volume|size checks
+	
+	Entity* Get_First_Entity();
+	Entity* Get_First_Entity_Except(Entity*);
+	Image Get_Next_Display_Image();
+protected:
+	Volume volume_used;
+	Volume volume_max;
+	
+	Entity* entities_display_it;
+	Entity* entities;
 };
 
-#endif // WORLD_H
+#endif // ENTITYCONTAINER_H

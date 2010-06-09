@@ -17,6 +17,7 @@
 
 
 #include "humanoid.h"
+#include "../container/world.h"
 #include "../woodlog.h"
 
 extern World map;

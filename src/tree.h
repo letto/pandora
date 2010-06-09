@@ -19,8 +19,8 @@
 #ifndef TREE_H
 #define TREE_H
 
+#include "container/entitycontainer.h"
 #include "entity.h"
-#include "entitycontainer.h"
 
 using pa::Image;
 

@@ -16,7 +16,7 @@
 */
 
 #include "entity.h"
-#include "entitycontainer.h"
+#include "container/entitycontainer.h"
 
 Entity::Entity():
     id(this),

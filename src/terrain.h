@@ -23,7 +23,7 @@
 #include <typeinfo>
 
 #include "surface.h"
-#include "entitycontainer.h"
+#include "container/entitycontainer.h"
 
 using pa::Image;
 using pa::Color;

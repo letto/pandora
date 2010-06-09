@@ -19,8 +19,8 @@
 #define ENTITY_H
 
 #include "pa_basics.h"
+#include "container/puid.h"
 #include "pa_object.h"
-#include "puid.h"
 
 using pa::Image;
 using pa::Size;

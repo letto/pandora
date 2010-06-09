@@ -16,7 +16,7 @@
 */
 
 #include "entitycontainer.h"
-#include "entity.h"
+#include "../entity.h"
 
 EntityContainer::EntityContainer(Volume volume):
 	volume_used(0),
