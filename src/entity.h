@@ -20,7 +20,7 @@
 
 #include "pa_basics.h"
 #include "pa_object.h"
-#include "misc/puid.h"
+#include "puid.h"
 
 using pa::Image;
 using pa::Size;

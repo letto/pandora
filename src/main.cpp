@@ -19,7 +19,7 @@
 
 #include <SDL/SDL.h>
 
-#include "misc/interface.h"
+#include "interface/interface.h"
 
 int main(int argc, char **argv) 
 {

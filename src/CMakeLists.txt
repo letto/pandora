@@ -1,13 +1,17 @@
 Set (
     SOURCES
-    wall.cpp
     pa_basics.cpp
     pa_object.cpp
+    puid.cpp
+    interface/terminal.cpp
+    interface/cursor.cpp
+    interface/interface.cpp
     surface.cpp
     terrain.cpp
     world.cpp
     entity.cpp
     entitycontainer.cpp
+    wall.cpp
     item.cpp
     material.cpp
     tree.cpp
@@ -18,10 +22,6 @@ Set (
     race/orc.cpp
     race/elf.cpp
     pa_engine.cpp
-    misc/puid.cpp
-    misc/terminal.cpp
-    misc/cursor.cpp
-    misc/interface.cpp
     main.cpp
 )
 
