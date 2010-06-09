@@ -19,9 +19,6 @@
 #ifndef TERRAIN_H
 #define TERRAIN_H
 
-#include <vector>
-#include <typeinfo>
-
 #include "surface.h"
 #include "container/entitycontainer.h"
 

@@ -61,12 +61,10 @@ std::string Terrain::Get_Description() const
 
 Tree* Terrain::Get_Tree()
 {
-    Entity* tree = Get_First_Entity();
-    while(tree != NULL) {
-	if(typeid(*tree)==typeid(Tree)) {
-	    return static_cast<Tree*>(tree);
+    for(auto tree = begin(); tree != end();++tree) {
+	if(typeid(**tree)==typeid(Tree)) {
+	    return static_cast<Tree*>(*tree);
 	}
-	tree = tree->next;
     }
     return NULL;
 }
@@ -83,21 +81,12 @@ bool Terrain::Chop_Tree()
 
 bool Terrain::Has_Wall()
 {
-    if(!entities) {
-	return false;
-    }
-    Entity* ent = entities;
-    while(ent->Get_Size() == Size::none) {
-	ent = ent->next;
-	if( ent == NULL ) {
-	    return false;
+    for (auto ent = begin();ent != end();++ent) {
+	if(typeid(**ent) == typeid(Wall)) {
+	    return true;
 	}
     }
-    if(typeid(*ent) == typeid(Wall)) {
-	return true;
-    } else {
-	return false;
-    }
+    return false;
 }
 
 Color Terrain::Get_Surface_Color() const {

@@ -18,12 +18,45 @@
 #include "entitycontainer.h"
 #include "../entity.h"
 
+Entity_Iterator::Entity_Iterator(Entity* entity):
+	entity(entity)
+{
+}
+
+Entity_Iterator Entity_Iterator::operator++() {
+    return Entity_Iterator(entity = entity->next);
+}
+
+Entity* Entity_Iterator::operator*() {
+    return entity;
+}
+
+Entity* Entity_Iterator::operator->() {
+    return entity;
+}
+
+bool Entity_Iterator::operator==(Entity_Iterator b) {
+    return entity == b.entity;
+}
+
+bool Entity_Iterator::operator!=(Entity_Iterator b) {
+    return !operator==(b);
+}
+
 EntityContainer::EntityContainer(Volume volume):
 	volume_used(0),
 	volume_max(volume),
 	entities_display_it(NULL),
 	entities(NULL)
 {
+}
+
+Entity_Iterator EntityContainer::begin() {
+    return Entity_Iterator(entities);
+}
+
+Entity_Iterator EntityContainer::end() {
+    return Entity_Iterator(NULL);
 }
 
 void EntityContainer::Insert_Entity(Entity* entity)
@@ -78,10 +111,6 @@ bool EntityContainer::Has_Space_For(const Entity* entity) {
     return (Volume)entity->Get_Size() <= volume_max - volume_used;
 }
 
-Entity* EntityContainer::Get_First_Entity() {
-    return entities;
-}
-
 Entity* EntityContainer::Get_First_Entity_Except(Entity* entity)
 {
     if(entities == entity) {
@@ -102,4 +131,3 @@ Image EntityContainer::Get_Next_Display_Image()
     }
     return entities_display_it->Get_Image();
 }
-

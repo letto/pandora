@@ -19,21 +19,12 @@
 #include "container/entitycontainer.h"
 
 Entity::Entity():
-    id(this),
-    next(NULL),
-    holder(NULL)
+	id(this),
+	holder(NULL),
+	next(NULL)
 {
 }
 
 Location Entity::Get_Location() const {
     return holder->Get_Location();
-}
-
-Entity* Entity::Get_Next_Entity_Except(Entity* entity)
-{
-    if(next == entity) {
-	return next->next;
-    } else {
-	return next;
-    }
 }

@@ -29,6 +29,19 @@ using pa::Volume;
 
 class Entity;
 
+class Entity_Iterator
+{
+public:
+	Entity_Iterator(Entity*);
+	Entity* operator*();
+	Entity* operator->();
+	Entity_Iterator operator++();
+	bool operator==(Entity_Iterator);
+	bool operator!=(Entity_Iterator);
+private:
+	Entity* entity;
+};
+
 class EntityContainer : virtual public PaObject
 {
 public:
@@ -37,11 +50,15 @@ public:
 	bool Has_Space_For(const Entity*);
 	bool Is_Empty() const;
 	
+	typedef Entity_Iterator iterator;
+	
+	iterator begin();
+	iterator end();
+	
 	bool Add_Entity(Entity*);
 	bool Remove_Entity(Entity*);
 	void Insert_Entity(Entity*); //no volume|size checks
 	
-	Entity* Get_First_Entity();
 	Entity* Get_First_Entity_Except(Entity*);
 	Image Get_Next_Display_Image();
 protected:

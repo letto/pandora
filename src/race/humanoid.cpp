@@ -20,6 +20,8 @@
 #include "../container/world.h"
 #include "../woodlog.h"
 
+#include <typeinfo>
+
 extern World map;
 
 Size Humanoid::Get_Size() const {

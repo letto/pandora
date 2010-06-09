@@ -19,6 +19,7 @@
 #ifndef WORLD_H
 #define WORLD_H
 #include "../terrain.h"
+#include <vector>
 
 using pa::Random;
 

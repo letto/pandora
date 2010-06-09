@@ -37,10 +37,11 @@ public:
 	virtual Size Get_Size() const = 0;
 
 	Puid id;
-	Entity* next;
-	Entity* Get_Next_Entity_Except(Entity*);
 	EntityContainer* holder;
 private:
+	Entity* next;
+	friend class EntityContainer;
+	friend class Entity_Iterator;
 };
 
 #endif // ENTITY_H

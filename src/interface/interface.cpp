@@ -224,26 +224,43 @@ void Interface::Draw_Actions()
     }
 
     std::string ss = "\n";
-    EntityContainer* terrain = current_ent->holder;
-    Entity* ent = terrain->Get_First_Entity_Except(current_ent);
-
-    if (ent == NULL) {
-	//ss += terrain->Get_Descripton();
-    } else {
+    
+    auto end = current_ent->holder->end();
+    auto ent = current_ent->holder->begin();
+    if( *ent == current_ent) {
+	++ent;
+    }
+    if( ent != end) {
 	ss += "You see ";
-	while(ent != NULL) {
+	for(;ent!= end;++ent) {
+	    if (*ent == current_ent) {
+		++ent;
+	    }
+	    if( ent == end) {
+		break;
+	    }
 	    ss += ent->Get_Description();
-	    Entity* ent_next = ent->Get_Next_Entity_Except(current_ent);
-	    if(ent_next != NULL) {
-		Entity* ent_next_next = ent_next->Get_Next_Entity_Except(current_ent);
-		if(ent_next_next == NULL){
+	    auto ent_next = ent;
+	    ++ent_next;
+	    if( *ent_next == current_ent) {
+		++ent_next;
+	    }
+	    auto ent_next_next = ent_next;
+	    if( ent_next_next != end) {
+		++ent_next_next;
+	    }
+	    if( *ent_next_next == current_ent) {
+		++ent_next_next;
+	    }
+	    if( ent_next != end) {
+		if( ent_next_next == end) {
 		    ss += " and ";
 		} else {
 		    ss += ", ";
 		}
 	    }
-	    ent = ent_next;
 	}
+	ss += ".";
     }
     if(ss != "\n") {
 	actions.Print(ss);
@@ -330,7 +347,7 @@ void Interface::Keyboard_Handler(const SDL_keysym& key)
 	    break;
 	case SDLK_d:
 	    if(player->Drop_Entity()) {
-		actions.Print("\nYou dropped "+ player->holder->Get_First_Entity()->Get_Description());
+		actions.Print("\nYou dropped "+ player->holder->begin()->Get_Description());
 	    }
 	    break;
 	case SDLK_KP4:
