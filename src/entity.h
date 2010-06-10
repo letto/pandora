@@ -33,10 +33,12 @@ class Entity : virtual public PaObject
 public:
 	Entity();
 	Location Get_Location() const;
+	EntityContainer* Get_Holder();
 
 	virtual Size Get_Size() const = 0;
 
 	Puid id;
+protected:
 	EntityContainer* holder;
 private:
 	Entity* next;

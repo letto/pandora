@@ -28,3 +28,7 @@ Entity::Entity():
 Location Entity::Get_Location() const {
     return holder->Get_Location();
 }
+
+EntityContainer* Entity::Get_Holder() {
+    return holder;
+}

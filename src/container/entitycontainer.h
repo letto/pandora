@@ -33,6 +33,7 @@ class Entity_Iterator
 {
 public:
 	Entity_Iterator(Entity*);
+	operator bool();
 	Entity* operator*();
 	Entity* operator->();
 	Entity_Iterator operator++();
@@ -65,6 +66,7 @@ protected:
 	Volume volume_used;
 	Volume volume_max;
 	
+	// TODO: move entities_display_it out of here
 	Entity* entities_display_it;
 	Entity* entities;
 };

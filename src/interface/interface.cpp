@@ -224,19 +224,19 @@ void Interface::Draw_Actions()
     }
 
     std::string ss = "\n";
-    
-    auto end = current_ent->holder->end();
-    auto ent = current_ent->holder->begin();
+
+    auto end = current_ent->Get_Holder()->end();
+    auto ent = current_ent->Get_Holder()->begin();
     if( *ent == current_ent) {
 	++ent;
     }
-    if( ent != end) {
+    if( ent ) {
 	ss += "You see ";
-	for(;ent!= end;++ent) {
+	for(; ent; ++ent) {
 	    if (*ent == current_ent) {
 		++ent;
 	    }
-	    if( ent == end) {
+	    if( !ent ) {
 		break;
 	    }
 	    ss += ent->Get_Description();
@@ -246,14 +246,14 @@ void Interface::Draw_Actions()
 		++ent_next;
 	    }
 	    auto ent_next_next = ent_next;
-	    if( ent_next_next != end) {
+	    if( ent_next_next ) {
 		++ent_next_next;
 	    }
 	    if( *ent_next_next == current_ent) {
 		++ent_next_next;
 	    }
-	    if( ent_next != end) {
-		if( ent_next_next == end) {
+	    if( ent_next ) {
+		if( !ent_next_next ) {
 		    ss += " and ";
 		} else {
 		    ss += ", ";
@@ -332,7 +332,7 @@ void Interface::Keyboard_Handler(const SDL_keysym& key)
 	    }
 	    break;
 	case SDLK_QUOTE:
-	    if(player->Take_Entity(player->holder->Get_First_Entity_Except(player))) {
+	    if(player->Take_Entity(player->Get_Holder()->Get_First_Entity_Except(player))) {
 		actions.Print("\nYou take "+ player->holding->Get_Description());
 	    } else {
 		actions.Print("\nNo item to take.");
@@ -347,7 +347,7 @@ void Interface::Keyboard_Handler(const SDL_keysym& key)
 	    break;
 	case SDLK_d:
 	    if(player->Drop_Entity()) {
-		actions.Print("\nYou dropped "+ player->holder->begin()->Get_Description());
+		actions.Print("\nYou dropped "+ player->Get_Holder()->begin()->Get_Description());
 	    }
 	    break;
 	case SDLK_KP4:

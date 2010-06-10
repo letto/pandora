@@ -23,6 +23,10 @@ Entity_Iterator::Entity_Iterator(Entity* entity):
 {
 }
 
+Entity_Iterator::operator bool() {
+    return entity != NULL;
+}
+
 Entity_Iterator Entity_Iterator::operator++() {
     return Entity_Iterator(entity = entity->next);
 }
