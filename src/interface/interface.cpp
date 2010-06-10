@@ -261,8 +261,6 @@ void Interface::Draw_Actions()
 	    }
 	}
 	ss += ".";
-    }
-    if(ss != "\n") {
 	actions.Print(ss);
     }
 }

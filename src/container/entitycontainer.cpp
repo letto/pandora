@@ -50,7 +50,6 @@ bool Entity_Iterator::operator!=(Entity_Iterator b) {
 EntityContainer::EntityContainer(Volume volume):
 	volume_used(0),
 	volume_max(volume),
-	entities_display_it(NULL),
 	entities(NULL)
 {
 }
@@ -69,7 +68,6 @@ void EntityContainer::Insert_Entity(Entity* entity)
     entity->next = entities;
     entity->holder = this;
     entities = entity;
-    entities_display_it = entities;
 }
 
 bool EntityContainer::Add_Entity(Entity* entity)
@@ -102,7 +100,6 @@ bool EntityContainer::Remove_Entity(Entity* entity)
     }
     
     entity->next = NULL;
-    entities_display_it = entities;
     volume_used -= (Volume)entity->Get_Size();
     return true;
 }
@@ -111,8 +108,18 @@ bool EntityContainer::Is_Empty() const {
     return entities == NULL;
 }
 
-bool EntityContainer::Has_Space_For(const Entity* entity) {
+bool EntityContainer::Has_Space_For(const Entity* entity) const {
     return (Volume)entity->Get_Size() <= volume_max - volume_used;
+}
+
+bool EntityContainer::Has_Entity(const Entity* entity) const
+{
+    for( Entity* ent = entities;ent != NULL; ent = ent->next) {
+	if( ent == entity) {
+	    return true;
+	}
+    }
+    return false;
 }
 
 Entity* EntityContainer::Get_First_Entity_Except(Entity* entity)
@@ -122,16 +129,4 @@ Entity* EntityContainer::Get_First_Entity_Except(Entity* entity)
     } else {
 	return entities;
     }
-}
-
-Image EntityContainer::Get_Next_Display_Image()
-{
-    if(Is_Empty()) {
-	return Get_Image();
-    }
-    entities_display_it = entities_display_it->next;
-    if( entities_display_it == NULL) {
-	entities_display_it = entities;
-    }
-    return entities_display_it->Get_Image();
 }

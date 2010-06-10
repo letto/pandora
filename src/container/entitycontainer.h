@@ -48,8 +48,9 @@ class EntityContainer : virtual public PaObject
 public:
 	EntityContainer(Volume);
 	
-	bool Has_Space_For(const Entity*);
+	bool Has_Space_For(const Entity*) const;
 	bool Is_Empty() const;
+	bool Has_Entity(const Entity*) const; //expensive: needs to search all the entities
 	
 	typedef Entity_Iterator iterator;
 	
@@ -61,13 +62,10 @@ public:
 	void Insert_Entity(Entity*); //no volume|size checks
 	
 	Entity* Get_First_Entity_Except(Entity*);
-	Image Get_Next_Display_Image();
 protected:
 	Volume volume_used;
 	Volume volume_max;
 	
-	// TODO: move entities_display_it out of here
-	Entity* entities_display_it;
 	Entity* entities;
 };
 

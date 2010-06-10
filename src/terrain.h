@@ -39,6 +39,7 @@ public:
 	static Volume Get_Volume();
 	Color Get_Surface_Color() const;
 	std::string Get_Description() const;
+	Image Get_Next_Display_Image();
 
 	bool Has_Wall();
 
@@ -47,6 +48,7 @@ public:
 private:
 	static const Volume volume = Volume(350);
 	Location location;
+	EntityContainer::iterator entities_display_it;
 };
 
 #endif // TERRAIN_H
