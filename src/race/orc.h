@@ -18,6 +18,8 @@
 
 #ifndef ORC_H
 #define ORC_H
+
+#include "../pa_basics.h"
 #include "humanoid.h"
 
 class Orc : public Humanoid

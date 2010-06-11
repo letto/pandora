@@ -19,6 +19,7 @@
 #ifndef HUMANOID_H
 #define HUMANOID_H
 
+#include "../pa_basics.h"
 #include "../creature.h"
 #include "../terrain.h"
 #include "../tree.h"

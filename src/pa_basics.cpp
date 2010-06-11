@@ -58,6 +58,6 @@ bool operator>(pa::Size a,pa::Size b) {
     return (pa::Volume)a > (pa::Volume)b;
 }
 
-// std::string operator+(std::string a, String b) {
-//     return a + (std::string)b;
-// }
+std::string operator+(std::string a, String b) {
+    return a + (std::string)b;
+}

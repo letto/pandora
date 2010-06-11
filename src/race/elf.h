@@ -17,6 +17,8 @@
 
 #ifndef ELF_H
 #define ELF_H
+
+#include "../pa_basics.h"
 #include "humanoid.h"
 
 class Elf : public Humanoid

@@ -18,6 +18,7 @@
 #ifndef CREATURE_H
 #define CREATURE_H
 
+#include "pa_basics.h"
 #include "entity.h"
 #include "item.h"
 

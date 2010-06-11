@@ -19,6 +19,7 @@
 #ifndef TERRAIN_H
 #define TERRAIN_H
 
+#include "pa_basics.h"
 #include "surface.h"
 #include "container/entitycontainer.h"
 

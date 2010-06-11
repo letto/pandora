@@ -18,6 +18,7 @@
 #ifndef MATERIAL_H
 #define MATERIAL_H
 
+#include "pa_basics.h"
 #include "item.h"
 
 

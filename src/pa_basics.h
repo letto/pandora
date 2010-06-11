@@ -88,12 +88,11 @@ void Exit(const std::string&);
 
 }//namespace pa
 
-//#include <boost/flyweight.hpp>
-//extern template class boost::flyweights::flyweight<std::string>;
-//typedef boost::flyweights::flyweight<std::string> String;
-//std::string operator+(std::string, String);
-typedef std::string String;
-
 bool operator>(pa::Size,pa::Size);
+
+#include <boost/flyweight.hpp>
+extern template class boost::flyweights::flyweight<std::string>;
+typedef boost::flyweights::flyweight<std::string> String;
+std::string operator+(std::string, String);
 
 #endif // PA_BASICS_H

@@ -18,6 +18,7 @@
 #ifndef PA_ENGINE_H
 #define PA_ENGINE_H
 
+#include "pa_basics.h"
 #include "container/world.h"
 #include "container/entitycontainer.h"
 #include "terrain.h"
