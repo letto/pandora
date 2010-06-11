@@ -15,5 +15,24 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "item.h"
+#ifndef SURFACE_H
+#define SURFACE_H
 
+#include "pabasics.h"
+
+using pa::Color;
+using pa::Image;
+using pa::Size;
+
+class Surface //: public Entity
+{
+public:
+	Color Get_Color() const;
+	Image Get_Image() const;
+	String Get_Description() const;
+	Size Get_Size() const;
+};
+
+
+
+#endif // SURFACE_H

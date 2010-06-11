@@ -15,11 +15,8 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
-#include "terrain.h"
-#include "tree.h"
-#include "wall.h"
-#include <typeinfo>
+#include "../tree.h"
+#include "../wall.h"
 
 Surface surface_grass;
 
@@ -27,7 +24,8 @@ Terrain::Terrain(Location&& location):
 	EntityContainer(volume),
 	location(location),
 	entities_display_it(NULL)
-{}
+{
+}
 
 Terrain::Terrain(Terrain&& t):
 EntityContainer(volume),
@@ -104,10 +102,14 @@ Image Terrain::Get_Next_Display_Image()
     if(Is_Empty()) {
 	return Get_Image();
     }
-    if(entities_display_it) {
-	++entities_display_it;
-    }
-    if( !entities_display_it || !Has_Entity(*entities_display_it) ) {
+    if( Has_Entity(*entities_display_it)) {
+	if(entities_display_it) {
+	    ++entities_display_it;
+	}
+	if( !entities_display_it ) {
+	    entities_display_it = begin();
+	}
+    } else {
 	entities_display_it = begin();
     }
     return entities_display_it->Get_Image();

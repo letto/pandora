@@ -16,9 +16,7 @@
 */
 
 #include "tree.h"
-
 #include "woodlog.h"
-#include "container/entitycontainer.h"
 
 void Tree::Chop()
 {

@@ -15,22 +15,30 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef SURFACE_H
-#define SURFACE_H
-#include "pa_basics.h"
-#include "entity.h"
+#ifndef PATYPE_H
+#define PATYPE_H
 
-using pa::Color;
+#include <typeinfo>
+#include <string>
+#include <cstdint>
+#include <unordered_map>
+#include <vector>
+#include <memory>
+#include <iostream>
 
-class Surface //: public Entity
-{
-public:
-	Color Get_Color() const;
-	Image Get_Image() const;
-	std::string Get_Description() const;
-	Size Get_Size() const;
-};
+#include <boost/lexical_cast.hpp>
 
+#include "type/pabasics.h"
+#include "type/pastring.h"
+#include "type/paobject.h"
+#include "type/entity.h"
+#include "type/puid.h"
+#include "type/creature.h"
+#include "type/item.h"
+#include "type/terrain.h"
+#include "type/surface.h"
 
+#include "container/entitycontainer.h"
+#include "container/world.h"
 
-#endif // SURFACE_H
+#endif // PATYPE_H

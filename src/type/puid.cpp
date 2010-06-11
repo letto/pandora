@@ -15,25 +15,27 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef CREATURE_H
-#define CREATURE_H
+#include "../patype.h"
 
-#include "pa_basics.h"
-#include "entity.h"
-#include "item.h"
+std::unordered_map<uint64_t,Entity*> Puid::idmap;
 
-using pa::Image;
-using pa::Direction;
-
-class Creature : public Entity
+Puid::Puid(Entity* ent)
 {
-public:
-	bool Go_Direction(const Direction&);
-	virtual Size Get_Max_Holding_Size() const = 0;
+    static uint64_t id_number = 1;
+    while(idmap.count(id_number) != 0) {
+	id_number++;
+    }
+    id = id_number;
+    
+    idmap.insert(std::pair<uint64_t,Entity*>( id, ent));
+}
 
-	bool Take_Entity(Entity*);
-	bool Drop_Entity();
-	Entity* holding;
-};
+Puid::~Puid()
+{
+    idmap.erase(id);
+}
 
-#endif // CREATURE_H
+
+std::string Puid::get() const {
+    return boost::lexical_cast<std::string>(id);
+}

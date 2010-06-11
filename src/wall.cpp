@@ -17,7 +17,6 @@
 
 
 #include "wall.h"
-#include "container/world.h"
 
 extern World map;
 

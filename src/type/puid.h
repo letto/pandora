@@ -15,30 +15,28 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include <boost/lexical_cast.hpp>
+#ifndef PUID_H
+#define PUID_H
 
-#include "puid.h"
+#include <unordered_map>
+#include <cstdint>
+#include <string>
 
-std::unordered_map<uint64_t,Entity*> Puid::idmap;
+class Entity;
 
-Puid::Puid(Entity* ent)
+class Puid
 {
-    static uint64_t id_number = 1;
-    while(idmap.count(id_number) != 0) {
-	id_number++;
-    }
-    id = id_number;
-    
-    idmap.insert(std::pair<uint64_t,Entity*>( id, ent));
-}
+public:
+	Puid(Entity*);
+	~Puid();
+	std::string get() const;
+private:
+	uint64_t id;
+	static std::unordered_map<uint64_t,Entity*> idmap;
+	
+	operator int() = delete;
+	Puid(Puid&) = delete;
+	Puid operator=(Puid&) = delete;
+};
 
-Puid::~Puid()
-{
-    idmap.erase(id);
-}
-
-
-Puid::operator std::string()
-{
-    return boost::lexical_cast<std::string>(id);
-}
+#endif // PUID_H

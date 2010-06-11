@@ -19,8 +19,7 @@
 #ifndef ENTITYCONTAINER_H
 #define ENTITYCONTAINER_H
 
-#include "../pa_basics.h"
-#include "../pa_object.h"
+#include "../type/entity.h"
 
 using pa::Location;
 using pa::Size;

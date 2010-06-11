@@ -19,7 +19,7 @@
 #ifndef PA_BASICS_H
 #define PA_BASICS_H
 
-#include <iostream>
+#include "pastring.h"
 #include <SDL/SDL.h>
 
 namespace pa
@@ -84,15 +84,13 @@ typedef uint16_t Volume;
 int_fast32_t Random(const int_fast32_t, const int_fast32_t);
 int_fast32_t Dice(const int_fast32_t);
 
+
 void Exit(const std::string&);
 
 }//namespace pa
 
 bool operator>(pa::Size,pa::Size);
 
-#include <boost/flyweight.hpp>
-extern template class boost::flyweights::flyweight<std::string>;
-typedef boost::flyweights::flyweight<std::string> String;
 std::string operator+(std::string, String);
 
 #endif // PA_BASICS_H

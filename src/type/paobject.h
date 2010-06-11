@@ -18,7 +18,7 @@
 #ifndef PAOBJECT_H
 #define PAOBJECT_H
 
-#include "pa_basics.h"
+#include "pabasics.h"
 
 using pa::Image;
 using pa::Location;

@@ -15,22 +15,19 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include "../patype.h"
 
-#include "surface.h"
-
-
-Image Surface::Get_Image() const {
-    return Image(9617,pa::dark_green);
+Entity::Entity():
+	id(this),
+	holder(NULL),
+	next(NULL)
+{
 }
 
-std::string Surface::Get_Description() const {
-    return "grass surface";
+Location Entity::Get_Location() const {
+    return holder->Get_Location();
 }
 
-Color Surface::Get_Color() const {
-    return pa::soil_green;
-}
-
-Size Surface::Get_Size() const {
-    return Size::tiny;
+EntityContainer* Entity::Get_Holder() {
+    return holder;
 }

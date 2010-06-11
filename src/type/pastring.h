@@ -15,38 +15,20 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifndef PASTRING_H
+#define PASTRING_H
 
-#include "humanoid.h"
-#include "../woodlog.h"
-#include "../wall.h"
+#include <string>
+#include <boost/flyweight/flyweight.hpp>
+#include <boost/flyweight/static_holder.hpp>
+#include <boost/flyweight/set_factory.hpp>
+#include <boost/flyweight/no_locking.hpp>
+#include <boost/flyweight/no_tracking.hpp>
+typedef boost::flyweights::flyweight<std::string,
+		boost::flyweights::set_factory<>,
+		boost::flyweights::static_holder,
+		boost::flyweights::no_locking,
+		boost::flyweights::no_tracking> 
+	String;
 
-
-extern World map;
-
-Size Humanoid::Get_Size() const {
-    return Size::large;
-}
-
-Size Humanoid::Get_Max_Holding_Size() const {
-    return Size::large;
-}
-
-bool Humanoid::Chop_Tree() const {
-    // TODO: warn if holder is not terrain
-    return static_cast<Terrain*>(holder)->Chop_Tree();
-}
-
-bool Humanoid::Build_Wall()
-{
-    if(holding == NULL ||
-       typeid(*holding) != typeid(WoodLog)||
-       !map(holder->Get_Location().x+1,holder->Get_Location().y).Is_Empty()) {
-	return false;
-    } else {
-	map(holder->Get_Location().x+1,holder->Get_Location().y).Add_Entity(new Wall);
-	delete holding;
-	holding = NULL;
-	return true;
-    }
-}
-
+#endif // PASTRING_H

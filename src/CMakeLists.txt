@@ -1,22 +1,21 @@
 Set (
     SOURCES
-    pa_basics.cpp
+    type/pabasics.cpp
+    type/puid.cpp
+    type/entity.cpp
+    type/item.cpp
+    type/creature.cpp
+    type/surface.cpp
+    type/terrain.cpp
     container/entitycontainer.cpp
     container/world.cpp
-    container/puid.cpp
     interface/terminal.cpp
     interface/cursor.cpp
     interface/interface.cpp
-    container/puid.cpp
-    surface.cpp
-    terrain.cpp
-    entity.cpp
     wall.cpp
-    item.cpp
     material.cpp
     tree.cpp
     woodlog.cpp
-    creature.cpp
     race/humanoid.cpp
     race/human.cpp
     race/orc.cpp

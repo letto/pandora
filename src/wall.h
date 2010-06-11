@@ -17,9 +17,8 @@
 
 #ifndef WALL_H
 #define WALL_H
-
-#include "pa_basics.h"
-#include "item.h"
+ 
+#include "patype.h"
 
 class Wall : public Item
 {

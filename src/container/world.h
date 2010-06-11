@@ -18,11 +18,13 @@
 
 #ifndef WORLD_H
 #define WORLD_H
-#include "../pa_basics.h"
-#include "../terrain.h"
+
+#include "../type/pabasics.h"
+#include "../type/terrain.h"
 #include <vector>
 
 using pa::Random;
+using pa::Location;
 
 class World
 {

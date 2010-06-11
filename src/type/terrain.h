@@ -15,29 +15,41 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef PUID_H
-#define PUID_H
 
-#include <string>
-#include <cstdint>
-#include <unordered_map>
+#ifndef TERRAIN_H
+#define TERRAIN_H
 
-class Entity;
+#include "pabasics.h"
+#include "surface.h"
+#include "../container/entitycontainer.h"
 
-class Puid
+using pa::Image;
+using pa::Color;
+using pa::Location;
+
+class Tree;
+
+class Terrain : virtual public PaObject, public EntityContainer
 {
 public:
-	Puid(Entity*);
-	~Puid();
-	operator std::string();
+	Terrain(Location&&);
+	Terrain(Terrain&&);
+	Terrain& operator=(Terrain&& );
+	Image  Get_Image() const;
+	Location Get_Location() const;
+	static Volume Get_Volume();
+	Color Get_Surface_Color() const;
+	String Get_Description() const;
+	Image Get_Next_Display_Image();
+
+	bool Has_Wall();
+
+	Tree* Get_Tree();
+	bool Chop_Tree();
 private:
-	uint64_t id;
-	static std::unordered_map<uint64_t,Entity*> idmap;
-	
-	operator int() = delete;
-	Puid(Puid&) = delete;
-	Puid operator=(Puid&) = delete;
+	static const Volume volume = Volume(350);
+	Location location;
+	EntityContainer::iterator entities_display_it;
 };
 
-
-#endif // PUID_H
+#endif // TERRAIN_H

@@ -21,6 +21,7 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_opengl.h>
 
+#include "../wall.h"
 
 using boost::lexical_cast;
 
@@ -205,8 +206,8 @@ void Interface::Draw_Display()
 void Interface::Draw_Info()
 {
     Location loc = current_ent->Get_Location();
-    std::string ss;// = " " ;
-    ss += "\nID: " + (std::string)player->id;
+    std::string ss;
+    ss += "\nID: " + player->id.get();
     ss += " Disp Count " + lexical_cast<std::string>(display_counter);
     ss += " Loc " + lexical_cast<std::string>(loc.x) + "," + lexical_cast<std::string>(loc.y);
     info.Print(ss);

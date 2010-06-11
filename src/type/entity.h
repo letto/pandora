@@ -15,20 +15,35 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "entity.h"
-#include "container/entitycontainer.h"
+#ifndef ENTITY_H
+#define ENTITY_H
 
-Entity::Entity():
-	id(this),
-	holder(NULL),
-	next(NULL)
+#include "paobject.h"
+#include "puid.h"
+
+using pa::Image;
+using pa::Size;
+using pa::Location;
+
+class EntityContainer;
+
+class Entity : virtual public PaObject
 {
-}
+public:
+	Entity();
+	Location Get_Location() const;
+	EntityContainer* Get_Holder();
 
-Location Entity::Get_Location() const {
-    return holder->Get_Location();
-}
+	virtual Size Get_Size() const = 0;
 
-EntityContainer* Entity::Get_Holder() {
-    return holder;
-}
+	Puid id;
+protected:
+	EntityContainer* holder;
+private:
+	Entity* next;
+	friend class Creature;
+	friend class EntityContainer;
+	friend class Entity_Iterator;
+};
+
+#endif // ENTITY_H

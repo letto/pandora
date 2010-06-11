@@ -16,7 +16,9 @@
 */
 
 #include "entitycontainer.h"
-#include "../entity.h"
+#include "../type/entity.h"
+
+#include <iostream>
 
 Entity_Iterator::Entity_Iterator(Entity* entity):
 	entity(entity)
@@ -99,6 +101,7 @@ bool EntityContainer::Remove_Entity(Entity* entity)
 	ent->next = ent->next->next;
     }
     
+    entity->holder = NULL;
     entity->next = NULL;
     volume_used -= (Volume)entity->Get_Size();
     return true;

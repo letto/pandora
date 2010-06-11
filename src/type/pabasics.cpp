@@ -15,11 +15,9 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "pa_basics.h"
+#include "../patype.h"
 #include <boost/random.hpp>
 #include <ctime>
-
-//template class boost::flyweights::flyweight<std::string>;
 
 boost::uniform_int<> distrib(0, 90090000);// 10000*7*9*11*13
 boost::mt19937 engine(static_cast<int_fast32_t>(std::time(0)));
@@ -59,5 +57,5 @@ bool operator>(pa::Size a,pa::Size b) {
 }
 
 std::string operator+(std::string a, String b) {
-    return a + (std::string)b;
+    return a + b.get();
 }

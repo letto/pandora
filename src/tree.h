@@ -19,8 +19,7 @@
 #ifndef TREE_H
 #define TREE_H
 
-#include "pa_basics.h"
-#include "entity.h"
+#include "patype.h"
 
 using pa::Image;
 

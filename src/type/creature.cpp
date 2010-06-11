@@ -15,12 +15,14 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "creature.h"
-
-#include "terrain.h"
-#include "pa_engine.h"
+#include "../patype.h"
 
 extern World map;
+
+Creature::Creature():
+	holding(NULL)
+{
+}
 
 bool Creature::Go_Direction(const Direction& direction)
 {
@@ -65,6 +67,10 @@ bool Creature::Go_Direction(const Direction& direction)
 
 bool Creature::Take_Entity(Entity* item) 
 {
+    if(item == NULL) {
+	// TODO: Warning
+	return false;
+    }
     if(holding != NULL) {
 	return false;
     }
@@ -76,6 +82,7 @@ bool Creature::Take_Entity(Entity* item)
 	return false;
     } else {
 	holding = item;
+	//item->holder = this;
 	return true;
     }
 }

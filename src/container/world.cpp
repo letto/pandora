@@ -17,7 +17,6 @@
 
 #include "world.h"
 #include "../tree.h"
-#include <memory>
 
 
 World::World(int16_t max_x, int16_t max_y):max_x(max_x),max_y(max_y)

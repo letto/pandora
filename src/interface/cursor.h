@@ -19,8 +19,8 @@
 #ifndef CURSOR_H
 #define CURSOR_H
 
-#include "../pa_basics.h"
-#include "../creature.h"
+#include "../type/pabasics.h"
+#include "../type/creature.h"
 
 class Cursor : public Creature
 {

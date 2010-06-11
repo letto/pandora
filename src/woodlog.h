@@ -18,7 +18,7 @@
 #ifndef WOODLOG_H
 #define WOODLOG_H
 
-#include "pa_basics.h"
+#include "patype.h"
 #include "material.h"
 
 using pa::Image;

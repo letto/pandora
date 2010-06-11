@@ -19,7 +19,7 @@
 #ifndef HUMAN_H
 #define HUMAN_H
 
-#include "../pa_basics.h"
+#include "../patype.h"
 #include "humanoid.h"
 
 

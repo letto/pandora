@@ -15,35 +15,22 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef ENTITY_H
-#define ENTITY_H
 
-#include "pa_basics.h"
-#include "container/puid.h"
-#include "pa_object.h"
+#include "../patype.h"
 
-using pa::Image;
-using pa::Size;
-using pa::Location;
 
-class EntityContainer;
+Image Surface::Get_Image() const {
+    return Image(9617,pa::dark_green);
+}
 
-class Entity : virtual public PaObject
-{
-public:
-	Entity();
-	Location Get_Location() const;
-	EntityContainer* Get_Holder();
+String Surface::Get_Description() const {
+    return String("grass surface");
+}
 
-	virtual Size Get_Size() const = 0;
+Color Surface::Get_Color() const {
+    return pa::soil_green;
+}
 
-	Puid id;
-protected:
-	EntityContainer* holder;
-private:
-	Entity* next;
-	friend class EntityContainer;
-	friend class Entity_Iterator;
-};
-
-#endif // ENTITY_H
+Size Surface::Get_Size() const {
+    return Size::tiny;
+}

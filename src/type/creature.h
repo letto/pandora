@@ -15,41 +15,28 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#ifndef CREATURE_H
+#define CREATURE_H
 
-#ifndef TERRAIN_H
-#define TERRAIN_H
-
-#include "pa_basics.h"
-#include "surface.h"
-#include "container/entitycontainer.h"
+#include "pabasics.h"
+#include "entity.h"
+#include "../container/entitycontainer.h"
 
 using pa::Image;
-using pa::Color;
-using pa::Location;
+using pa::Direction;
+using pa::Size;
 
-class Tree;
 
-class Terrain : public EntityContainer,virtual public PaObject
+class Creature : public Entity
 {
 public:
-	Terrain(Location&&);
-	Terrain(Terrain&&);
-	Terrain& operator=(Terrain&& );
-	Image  Get_Image() const;
-	Location Get_Location() const;
-	static Volume Get_Volume();
-	Color Get_Surface_Color() const;
-	String Get_Description() const;
-	Image Get_Next_Display_Image();
+	Creature();
+	bool Go_Direction(const Direction&);
+	virtual Size Get_Max_Holding_Size() const = 0;
 
-	bool Has_Wall();
-
-	Tree* Get_Tree();
-	bool Chop_Tree();
-private:
-	static const Volume volume = Volume(350);
-	Location location;
-	EntityContainer::iterator entities_display_it;
+	bool Take_Entity(Entity*);
+	bool Drop_Entity();
+	Entity* holding;
 };
 
-#endif // TERRAIN_H
+#endif // CREATURE_H
