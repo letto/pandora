@@ -63,8 +63,8 @@ Image Wall::Get_Image() const {
     return Image(10799,col);
 }
 
-std::string Wall::Get_Description() const {
-    return "a wall";
+String Wall::Get_Description() const {
+    return String("a wall");
 }
 
 Size Wall::Get_Size() const {

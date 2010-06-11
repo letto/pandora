@@ -18,6 +18,7 @@
 
 #ifndef WORLD_H
 #define WORLD_H
+#include "pa_basics.h"
 #include "../terrain.h"
 #include <vector>
 

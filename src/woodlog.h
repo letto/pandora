@@ -29,7 +29,7 @@ public:
 	//WoodLog();
 	Size Get_Size() const;
 	Image Get_Image() const;
-	std::string Get_Description() const;
+	String Get_Description() const;
 };
 
 #endif // WOODLOG_H

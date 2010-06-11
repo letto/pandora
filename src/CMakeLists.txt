@@ -26,7 +26,7 @@ Set (
 )
 
 ADD_EXECUTABLE(
-    ../pandora main.cpp
+    ../pandora
     ${SOURCES}
 )
 

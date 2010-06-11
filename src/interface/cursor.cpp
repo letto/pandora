@@ -25,8 +25,8 @@ pa::Image Cursor::Get_Image() const {
     return Image('X',pa::gold);
 }
 
-std::string Cursor::Get_Description() const {
-    return "the cursor";
+String Cursor::Get_Description() const {
+    return String("the cursor");
 }
 
 Size Cursor::Get_Max_Holding_Size() const {

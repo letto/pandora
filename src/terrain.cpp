@@ -49,7 +49,7 @@ Image Terrain::Get_Image() const {
     return surface_grass.Get_Image();
 }
 
-std::string Terrain::Get_Description() const
+String Terrain::Get_Description() const
 {
     std::string desc;
     if(Is_Empty()) {
@@ -58,7 +58,7 @@ std::string Terrain::Get_Description() const
 	desc = "a patch of land";
     }
     desc += " with " + surface_grass.Get_Description();
-    return desc;
+    return String(desc);
 }
 
 Tree* Terrain::Get_Tree()

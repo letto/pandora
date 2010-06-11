@@ -27,7 +27,7 @@ class PaObject
 {
 public:
 	PaObject() = default;
-	virtual std::string Get_Description() const = 0;
+	virtual String Get_Description() const = 0;
 	virtual Image Get_Image() const = 0;
 	virtual Location Get_Location() const = 0;
 private:

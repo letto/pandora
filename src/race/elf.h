@@ -22,8 +22,9 @@
 class Elf : public Humanoid
 {
 public:
+	Elf();
 	Image Get_Image() const;
-	std::string Get_Description() const;
+	String Get_Description() const;
 };
 
 #endif // ELF_H

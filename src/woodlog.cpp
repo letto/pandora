@@ -26,6 +26,6 @@ Size WoodLog::Get_Size() const {
     return Size::medium;
 }
 
-std::string WoodLog::Get_Description() const {
-    return "an wood log";
+String WoodLog::Get_Description() const {
+    return String("an wood log");
 }

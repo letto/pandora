@@ -18,7 +18,7 @@
 #include "tree.h"
 
 #include "woodlog.h"
-
+#include "container/entitycontainer.h"
 
 void Tree::Chop()
 {
@@ -33,8 +33,8 @@ Image Tree::Get_Image() const {
     return Image(9035,pa::bright_green);
 }
 
-std::string Tree::Get_Description() const {
-    return "a beautiful tree";
+String Tree::Get_Description() const {
+    return String("a beautiful tree");
 }
 
 Size Tree::Get_Size() const {

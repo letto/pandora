@@ -17,11 +17,15 @@
 
 #include "elf.h"
 
+Elf::Elf()
+{
+}
+
+
 Image Elf::Get_Image() const {
     return {275,pa::gold};
 }
 
-std::string Elf::Get_Description() const {
-    return "an elf";
+String Elf::Get_Description() const {
+    return String("an elf");
 }
-

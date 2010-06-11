@@ -21,6 +21,6 @@ Image Human::Get_Image() const {
     return {'@',pa::gray};
 }
 
-std::string Human::Get_Description() const {
-    return "a human";
+String Human::Get_Description() const {
+    return String("a human");
 }

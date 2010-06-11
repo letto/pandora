@@ -2,7 +2,7 @@ project(pandora)
 
 Find_Package ( SDL REQUIRED )
 
-Set (CMAKE_CXX_FLAGS "-ggdb -O1 -std=gnu++0x -fno-exceptions -Wall")
+Set (CMAKE_CXX_FLAGS "-g -O1 -std=c++0x -fno-exceptions -Wall -Winvalid-pch")
 
 Link_Libraries (
    ${SDL_LIBRARY}

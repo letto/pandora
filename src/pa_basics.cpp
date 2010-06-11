@@ -15,14 +15,15 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
-#include <random>
-#include <ctime>
 #include "pa_basics.h"
+#include <boost/random.hpp>
+#include <ctime>
 
-std::uniform_int<> distrib(0, 90090000);// 10000*7*9*11*13
-std::mt19937 engine(static_cast<int_fast32_t>(std::time(0)));
-std::variate_generator<std::mt19937,std::uniform_int<>> randgen(engine,distrib);
+//template class boost::flyweights::flyweight<std::string>;
+
+boost::uniform_int<> distrib(0, 90090000);// 10000*7*9*11*13
+boost::mt19937 engine(static_cast<int_fast32_t>(std::time(0)));
+boost::variate_generator<boost::mt19937,boost::uniform_int<>> randgen(engine,distrib);
 
 pa::Image::Image(pa::Char ch, Color color):ch(ch),color(color)
 {
@@ -56,3 +57,7 @@ void pa::Exit(const std::string& msg)
 bool operator>(pa::Size a,pa::Size b) {
     return (pa::Volume)a > (pa::Volume)b;
 }
+
+// std::string operator+(std::string a, String b) {
+//     return a + (std::string)b;
+// }

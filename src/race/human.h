@@ -25,7 +25,7 @@
 class Human : public Humanoid
 {
 public:
-	std::string Get_Description() const;
+	String Get_Description() const;
 	Image Get_Image() const;
 };
 

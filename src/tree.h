@@ -19,15 +19,14 @@
 #ifndef TREE_H
 #define TREE_H
 
-#include "container/entitycontainer.h"
 #include "entity.h"
 
 using pa::Image;
 
-class Tree : public Entity//, public EntityContainer
+class Tree : public Entity
 {
 public:
-	std::string Get_Description() const;
+	String Get_Description() const;
 	Image Get_Image() const;
 	Size Get_Size() const;
 	void Chop();
