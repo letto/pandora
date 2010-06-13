@@ -21,11 +21,6 @@
 
 #include "../type/entity.h"
 
-using pa::Location;
-using pa::Size;
-using pa::Image;
-using pa::Volume;
-
 class Entity;
 
 class Entity_Iterator

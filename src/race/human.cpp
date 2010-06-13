@@ -18,7 +18,7 @@
 #include "human.h"
 
 Image Human::Get_Image() const {
-    return {'@',pa::gray};
+    return Image('@',Color::gray);
 }
 
 String Human::Get_Description() const {

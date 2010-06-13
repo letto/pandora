@@ -19,41 +19,37 @@
 #ifndef PA_BASICS_H
 #define PA_BASICS_H
 
-//#include "pastring.h"
 #include <SDL/SDL.h>
 #include <string>
 #include <boost/lexical_cast.hpp>
 
-namespace pa
-{
-
 typedef uint16_t Char;
 
 struct Color {
-    Color(uint8_t r,uint8_t g,uint8_t b);
+    Color(uint8_t r,uint8_t g,uint8_t b):r(r),g(g),b(b){}
     operator SDL_Color();
     uint8_t r,g,b;
+    
+    static const Color black;
+    static const Color white;
+    static const Color red;
+    static const Color green;
+    static const Color blue;
+    static const Color yellow;
+    static const Color cyan;
+    static const Color orange;
+    static const Color tan;
+    static const Color brown;
+    static const Color gold;
+    static const Color silver;
+    static const Color gray;
+    static const Color olive;
+    static const Color dark_blue;
+    static const Color dark_cyan;
+    static const Color dark_green;
+    static const Color bright_green;
+    static const Color soil_green;
 };
-
-const Color white(255,255,255);
-const Color black(0,0,0);
-const Color red(255,0,0);
-const Color green(0,192,0);
-const Color blue(0,0,255);
-const Color yellow(255,255,0);
-const Color cyan(0,255,255);
-const Color orange(255,165,0);
-const Color brown(184,134,11);
-const Color tan(210,180,140);
-const Color gold(255,215,0);
-const Color silver(192,192,192);
-const Color gray(127,127,127);
-const Color olive(75,128,75);
-const Color dark_blue(0,0,139);
-const Color dark_cyan(0,139,139);
-const Color dark_green(0,80,0);
-const Color bright_green(0,255,0);
-const Color soil_green(0,15,0);
 
 struct Image {
     Image(Char,Color);
@@ -67,8 +63,15 @@ struct Location {
     int16_t x,y;
 };
 
-enum Direction {
-    north, south, east, west, northeast, northwest, southwest, southeast
+enum class Direction {
+    north,
+    south,
+    east,
+    west,
+    northeast,
+    northwest,
+    southwest,
+    southeast
 };
 
 enum class Size {
@@ -89,9 +92,6 @@ int_fast32_t Dice(const int_fast32_t);
 
 
 void Exit(const std::string&);
-
-}//namespace pa
-
-bool operator>(pa::Size,pa::Size);
+bool operator>(Size,Size);
 
 #endif // PA_BASICS_H

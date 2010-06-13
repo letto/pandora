@@ -40,9 +40,9 @@ private:
 	void Draw_Actions();
 	
 	bool action_succes;
-	enum class Mode { online , cursor} mode;
-	enum class Action {none,move} action_type;
-	enum class FollowMode {centered,following} follow_mode;
+	enum class Mode 	{ online , cursor} mode;
+	enum class Action 	{none,move} action_type;
+	enum class FollowMode 	{centered,following} follow_mode;
 	Location cursor_loc;
 
 	Humanoid* player;

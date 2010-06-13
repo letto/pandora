@@ -21,8 +21,8 @@ Size Cursor::Get_Size() const {
     return Size::none;
 }
 
-pa::Image Cursor::Get_Image() const {
-    return Image('X',pa::gold);
+Image Cursor::Get_Image() const {
+    return Image('X',Color::gold);
 }
 
 String Cursor::Get_Description() const {

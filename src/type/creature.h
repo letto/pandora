@@ -22,10 +22,6 @@
 #include "entity.h"
 #include "../container/entitycontainer.h"
 
-using pa::Image;
-using pa::Direction;
-using pa::Size;
-
 
 class Creature : public Entity
 {

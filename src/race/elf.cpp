@@ -23,7 +23,7 @@ Elf::Elf()
 
 
 Image Elf::Get_Image() const {
-    return {275,pa::gold};
+    return {275,Color::gold};
 }
 
 String Elf::Get_Description() const {

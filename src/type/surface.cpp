@@ -20,7 +20,7 @@
 
 
 Image Surface::Get_Image() const {
-    return Image(9617,pa::dark_green);
+    return Image(9617,Color::dark_green);
 }
 
 String Surface::Get_Description() const {
@@ -28,7 +28,7 @@ String Surface::Get_Description() const {
 }
 
 Color Surface::Get_Color() const {
-    return pa::soil_green;
+    return Color::soil_green;
 }
 
 Size Surface::Get_Size() const {

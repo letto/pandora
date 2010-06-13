@@ -18,7 +18,7 @@
 
 #include "pa_engine.h"
 
-World map{431,463};
+World map{631,863};
 
 PandoraEngine::PandoraEngine()
 {

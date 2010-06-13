@@ -21,7 +21,6 @@
 #include "patype.h"
 #include "material.h"
 
-using pa::Image;
 
 class WoodLog : public Material
 {

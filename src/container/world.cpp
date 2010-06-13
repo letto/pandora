@@ -34,7 +34,7 @@ Terrain& World::operator()(const int16_t x ,const int16_t y) {
     return map[x*max_y + y];
 }
 
-Terrain& World::operator()(const pa::Location loc) {
+Terrain& World::operator()(const Location loc) {
     return operator()(loc.x ,loc.y);
 }
 

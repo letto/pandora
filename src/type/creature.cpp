@@ -29,26 +29,26 @@ bool Creature::Go_Direction(const Direction& direction)
     Location loc = Get_Location();
     Location dest = loc;
     switch(direction) {
-	case pa::northeast:
+	case Direction::northeast:
 	    dest.x++;    
-	case pa::north:
+	case Direction::north:
 	    dest.y++;
 	    break;
-	case pa::southeast:
+	case Direction::southeast:
 	    dest.x++;
-	case pa::south:
+	case Direction::south:
 	    dest.y--;
 	    break;
-	case pa::southwest:
+	case Direction::southwest:
 	    dest.y--;
-	case pa::west:
+	case Direction::west:
 	    dest.x--;
 	    break;
-	case pa::northwest:
+	case Direction::northwest:
 	    dest.y++;
 	    dest.x--;
 	    break;
-	case pa::east:
+	case Direction::east:
 	    dest.x++;
 	    break;
     }

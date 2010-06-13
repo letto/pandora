@@ -21,9 +21,6 @@
 #include "paobject.h"
 #include "puid.h"
 
-using pa::Image;
-using pa::Size;
-using pa::Location;
 
 class EntityContainer;
 

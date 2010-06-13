@@ -45,7 +45,7 @@ Interface::Interface():
 	cursor(new Cursor)
 {
     if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER) != 0)
-	pa::Exit("SDL_Init failed");
+	Exit("SDL_Init failed");
     SDL_WM_SetCaption(" Pandora ",NULL);
     Terminal::Set_Font("/usr/share/fonts/dejavu/DejaVuSansMono.ttf",32);
     
@@ -56,11 +56,11 @@ Interface::Interface():
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
     screen = SDL_SetVideoMode( 1000, 800, 32, video_Flags ); 
     if(!screen)
-	pa::Exit("SDL_SetVideoMode failed");
+	Exit("SDL_SetVideoMode failed");
 
     const SDL_VideoInfo * videoInfo = SDL_GetVideoInfo( );
     if(!videoInfo)
-	pa::Exit("SDL_GetVideoInfo failed");
+	Exit("SDL_GetVideoInfo failed");
     if ( videoInfo->hw_available )
 	video_Flags |= SDL_HWSURFACE;
     else
@@ -185,7 +185,7 @@ void Interface::Draw_Display()
     display_counter++;
     int pos_x = cursor_loc.x - display.Get_Max_X()/2;
     int pos_y = cursor_loc.y - display.Get_Max_Y()/2;
-    Image img('?',pa::red);
+    Image img('?',Color::red);
     Color col(0,0,0);
     for(int cy = 0; cy <= display.Get_Max_Y();cy++) {
 	for(int cx = 0; cx <= display.Get_Max_X(); cx++) {
@@ -351,38 +351,38 @@ void Interface::Keyboard_Handler(const SDL_keysym& key)
 	case SDLK_KP4:
 	case SDLK_LEFT:
 	    action_type = Action::move;
-	    action_succes = current_ent->Go_Direction(pa::west);
+	    action_succes = current_ent->Go_Direction(Direction::west);
 	    break;
 	case SDLK_KP6:
 	case SDLK_RIGHT:
 	    action_type = Action::move;
-	    action_succes = current_ent->Go_Direction(pa::east);
+	    action_succes = current_ent->Go_Direction(Direction::east);
 	    break;
 	case SDLK_KP8:
 	case SDLK_UP:
 	    action_type = Action::move;
-	    action_succes = current_ent->Go_Direction(pa::north);
+	    action_succes = current_ent->Go_Direction(Direction::north);
 	    break;
 	case SDLK_KP2:
 	case SDLK_DOWN:
 	    action_type = Action::move;
-	    action_succes = current_ent->Go_Direction(pa::south);
+	    action_succes = current_ent->Go_Direction(Direction::south);
 	    break;
 	case SDLK_KP9:
 	    action_type = Action::move;
-	    action_succes = current_ent->Go_Direction(pa::northeast);
+	    action_succes = current_ent->Go_Direction(Direction::northeast);
 	    break;
 	case SDLK_KP7:
 	    action_type = Action::move;
-	    action_succes = current_ent->Go_Direction(pa::northwest);
+	    action_succes = current_ent->Go_Direction(Direction::northwest);
 	    break;
 	case SDLK_KP3:
 	    action_type = Action::move;
-	    action_succes = current_ent->Go_Direction(pa::southeast);
+	    action_succes = current_ent->Go_Direction(Direction::southeast);
 	    break;
 	case SDLK_KP1:
 	    action_type = Action::move;
-	    action_succes = current_ent->Go_Direction(pa::southwest);
+	    action_succes = current_ent->Go_Direction(Direction::southwest);
 	    break;
 	default:
 	    action_type = Action::none;

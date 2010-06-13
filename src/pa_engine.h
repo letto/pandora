@@ -20,9 +20,6 @@
 
 #include "patype.h"
 
-using pa::Location;
-using pa::Image;
-using pa::Random;
 
 class PandoraEngine
 {

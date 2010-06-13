@@ -21,7 +21,6 @@
 
 #include "patype.h"
 
-using pa::Image;
 
 class Tree : public Entity
 {

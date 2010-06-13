@@ -23,14 +23,12 @@
 #include "../type/terrain.h"
 #include <vector>
 
-using pa::Random;
-using pa::Location;
 
 class World
 {
 public:
 	Terrain& operator()(const int16_t, const int16_t);
-	Terrain& operator()(const pa::Location);
+	Terrain& operator()(const Location);
 	World(const int16_t max_x,const int16_t max_y);
 	int16_t max_x,max_y;
 	void Generate();

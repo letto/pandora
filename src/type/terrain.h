@@ -23,9 +23,6 @@
 #include "surface.h"
 #include "../container/entitycontainer.h"
 
-using pa::Image;
-using pa::Color;
-using pa::Location;
 
 class Tree;
 

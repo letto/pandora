@@ -26,7 +26,7 @@ class Cursor : public Creature
 {
 public:
 	Size Get_Size() const;
-	pa::Image Get_Image() const;
+	Image Get_Image() const;
 	String Get_Description() const;
 	Size Get_Max_Holding_Size() const;
 };

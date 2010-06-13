@@ -18,7 +18,7 @@
 #include "orc.h"
 
 Image Orc::Get_Image() const {
-    return {246,pa::green};
+    return {246,Color::green};
 }
 
 String Orc::Get_Description() const {

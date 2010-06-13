@@ -19,7 +19,7 @@
 #include "woodlog.h"
 
 Image WoodLog::Get_Image() const {
-    return Image(8803,pa::brown);
+    return Image(8803,Color::brown);
 }
 
 Size WoodLog::Get_Size() const {

@@ -22,7 +22,7 @@ extern World map;
 
 Image Wall::Get_Image() const {
     Location loc = holder->Get_Location();
-    Color col = pa::brown;
+    Color col = Color::brown;
     bool wall_up = map(loc.x,loc.y+1).Has_Wall();
     bool wall_down = map(loc.x,loc.y-1).Has_Wall();
     bool wall_right = map(loc.x+1,loc.y).Has_Wall();
