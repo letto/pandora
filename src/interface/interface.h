@@ -34,7 +34,7 @@ private:
 	Terminal info;
 	Terminal actions;
 	
-	uint64_t display_counter;
+	int64_t display_counter;
 	void Draw_Display();
 	void Draw_Info();
 	void Draw_Actions();

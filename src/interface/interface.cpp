@@ -205,11 +205,10 @@ void Interface::Draw_Display()
 
 void Interface::Draw_Info()
 {
-    Location loc = current_ent->Get_Location();
     std::string ss;
-    ss += "\nID: " + player->id.get();
+    ss += "\nID: " + (std::string)player->id;
     ss += " Disp Count " + lexical_cast<std::string>(display_counter);
-    ss += " Loc " + lexical_cast<std::string>(loc.x) + "," + lexical_cast<std::string>(loc.y);
+    ss += " Loc " + (std::string)current_ent->Get_Location();
     info.Print(ss);
 }
 

@@ -19,6 +19,7 @@
 #define SURFACE_H
 
 #include "pabasics.h"
+#include "pastring.h"
 
 using pa::Color;
 using pa::Image;

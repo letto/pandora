@@ -55,7 +55,3 @@ void pa::Exit(const std::string& msg)
 bool operator>(pa::Size a,pa::Size b) {
     return (pa::Volume)a > (pa::Volume)b;
 }
-
-std::string operator+(std::string a, String b) {
-    return a + b.get();
-}

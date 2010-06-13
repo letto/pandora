@@ -19,6 +19,7 @@
 #define PAOBJECT_H
 
 #include "pabasics.h"
+#include "pastring.h"
 
 using pa::Image;
 using pa::Location;

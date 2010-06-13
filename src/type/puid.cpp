@@ -35,7 +35,7 @@ Puid::~Puid()
     idmap.erase(id);
 }
 
-
-std::string Puid::get() const {
+#include <boost/lexical_cast.hpp>
+Puid::operator std::string () const {
     return boost::lexical_cast<std::string>(id);
 }

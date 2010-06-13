@@ -29,7 +29,7 @@ class Puid
 public:
 	Puid(Entity*);
 	~Puid();
-	std::string get() const;
+	operator std::string() const;
 private:
 	uint64_t id;
 	static std::unordered_map<uint64_t,Entity*> idmap;

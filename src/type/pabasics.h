@@ -19,8 +19,10 @@
 #ifndef PA_BASICS_H
 #define PA_BASICS_H
 
-#include "pastring.h"
+//#include "pastring.h"
 #include <SDL/SDL.h>
+#include <string>
+#include <boost/lexical_cast.hpp>
 
 namespace pa
 {
@@ -61,6 +63,7 @@ struct Image {
 
 struct Location {
     Location(int16_t x,int16_t y):x(x),y(y){}
+    operator std::string () const { return boost::lexical_cast<std::string>(x)+","+boost::lexical_cast<std::string>(y);}
     int16_t x,y;
 };
 
@@ -90,7 +93,5 @@ void Exit(const std::string&);
 }//namespace pa
 
 bool operator>(pa::Size,pa::Size);
-
-std::string operator+(std::string, String);
 
 #endif // PA_BASICS_H

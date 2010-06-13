@@ -20,15 +20,20 @@
 
 #include <string>
 #include <boost/flyweight/flyweight.hpp>
+#include <boost/flyweight/hashed_factory.hpp>
 #include <boost/flyweight/static_holder.hpp>
-#include <boost/flyweight/set_factory.hpp>
 #include <boost/flyweight/no_locking.hpp>
 #include <boost/flyweight/no_tracking.hpp>
 typedef boost::flyweights::flyweight<std::string,
-		boost::flyweights::set_factory<>,
+		boost::flyweights::hashed_factory<>,
 		boost::flyweights::static_holder,
 		boost::flyweights::no_locking,
 		boost::flyweights::no_tracking> 
 	String;
+
+
+inline std::string operator+(const std::string& a,const String& b) {
+    return a + b.get();
+}
 
 #endif // PASTRING_H
