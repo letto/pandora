@@ -71,19 +71,26 @@ Interface::Interface():
     SDL_SetEventFilter(Event_Filter);
     
     
-    player = Add_Player(Location(17,11),new Human());
+    player = Add_Player(Location(17,11),new Humanoid(Race::human));
     current_ent = player;
-    Add_Player(Location(26,19),new Elf());
-    Add_Player(Location(27,18),new Human());
-    Add_Player(Location(27,19),new Orc());
-    Add_Player(Location(13,11),new Human());
-    Add_Player(Location(13,11),new Orc());
-    Add_Player(Location(7,11),new Human());
-    Add_Player(Location(7,11),new Elf());
+    Add_Player(Location(26,19),new Humanoid(Race::elf));
+    Add_Player(Location(27,18),new Humanoid(Race::human));
+    Add_Player(Location(27,19),new Humanoid(Race::orc));
     
-    Add_Player(Location(7,10),new Human());
-    Add_Player(Location(7,13),new Human());
-    Add_Player(Location(6,11),new Elf());
+    Add_Player(Location(16,14),new Humanoid(Race::dwarf));
+    Add_Player(Location(18,12),new Humanoid(Race::dwarf));
+    Add_Player(Location(22,13),new Humanoid(Race::dwarf));
+    Add_Player(Location(13,14),new Humanoid(Race::dwarf));
+    
+    Add_Player(Location(13,11),new Humanoid(Race::human));
+    Add_Player(Location(13,11),new Humanoid(Race::orc));
+    Add_Player(Location(7,11),new Humanoid(Race::human));
+    Add_Player(Location(7,11),new Humanoid(Race::elf));
+    Add_Player(Location(14,13),new Humanoid(Race::high_elf));
+    
+    Add_Player(Location(7,10),new Humanoid(Race::human));
+    Add_Player(Location(7,13),new Humanoid(Race::human));
+    Add_Player(Location(6,11),new Humanoid(Race::elf));
     
     Add_Player(Location(9,12),new Wall());
 
@@ -239,7 +246,7 @@ void Interface::Draw_Actions()
 	    if( !ent ) {
 		break;
 	    }
-	    ss += ent->Get_Description();
+	    ss += Get_Article(ent->Get_Description()) + ent->Get_Description();
 	    auto ent_next = ent;
 	    ++ent_next;
 	    if( *ent_next == current_ent) {

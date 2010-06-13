@@ -63,7 +63,7 @@ Image Wall::Get_Image() const {
 }
 
 String Wall::Get_Description() const {
-    return String("a wall");
+    return String("wall");
 }
 
 Size Wall::Get_Size() const {

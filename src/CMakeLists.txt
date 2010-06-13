@@ -1,6 +1,7 @@
 Set (
     SOURCES
     type/pabasics.cpp
+    type/pastring.cpp
     type/puid.cpp
     type/entity.cpp
     type/item.cpp
@@ -16,10 +17,8 @@ Set (
     material.cpp
     tree.cpp
     woodlog.cpp
+    race/race.cpp
     race/humanoid.cpp
-    race/human.cpp
-    race/orc.cpp
-    race/elf.cpp
     pa_engine.cpp
     main.cpp
 )

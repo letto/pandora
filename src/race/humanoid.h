@@ -20,15 +20,22 @@
 #define HUMANOID_H
 
 #include "../patype.h"
+#include "race.h"
 
 class Humanoid : public Creature
 {
 public:
-    Size Get_Size() const;
+    Humanoid(const Race);
+    virtual String Get_Description() const;
+    virtual Image Get_Image() const;
+    
+    virtual Size Get_Size() const;
     Size Get_Max_Holding_Size() const;
     
     bool Chop_Tree() const;
     bool Build_Wall();
+    
+    Race race;
 };
 
 #endif // HUMANOID_H

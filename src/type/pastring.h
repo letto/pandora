@@ -31,9 +31,13 @@ typedef boost::flyweights::flyweight<std::string,
 		boost::flyweights::no_tracking> 
 	String;
 
+std::string Get_Article(const String);
 
-inline std::string operator+(const std::string& a,const String& b) {
-    return a + b.get();
+template<typename _T> inline
+std::string Get_Article(_T a) {
+    return Get_Article((String)a);
 }
+
+std::string operator+(const std::string&,const String);
 
 #endif // PASTRING_H

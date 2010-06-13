@@ -20,8 +20,8 @@
 
 #include "terminal.h"
 #include "../pa_engine.h"
-#include "../race/race.h"
 #include "cursor.h"
+#include "../race/humanoid.h"
 
 class Interface
 {

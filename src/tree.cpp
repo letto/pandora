@@ -32,7 +32,7 @@ Image Tree::Get_Image() const {
 }
 
 String Tree::Get_Description() const {
-    return String("a beautiful tree");
+    return String("beautiful tree");
 }
 
 Size Tree::Get_Size() const {

@@ -15,12 +15,34 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "orc.h"
+#include "../patype.h"
 
-Image Orc::Get_Image() const {
-    return {246,Color::green};
+std::string operator+(const std::string& a,const String b) {
+    return a + b.get();
 }
 
-String Orc::Get_Description() const {
-    return String("an orc");
+std::string Get_Article(const String s) 
+{
+    auto slen = s.get().length();
+    if( slen == 0 ) {
+	return "";
+    }
+    char c0 = '\0',c1 = '\0';
+    if( slen >= 1) {
+	c0 = s.get()[0];
+    }
+    if( slen >= 2) {
+	c1 = s.get()[1];
+    }
+    if( c0 == 'h'  &&
+	( c1 == 'u'|| c1 == '\0'))  {
+	return "a ";
+    } else {
+	if( c0 == 'h' || c0 == 'a' || c0 == 'e' ||
+	    c0 == 'i' || c0 == 'o' || c0 == 'u'    ) {
+		return "an ";
+	} else {
+		return "a ";
+	}
+    }
 }

@@ -23,6 +23,33 @@
 
 extern World map;
 
+Humanoid::Humanoid(const Race race):
+	race(race)
+{
+}
+
+String Humanoid::Get_Description() const {
+    return (String)race;
+}
+
+Image Humanoid::Get_Image() const
+{
+    if( race == Race::human ) {
+	return Image('@',Color::gray);
+    }
+    if( race == Race::elf ) {
+	return Image(275,Color::gold);
+    }
+    if( race == Race::orc ) {
+	return Image(246,Color::green);
+    }
+    if( race == Race::dwarf ) {
+	return Image('d',Color::orange);
+    }
+    // TODO: warning
+    return Image('X',Color::red);
+}
+
 Size Humanoid::Get_Size() const {
     return Size::large;
 }
@@ -41,12 +68,12 @@ bool Humanoid::Build_Wall()
     if(holding == NULL ||
        typeid(*holding) != typeid(WoodLog)||
        !map(holder->Get_Location().x+1,holder->Get_Location().y).Is_Empty()) {
-	return false;
+	    return false;
     } else {
-	map(holder->Get_Location().x+1,holder->Get_Location().y).Add_Entity(new Wall);
-	delete holding;
-	holding = NULL;
-	return true;
+	    map(holder->Get_Location().x+1,holder->Get_Location().y).Add_Entity(new Wall);
+	    delete holding;
+	    holding = NULL;
+	    return true;
     }
 }
 

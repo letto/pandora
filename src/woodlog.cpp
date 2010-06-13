@@ -27,5 +27,5 @@ Size WoodLog::Get_Size() const {
 }
 
 String WoodLog::Get_Description() const {
-    return String("an wood log");
+    return String("wood log");
 }

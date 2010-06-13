@@ -25,30 +25,32 @@
 
 typedef uint16_t Char;
 
-struct Color {
+struct Color
+{
+static const Color
+    black,
+    white,
+    red,
+    green,
+    blue,
+    yellow,
+    cyan,
+    orange,
+    tan,
+    brown,
+    gold,
+    silver,
+    gray,
+    olive,
+    dark_blue,
+    dark_cyan,
+    dark_green,
+    bright_green,
+    soil_green;
+    
     Color(uint8_t r,uint8_t g,uint8_t b):r(r),g(g),b(b){}
     operator SDL_Color();
     uint8_t r,g,b;
-    
-    static const Color black;
-    static const Color white;
-    static const Color red;
-    static const Color green;
-    static const Color blue;
-    static const Color yellow;
-    static const Color cyan;
-    static const Color orange;
-    static const Color tan;
-    static const Color brown;
-    static const Color gold;
-    static const Color silver;
-    static const Color gray;
-    static const Color olive;
-    static const Color dark_blue;
-    static const Color dark_cyan;
-    static const Color dark_green;
-    static const Color bright_green;
-    static const Color soil_green;
 };
 
 struct Image {
