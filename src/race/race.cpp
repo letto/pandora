@@ -19,21 +19,47 @@
 #include "race.h"
 
 
-const Race Race::human 		= String("human");
-const Race Race::elf		= String("elf");
-const Race Race::orc		= String("orc");
-const Race Race::dwarf		= String("dwarf");
-const Race Race::high_elf	= String("high elf");
-const Race Race::half_elf	= String("half elf");
+const Race Race::human 		= String{ "human"};
+const Race Race::elf		= String{ "elf"};
+const Race Race::orc		= String{ "orc"};
+const Race Race::dwarf		= String{ "dwarf"};
+const Race Race::high_elf	= String{ "high elf"};
+const Race Race::half_elf	= String{ "half elf"};
 
-Race::Race(String s): value(s) {}
-Race::Race(const Race& a):value(a.value) {}
-Race Race::operator=(const Race a) {return Race(a.value);}
-bool operator==(const Race a, const Race b) {return a.value == b.value;}
-bool operator!=(const Race a, const Race b) {return a.value != b.value;}
-Race::operator std::string() const {return value.get();}
-std::string operator+(const std::string& s, const Race race) { return s + race.value.get();}
-std::string operator+(const Race race, const std::string& s) { return race.value.get() + s;}
+Race::Race(String s):
+	value{s}
+{
+}
+
+Race::Race(const Race& a):
+	value{a.value}
+{
+}
+
+Race Race::operator=(const Race a) {
+    return Race(a.value);
+}
+
+bool operator==(const Race a, const Race b) {
+    return a.value == b.value;
+}
+
+bool operator!=(const Race a, const Race b) {
+    return a.value != b.value;
+}
+
+Race::operator std::string() const {
+    return value.get();
+}
+
+std::string operator+(const std::string& s, const Race race) {
+    return s + race.value.get();
+}
+
+std::string operator+(const Race race, const std::string& s) {
+    return race.value.get() + s;
+}
+
 
 bool operator<<=(const Race subrace, const Race race)
 {

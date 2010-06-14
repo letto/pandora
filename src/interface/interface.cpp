@@ -36,13 +36,13 @@ Interface* Interface::Get_Interface() {
 }
 
 Interface::Interface():
-	display_counter(0),
-	action_succes(false),
-	mode(Mode::online),
-	action_type(Action::none),
-	follow_mode(FollowMode::following),
-	cursor_loc(0,0),
-	cursor(new Cursor)
+	display_counter{0},
+	action_succes{false},
+	mode{ Mode::online},
+	action_type{ Action::none},
+	follow_mode{ FollowMode::following},
+	cursor_loc{0,0},
+	cursor{new Cursor}
 {
     if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER) != 0)
 	Exit("SDL_Init failed");
@@ -55,44 +55,47 @@ Interface::Interface():
     video_Flags |= SDL_RESIZABLE;
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
     screen = SDL_SetVideoMode( 1000, 800, 32, video_Flags ); 
-    if(!screen)
+    if(!screen) {
 	Exit("SDL_SetVideoMode failed");
+    }
 
     const SDL_VideoInfo * videoInfo = SDL_GetVideoInfo( );
-    if(!videoInfo)
+    if(!videoInfo) {
 	Exit("SDL_GetVideoInfo failed");
-    if ( videoInfo->hw_available )
+    }
+    if ( videoInfo->hw_available ) {
 	video_Flags |= SDL_HWSURFACE;
-    else
+    } else {
 	video_Flags |= SDL_SWSURFACE;
-    if ( videoInfo->blit_hw )
+    }
+    if ( videoInfo->blit_hw ) {
 	video_Flags |= SDL_HWACCEL;
-
+    }
     SDL_SetEventFilter(Event_Filter);
     
     
-    player = Add_Player(Location(17,11),new Humanoid(Race::human));
+    player = Add_Player( Location{17,11}, new Humanoid{Race::human});
     current_ent = player;
-    Add_Player(Location(26,19),new Humanoid(Race::elf));
-    Add_Player(Location(27,18),new Humanoid(Race::human));
-    Add_Player(Location(27,19),new Humanoid(Race::orc));
+    Add_Player( Location{26,19}, new Humanoid{Race::elf});
+    Add_Player( Location{27,18}, new Humanoid{Race::human});
+    Add_Player( Location{27,19}, new Humanoid{Race::orc});
     
-    Add_Player(Location(16,14),new Humanoid(Race::dwarf));
-    Add_Player(Location(18,12),new Humanoid(Race::dwarf));
-    Add_Player(Location(22,13),new Humanoid(Race::dwarf));
-    Add_Player(Location(13,14),new Humanoid(Race::dwarf));
+    Add_Player( Location{16,14}, new Humanoid{Race::dwarf});
+    Add_Player( Location{18,12}, new Humanoid{Race::dwarf});
+    Add_Player( Location{22,13}, new Humanoid{Race::dwarf});
+    Add_Player( Location{13,14}, new Humanoid{Race::dwarf});
     
-    Add_Player(Location(13,11),new Humanoid(Race::human));
-    Add_Player(Location(13,11),new Humanoid(Race::orc));
-    Add_Player(Location(7,11),new Humanoid(Race::human));
-    Add_Player(Location(7,11),new Humanoid(Race::elf));
-    Add_Player(Location(14,13),new Humanoid(Race::high_elf));
+    Add_Player( Location{13,11}, new Humanoid{Race::human});
+    Add_Player( Location{13,11}, new Humanoid{Race::orc});
+    Add_Player( Location{ 7,11}, new Humanoid{Race::human});
+    Add_Player( Location{ 7,11}, new Humanoid{Race::elf});
+    Add_Player( Location{14,13}, new Humanoid{Race::high_elf});
     
-    Add_Player(Location(7,10),new Humanoid(Race::human));
-    Add_Player(Location(7,13),new Humanoid(Race::human));
-    Add_Player(Location(6,11),new Humanoid(Race::elf));
+    Add_Player( Location{ 7,10}, new Humanoid{Race::human});
+    Add_Player( Location{ 7,13}, new Humanoid{Race::human});
+    Add_Player( Location{ 6,11}, new Humanoid{Race::elf});
     
-    Add_Player(Location(9,12),new Wall());
+    Add_Player( Location{ 9,12}, new Wall);
 
     cursor_loc = current_ent->Get_Location();
 
@@ -192,15 +195,15 @@ void Interface::Draw_Display()
     display_counter++;
     int pos_x = cursor_loc.x - display.Get_Max_X()/2;
     int pos_y = cursor_loc.y - display.Get_Max_Y()/2;
-    Image img('?',Color::red);
+    Image img{ '?', Color::red};
     Color col(0,0,0);
     for(int cy = 0; cy <= display.Get_Max_Y();cy++) {
 	for(int cx = 0; cx <= display.Get_Max_X(); cx++) {
 	    if (cx+pos_x >= engine.Get_Map_Max_X()||
 		cy+pos_y >= engine.Get_Map_Max_Y()||
 		cx+ pos_x < 0 || cy+pos_y < 0) {
-		img = Image('#',Color(35,35,35));
-		col = Color(0,0,0);
+		img = Image{ '#', Color{35,35,35}};
+		col = Color{0,0,0};
 	    } else {
 		img = map(cx+pos_x ,cy+pos_y).Get_Next_Display_Image();
 		col = map(cx+pos_x ,cy+pos_y).Get_Surface_Color();

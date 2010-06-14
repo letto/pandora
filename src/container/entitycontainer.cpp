@@ -21,7 +21,7 @@
 #include <iostream>
 
 Entity_Iterator::Entity_Iterator(Entity* entity):
-	entity(entity)
+	entity{entity}
 {
 }
 
@@ -30,7 +30,7 @@ Entity_Iterator::operator bool() {
 }
 
 Entity_Iterator Entity_Iterator::operator++() {
-    return Entity_Iterator(entity = entity->next);
+    return Entity_Iterator{entity = entity->next};
 }
 
 Entity* Entity_Iterator::operator*() {
@@ -50,18 +50,18 @@ bool Entity_Iterator::operator!=(Entity_Iterator b) {
 }
 
 EntityContainer::EntityContainer(Volume volume):
-	volume_used(0),
-	volume_max(volume),
-	entities(NULL)
+	volume_used{0},
+	volume_max{volume},
+	entities{NULL}
 {
 }
 
 Entity_Iterator EntityContainer::begin() {
-    return Entity_Iterator(entities);
+    return Entity_Iterator{entities};
 }
 
 Entity_Iterator EntityContainer::end() {
-    return Entity_Iterator(NULL);
+    return Entity_Iterator{NULL};
 }
 
 void EntityContainer::Insert_Entity(Entity* entity)

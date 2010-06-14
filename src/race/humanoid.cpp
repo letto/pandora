@@ -24,7 +24,7 @@
 extern World map;
 
 Humanoid::Humanoid(const Race race):
-	race(race)
+	race{race}
 {
 }
 
@@ -35,19 +35,22 @@ String Humanoid::Get_Description() const {
 Image Humanoid::Get_Image() const
 {
     if( race == Race::human ) {
-	return Image('@',Color::gray);
+	return Image{ '@', Color::gray};
     }
     if( race == Race::elf ) {
-	return Image(275,Color::gold);
+	return Image{ 275, Color::gold};
     }
     if( race == Race::orc ) {
-	return Image(246,Color::green);
+	return Image{ 246, Color::green};
     }
     if( race == Race::dwarf ) {
-	return Image('d',Color::orange);
+	return Image{ 'd', Color::orange};
+    }
+    if( race == Race::high_elf ) {
+	return Image{ 230, Color::gold};
     }
     // TODO: warning
-    return Image('X',Color::red);
+    return Image{ 'X', Color::red};
 }
 
 Size Humanoid::Get_Size() const {
@@ -66,7 +69,7 @@ bool Humanoid::Chop_Tree() const {
 bool Humanoid::Build_Wall()
 {
     if(holding == NULL ||
-       typeid(*holding) != typeid(WoodLog)||
+       typeid(*holding) != typeid(WoodLog) ||
        !map(holder->Get_Location().x+1,holder->Get_Location().y).Is_Empty()) {
 	    return false;
     } else {

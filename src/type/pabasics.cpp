@@ -20,31 +20,35 @@
 #include <ctime>
 
 
-const Color Color::brown	(184,134, 11);
-const Color Color::black	(  0,  0,  0);
-const Color Color::white	(255,255,255);
-const Color Color::red		(255,  0,  0);
-const Color Color::green	(  0,192,  0);
-const Color Color::blue		(  0,  0,255);
-const Color Color::yellow	(255,255,  0);
-const Color Color::cyan		(  0,255,255);
-const Color Color::orange	(255,165,  0);
-const Color Color::tan		(210,180,140);
-const Color Color::gold		(255,215,  0);
-const Color Color::silver	(192,192,192);
-const Color Color::gray		(127,127,127);
-const Color Color::olive	( 75,128, 75);
-const Color Color::dark_blue	(  0,  0,139);
-const Color Color::dark_cyan	(  0,139,139);
-const Color Color::dark_green	(  0, 80,  0);
-const Color Color::bright_green	(  0,255,  0);
-const Color Color::soil_green	(  0, 15,  0);
+const Color Color::brown	{184,134, 11};
+const Color Color::black	{  0,  0,  0};
+const Color Color::white	{255,255,255};
+const Color Color::red		{255,  0,  0};
+const Color Color::green	{  0,192,  0};
+const Color Color::blue		{  0,  0,255};
+const Color Color::yellow	{255,255,  0};
+const Color Color::cyan		{  0,255,255};
+const Color Color::orange	{255,165,  0};
+const Color Color::tan		{210,180,140};
+const Color Color::gold		{255,215,  0};
+const Color Color::silver	{192,192,192};
+const Color Color::gray		{127,127,127};
+const Color Color::olive	{ 75,128, 75};
+const Color Color::dark_blue	{  0,  0,139};
+const Color Color::dark_cyan	{  0,139,139};
+const Color Color::dark_green	{  0, 80,  0};
+const Color Color::bright_green	{  0,255,  0};
+const Color Color::soil_green	{  0, 15,  0};
 
-boost::uniform_int<> distrib(0, 90090000);// 10000*7*9*11*13
-boost::mt19937 engine(static_cast<int_fast32_t>(std::time(0)));
-boost::variate_generator<boost::mt19937,boost::uniform_int<>> randgen(engine,distrib);
+// This numeber is very divisible
+// It is equal to 2^5 * 3^4 * 5^4 * 7 * 11 * 13
+boost::uniform_int<> distrib{0, 1621620000};
+boost::mt19937 engine{static_cast<int_fast32_t>(std::time(0))};
+boost::variate_generator<boost::mt19937,boost::uniform_int<>> randgen{engine,distrib};
 
-Image::Image(Char ch, Color color):ch(ch),color(color)
+Image::Image(Char ch, Color color):
+	ch{ch},
+	color{color}
 {
 }
 

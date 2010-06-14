@@ -21,21 +21,20 @@
 Surface surface_grass;
 
 Terrain::Terrain(Location&& location):
-	EntityContainer(volume),
-	location(location),
-	entities_display_it(NULL)
+	EntityContainer{volume},
+	location{location},
+	entities_display_it{NULL}
 {
 }
 
 Terrain::Terrain(Terrain&& t):
-EntityContainer(volume),
-location(t.location),
-entities_display_it(t.entities_display_it)
+	EntityContainer{volume},
+	location{t.location},
+	entities_display_it{t.entities_display_it}
 {
 }
 
-Terrain& Terrain::operator=(Terrain&& t)
-{
+Terrain& Terrain::operator=(Terrain&& t) {
     return t;
 }
 

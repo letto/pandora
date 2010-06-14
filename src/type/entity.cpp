@@ -18,9 +18,9 @@
 #include "../patype.h"
 
 Entity::Entity():
-	id(this),
-	holder(NULL),
-	next(NULL)
+	id{this},
+	holder{NULL},
+	next{NULL}
 {
 }
 

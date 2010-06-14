@@ -20,11 +20,11 @@
 
 
 Image Surface::Get_Image() const {
-    return Image(9617,Color::dark_green);
+    return Image{ 9617, Color::dark_green};
 }
 
 String Surface::Get_Description() const {
-    return String("grass surface");
+    return String{"grass surface"};
 }
 
 Color Surface::Get_Color() const {

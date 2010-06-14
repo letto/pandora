@@ -22,11 +22,11 @@ Size Cursor::Get_Size() const {
 }
 
 Image Cursor::Get_Image() const {
-    return Image('X',Color::gold);
+    return Image{ 'X', Color::gold};
 }
 
 String Cursor::Get_Description() const {
-    return String("the cursor");
+    return String{"the cursor"};
 }
 
 Size Cursor::Get_Max_Holding_Size() const {

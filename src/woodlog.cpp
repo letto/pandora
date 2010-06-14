@@ -19,7 +19,7 @@
 #include "woodlog.h"
 
 Image WoodLog::Get_Image() const {
-    return Image(8803,Color::brown);
+    return Image{ 8803, Color::brown};
 }
 
 Size WoodLog::Get_Size() const {
@@ -27,5 +27,5 @@ Size WoodLog::Get_Size() const {
 }
 
 String WoodLog::Get_Description() const {
-    return String("wood log");
+    return String{"wood log"};
 }

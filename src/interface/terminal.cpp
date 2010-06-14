@@ -60,8 +60,10 @@ void Terminal::Set_Font(const char* font_path ,const int& size)
 }
 
 Terminal::Terminal():
-	cursor_x(0),cursor_max_x(0),
-	cursor_y(0),cursor_max_y(0)
+	cursor_x{0},
+	cursor_max_x{0},
+	cursor_y{0},
+	cursor_max_y{0}
 {
 }
 
@@ -335,10 +337,10 @@ TermChar::TermChar()
 }
 
 TermChar::TermChar(Uint16 ch,SDL_Color fg ,SDL_Color bg):
-	ch(ch),
+	ch{ch},
 	fg(fg),
 	bg(bg),
-	changed(true)
+	changed{true}
 {
 }
 

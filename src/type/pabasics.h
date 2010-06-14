@@ -48,7 +48,7 @@ static const Color
     bright_green,
     soil_green;
     
-    Color(uint8_t r,uint8_t g,uint8_t b):r(r),g(g),b(b){}
+    Color(uint8_t r,uint8_t g,uint8_t b):r{r},g{g},b{b}{}
     operator SDL_Color();
     uint8_t r,g,b;
 };
@@ -60,7 +60,7 @@ struct Image {
 };
 
 struct Location {
-    Location(int16_t x,int16_t y):x(x),y(y){}
+    Location(int16_t x,int16_t y):x{x},y{y}{}
     operator std::string () const { return boost::lexical_cast<std::string>(x)+","+boost::lexical_cast<std::string>(y);}
     int16_t x,y;
 };
@@ -76,7 +76,7 @@ enum class Direction {
     southeast
 };
 
-enum class Size {
+enum class Size : int16_t {
     none = 0,
     tiny = 1, //insects
     small = 16, //cats
@@ -87,7 +87,7 @@ enum class Size {
     gigantic = 1024 //
 };
 
-typedef uint16_t Volume;
+typedef int16_t Volume;
 
 int_fast32_t Random(const int_fast32_t, const int_fast32_t);
 int_fast32_t Dice(const int_fast32_t);

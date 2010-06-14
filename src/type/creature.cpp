@@ -20,7 +20,7 @@
 extern World map;
 
 Creature::Creature():
-	holding(NULL)
+	holding{NULL}
 {
 }
 
