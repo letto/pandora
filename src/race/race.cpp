@@ -19,15 +19,16 @@
 #include "race.h"
 
 
-const Race Race::human 		= String{ "human"};
-const Race Race::elf		= String{ "elf"};
-const Race Race::orc		= String{ "orc"};
-const Race Race::dwarf		= String{ "dwarf"};
-const Race Race::high_elf	= String{ "high elf"};
-const Race Race::half_elf	= String{ "half elf"};
+const Race Race::human 		= "human";
+const Race Race::elf		= "elf";
+const Race Race::orc		= "orc";
+const Race Race::dwarf		= "dwarf";
 
-Race::Race(String s):
-	value{s}
+const Race Race::high_elf	= "high elf";
+const Race Race::half_elf	= "half elf";
+
+Race::Race(const char* s):
+	value{String{s}}
 {
 }
 
@@ -37,7 +38,7 @@ Race::Race(const Race& a):
 }
 
 Race Race::operator=(const Race a) {
-    return Race(a.value);
+    return Race{a};
 }
 
 bool operator==(const Race a, const Race b) {

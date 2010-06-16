@@ -20,13 +20,16 @@
 #define PA_BASICS_H
 
 #include <SDL/SDL.h>
-#include <string>
 #include <boost/lexical_cast.hpp>
+#include "pastring.h"
+#include <unordered_map>
+
 
 typedef uint16_t Char;
 
-struct Color
+class Color
 {
+public:
 static const Color
     black,
     white,
@@ -40,17 +43,28 @@ static const Color
     brown,
     gold,
     silver,
-    gray,
     olive,
+    gray,
+    dark_gray,
     dark_blue,
     dark_cyan,
     dark_green,
     bright_green,
     soil_green;
     
-    Color(uint8_t r,uint8_t g,uint8_t b):r{r},g{g},b{b}{}
-    operator SDL_Color();
-    uint8_t r,g,b;
+	operator SDL_Color() const;
+	operator std::string() const;
+	friend std::string operator+(const std::string&,const Color);
+	friend std::string operator+(const Color,const std::string&);
+private:
+	struct TColor {
+	    TColor(uint8_t r,uint8_t g,uint8_t b);
+	    uint8_t r,g,b;
+	    operator uint32_t() const;
+	};
+	Color(const char*, TColor);
+	TColor value;
+	static std::unordered_map<uint32_t, String> colormap;
 };
 
 struct Image {
@@ -76,7 +90,9 @@ enum class Direction {
     southeast
 };
 
-enum class Size : int16_t {
+typedef int16_t Volume;
+
+enum class Size : Volume {
     none = 0,
     tiny = 1, //insects
     small = 16, //cats
@@ -86,8 +102,6 @@ enum class Size : int16_t {
     huge = 256, //elephants
     gigantic = 1024 //
 };
-
-typedef int16_t Volume;
 
 int_fast32_t Random(const int_fast32_t, const int_fast32_t);
 int_fast32_t Dice(const int_fast32_t);

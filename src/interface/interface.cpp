@@ -196,17 +196,17 @@ void Interface::Draw_Display()
     int pos_x = cursor_loc.x - display.Get_Max_X()/2;
     int pos_y = cursor_loc.y - display.Get_Max_Y()/2;
     Image img{ '?', Color::red};
-    Color col(0,0,0);
+    Color col = Color::black;
     for(int cy = 0; cy <= display.Get_Max_Y();cy++) {
 	for(int cx = 0; cx <= display.Get_Max_X(); cx++) {
-	    if (cx+pos_x >= engine.Get_Map_Max_X()||
+	    if(	cx+pos_x >= engine.Get_Map_Max_X()||
 		cy+pos_y >= engine.Get_Map_Max_Y()||
 		cx+ pos_x < 0 || cy+pos_y < 0) {
-		img = Image{ '#', Color{35,35,35}};
-		col = Color{0,0,0};
+		    img = Image{ '#', Color::dark_gray};
+		    col = Color::black;
 	    } else {
-		img = map(cx+pos_x ,cy+pos_y).Get_Next_Display_Image();
-		col = map(cx+pos_x ,cy+pos_y).Get_Surface_Color();
+		    img = map(cx+pos_x ,cy+pos_y).Get_Next_Display_Image();
+		    col = map(cx+pos_x ,cy+pos_y).Get_Surface_Color();
 	    }
 	    display.Print_Char(img.ch, cx, cy, img.color, col);
 	}

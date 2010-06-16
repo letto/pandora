@@ -39,8 +39,8 @@ static const Race
 	friend std::string operator+(const std::string&, const Race);
 	friend std::string operator+(const Race, const std::string&);
 private:
-	String value;
-	Race(String);
+	const String value;
+	Race(const char*);
 };
 
 bool operator==(const Race, const Race);

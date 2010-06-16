@@ -18,13 +18,14 @@
 #ifndef PATYPE_H
 #define PATYPE_H
 
+#include <cstdint>
 #include <typeinfo>
 #include <string>
-#include <cstdint>
 #include <unordered_map>
 #include <vector>
 #include <memory>
 #include <iostream>
+#include <utility>
 
 #include <boost/lexical_cast.hpp>
 

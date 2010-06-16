@@ -17,6 +17,8 @@
 
 #include "../patype.h"
 
+using std::make_pair;
+
 std::unordered_map<uint64_t,Entity*> Puid::idmap;
 
 Puid::Puid(Entity* ent)
@@ -27,7 +29,7 @@ Puid::Puid(Entity* ent)
     }
     id = id_number;
     
-    idmap.insert(std::pair<uint64_t,Entity*>( id, ent));
+    idmap.insert(make_pair( id, ent));
 }
 
 Puid::~Puid()
