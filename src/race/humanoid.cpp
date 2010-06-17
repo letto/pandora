@@ -34,20 +34,19 @@ String Humanoid::Get_Description() const {
 
 Image Humanoid::Get_Image() const
 {
-    if( race == Race::human ) {
-	return Image{ '@', Color::gray};
-    }
-    if( race == Race::elf ) {
-	return Image{ 275, Color::gold};
-    }
-    if( race == Race::orc ) {
-	return Image{ 246, Color::green};
-    }
-    if( race == Race::dwarf ) {
-	return Image{ 'd', Color::orange};
-    }
-    if( race == Race::high_elf ) {
-	return Image{ 230, Color::gold};
+    switch(race) {
+	case  Race::human:
+	    return Image{ '@', Color::gray};
+	case Race::elf:
+	    return Image{ 275, Color::gold};
+	case Race::orc:
+	    return Image{ 246, Color::green};
+	case Race::dwarf:
+	    return Image{ 'd', Color::orange};
+	case Race::high_elf:
+	    return Image{ 230, Color::gold};
+	case Race::half_elf:
+	    return Image{ 279, Color::gold};
     }
     // TODO: warning
     return Image{ 'X', Color::red};

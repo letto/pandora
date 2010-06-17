@@ -90,6 +90,7 @@ Interface::Interface():
     Add_Player( Location{ 7,11}, new Humanoid{Race::human});
     Add_Player( Location{ 7,11}, new Humanoid{Race::elf});
     Add_Player( Location{14,13}, new Humanoid{Race::high_elf});
+    Add_Player( Location{15,17}, new Humanoid{Race::half_elf});
     
     Add_Player( Location{ 7,10}, new Humanoid{Race::human});
     Add_Player( Location{ 7,13}, new Humanoid{Race::human});
