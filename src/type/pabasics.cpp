@@ -57,14 +57,8 @@ Color::TColor::TColor(uint8_t r, uint8_t g, uint8_t b):
 {
 }
 
-Color::TColor::operator uint32_t () const
-{
-    uint32_t x = r;
-    x <<= 8;
-    x += g;
-    x <<= 8;
-    x += b;
-    return x;
+Color::TColor::operator int32_t () const {
+    return ((( (int32_t)r << 8) + g ) << 8) + b;
 }
 
 Color::operator SDL_Color() const {

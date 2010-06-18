@@ -26,6 +26,7 @@
 
 
 typedef uint16_t Char;
+typedef int16_t int_enum_t;
 
 class Color
 {
@@ -60,7 +61,7 @@ private:
 	struct TColor {
 	    TColor(uint8_t r,uint8_t g,uint8_t b);
 	    uint8_t r,g,b;
-	    operator uint32_t() const;
+	    operator int32_t() const;
 	};
 	Color(const char*, TColor);
 	TColor value;

@@ -16,30 +16,38 @@
 */
 
 #include "../type/pastring.h"
+#include "../type/pabasics.h"
 #include <unordered_map>
 
 
 
 class Race
 {
-typedef int16_t int_t;
-enum class TRace : int_t {
-	human,
-	elf,
-	orc,
-	dwarf,
-	
-	high_elf,
-	half_elf
-};
+private:
+	typedef int_enum_t int_t;
+	enum class TRace : int_t 
+	{
+		human = 1,
+		
+		elf,
+		high_elf,
+		half_elf,
+		
+		dwarf,
+		
+		orc
+	};
 public:
 static const TRace human	= TRace::human;
 static const TRace elf		= TRace::elf;
-static const TRace orc		= TRace::orc;
-static const TRace dwarf	= TRace::dwarf;
-	
 static const TRace high_elf	= TRace::high_elf;
 static const TRace half_elf	= TRace::half_elf;
+static const TRace dwarf	= TRace::dwarf;
+static const TRace orc		= TRace::orc;
+	
+	bool Is_Subrace_Of(const TRace);
+	TRace Get_Base_Race();
+	friend bool Same_Base_Race(const TRace,const TRace);
 	
 	Race(const TRace);
 	Race(const Race&);
@@ -61,14 +69,4 @@ private:
 	static bool Init_Map();
 	static std::unordered_map< int_t, String> racemap;
 };
-
-bool operator==(const Race, const Race);
-bool operator!=(const Race, const Race);
-
-std::string operator+(const std::string&, const Race);
-std::string operator+(const Race, const std::string&);
-
-// is subrace of 
-bool operator<<=(const Race, const Race);
-bool operator>>=(const Race, const Race);
 

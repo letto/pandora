@@ -26,8 +26,7 @@ const bool Race::initmap = Race::Init_Map();
 bool Race::Init_Map()
 {
     // use switch so that compiler warns on missing values
-    volatile TRace a = TRace::human;
-    switch(a) {
+    switch(TRace::human) {
 	case TRace::human:
 	    racemap.insert(make_pair((int_t)TRace::human,	String{"human"}));
 	case TRace::elf:
@@ -95,44 +94,62 @@ std::string operator+(const Race race, const std::string& s) {
     return (std::string)race + s;
 }
 
-
-bool operator<<=(const Race subrace, const Race race)
+Race::TRace Race::Get_Base_Race()
 {
-    if( race == subrace ) {
-	return true;
+    switch( value ) {
+	case Race::human:
+	    return Race::human;
+	case Race::elf:
+	case Race::half_elf:
+	case Race::high_elf:
+	    return Race::elf;
+	case Race::dwarf:
+	    return Race::dwarf;
+	case Race::orc:
+	    return Race::orc;
     }
-    
-    if( race == Race::human ) {
-	if( false ) {
-	    return true;
-	} else {
-	    return false;
-	}
-    }
-    
-    if( race == Race::elf) {
-	if( subrace == Race::half_elf ||
-	    subrace == Race::high_elf    ) {
-		return true;
-	} else {
-		return false;
-	}
-    }
-    
-    if( race == Race::dwarf ) {
-	return false;
-    }
-    
-    if( race == Race::orc ) {
-	return false;
-    }
-    
-    // TODO: make this a warning
-    Exit("Unreachable place in operator <<=(Race,Race)");
-    return false;
+    // gcc can't tell this is never reached
+    return Race::human;
 }
 
-bool operator>>=(const Race race, const Race subrace) {
-    return subrace <<= race;
+bool Race::Is_Subrace_Of(const Race::TRace race)
+{
+    switch( race ) {
+	case Race::human:
+	    if( (int_t)value < (int_t)Race::elf ||
+		(int_t)value == (int_t)Race::half_elf ) {
+		    return true;
+	    } else {
+		    return false;
+	    }
+	case Race::elf:
+	    if( (int_t)value >= (int_t)Race::elf && (int_t)value < (int_t)Race::dwarf) {
+		return true;
+	    } else {
+		return false;
+	    } 
+	case Race::dwarf:
+	    if( (int_t)value >= (int_t)Race::dwarf && (int_t)value < (int_t)Race::orc ) {
+		return true;
+	    } else {
+		return false;
+	    }
+	case Race::orc:
+	    if( (int_t)value >= (int_t)Race::orc) {
+		return true;
+	    } else {
+		return false;
+	    }
+	default:
+	    return false;
+    }
+}
+
+bool Same_Base_Race(const Race::TRace a,const Race::TRace b)
+{
+    if( Race(a).Is_Subrace_Of(Race::human) && Race(b).Is_Subrace_Of(Race::human)) {
+	return true;
+    }
+    return Race(a).Get_Base_Race() == Race(b).Get_Base_Race();
 }
 

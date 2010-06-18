@@ -35,8 +35,9 @@ std::string Get_Article(const String s)
 	c1 = s.get()[1];
     }
     if( c0 == 'h'  &&
-	( c1 == 'u'|| c1 == '\0'|| c1 == 'i' ))  {
-	return "a ";
+	( c1 == 'u'|| c1 == '\0'|| c1 == 'i' ||
+	  c1 == 'a' ))  {
+		return "a ";
     } else {
 	if( c0 == 'h' || c0 == 'a' || c0 == 'e' ||
 	    c0 == 'i' || c0 == 'o' || c0 == 'u'    ) {
