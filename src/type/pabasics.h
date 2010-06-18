@@ -16,57 +16,15 @@
 */
 
 
-#ifndef PA_BASICS_H
-#define PA_BASICS_H
+#ifndef PABASICS_H
+#define PABASICS_H
 
-#include <SDL/SDL.h>
 #include <boost/lexical_cast.hpp>
 #include "pastring.h"
-#include <unordered_map>
-
+#include "color.h"
 
 typedef uint16_t Char;
 typedef int16_t int_enum_t;
-
-class Color
-{
-public:
-static const Color
-    black,
-    white,
-    red,
-    green,
-    blue,
-    yellow,
-    cyan,
-    orange,
-    tan,
-    brown,
-    gold,
-    silver,
-    olive,
-    gray,
-    dark_gray,
-    dark_blue,
-    dark_cyan,
-    dark_green,
-    bright_green,
-    soil_green;
-    
-	operator SDL_Color() const;
-	operator std::string() const;
-	friend std::string operator+(const std::string&,const Color);
-	friend std::string operator+(const Color,const std::string&);
-private:
-	struct TColor {
-	    TColor(uint8_t r,uint8_t g,uint8_t b);
-	    uint8_t r,g,b;
-	    operator int32_t() const;
-	};
-	Color(const char*, TColor);
-	TColor value;
-	static std::unordered_map<uint32_t, String> colormap;
-};
 
 struct Image {
     Image(Char,Color);
@@ -111,4 +69,4 @@ int_fast32_t Dice(const int_fast32_t);
 void Exit(const std::string&);
 bool operator>(Size,Size);
 
-#endif // PA_BASICS_H
+#endif // PABASICS_H

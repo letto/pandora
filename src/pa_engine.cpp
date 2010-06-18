@@ -40,7 +40,7 @@ int16_t PandoraEngine::Get_Map_Max_Y(){
 
 Entity* PandoraEngine::Add_Entity(const Location& loc ,Entity * entity)
 {
-    if (map(loc).Add_Entity( entity ) == true) {
+    if( map(loc).Add_Entity( entity ) == true) {
 	return entity;
     } else {
 	delete entity;

@@ -17,9 +17,7 @@
 
 #include "../patype.h"
 
-using std::make_pair;
-
-std::unordered_map<uint64_t,Entity*> Puid::idmap;
+unordered_map<uint64_t,Entity*> Puid::idmap;
 
 Puid::Puid(Entity* ent)
 {
@@ -37,7 +35,7 @@ Puid::~Puid()
     idmap.erase(id);
 }
 
-#include <boost/lexical_cast.hpp>
 Puid::operator std::string () const {
-    return boost::lexical_cast<std::string>(id);
+    return lexical_cast<std::string>(id);
 }
+

@@ -17,9 +17,8 @@
 
 #include "../patype.h"
 #include "race.h"
-using std::make_pair;
 
-std::unordered_map< Race::int_t, String> Race::racemap;
+unordered_map< Race::int_t, String> Race::racemap;
 
 const bool Race::initmap = Race::Init_Map();
 

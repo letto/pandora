@@ -22,15 +22,22 @@
 #include <typeinfo>
 #include <string>
 #include <unordered_map>
+using std::unordered_map;
 #include <vector>
 #include <memory>
 #include <iostream>
 #include <utility>
+using std::make_pair;
 
 #include <boost/lexical_cast.hpp>
+using boost::lexical_cast;
+
+#include <SDL/SDL.h>
+#include <SDL/SDL_opengl.h>
 
 #include "type/pabasics.h"
 #include "type/pastring.h"
+#include "type/color.h"
 #include "type/paobject.h"
 #include "type/entity.h"
 #include "type/puid.h"

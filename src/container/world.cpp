@@ -42,8 +42,8 @@ Terrain& World::operator()(const Location loc) {
 
 void World::Generate()
 {
-    for(int cy = 0;cy < max_y - 3; cy+=4)
-	for(int cx = 0; cx < max_x - 4 ; cx+=5) {
+    for(int cx = 0; cx < max_x - 4 ; cx+=5) {
+	for(int cy = 0;cy < max_y - 3; cy+=4) {
 	    for(int i = 0; i < 4 ; i++ ) {
 		int x = cx + Random(0,4);
 		int y = cy + Random(0,3);
@@ -51,4 +51,5 @@ void World::Generate()
 		    operator()(x,y).Add_Entity(new Tree);
 	    }
 	}
+    }
 }

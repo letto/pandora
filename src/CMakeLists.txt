@@ -2,6 +2,7 @@ Set (
     SOURCES
     type/pabasics.cpp
     type/pastring.cpp
+    type/color.cpp
     type/puid.cpp
     type/entity.cpp
     type/item.cpp
