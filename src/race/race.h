@@ -17,26 +17,28 @@
 
 #include "../type/pastring.h"
 #include "../type/pabasics.h"
+#include "../type/enum.h"
 #include <unordered_map>
 
 
-
-class Race
+class HRace
 {
-private:
+	HRace() = delete;
 	typedef int_enum_t int_t;
-	enum class TRace : int_t 
-	{
-		human = 1,
-		
-		elf,
-		high_elf,
-		half_elf,
-		
-		dwarf,
-		
-		orc
-	};
+enum class TRace : int_t  {
+    human = 1,
+    
+    elf,
+    high_elf,
+    half_elf,
+    
+    dwarf,
+    
+    orc
+};
+public:
+class Race : public Enum<Race,TRace>
+{
 public:
 static const TRace human	= TRace::human;
 static const TRace elf		= TRace::elf;
@@ -45,28 +47,18 @@ static const TRace half_elf	= TRace::half_elf;
 static const TRace dwarf	= TRace::dwarf;
 static const TRace orc		= TRace::orc;
 	
+	
+	Race(const TRace a):Enum<Race,TRace>{a} {}
+private:
+	friend class Enum<Race,TRace>;
+	static bool Init_Map();
+	static std::unordered_map< int_t, String> stringmap;
+public:
 	bool Is_Subrace_Of(const TRace);
 	TRace Get_Base_Race();
-	friend bool Same_Base_Race(const TRace,const TRace);
-	
-	Race(const TRace);
-	Race(const Race&);
-	Race operator=(const Race) = delete;
-	friend bool operator==(const Race, const Race);
-	friend bool operator!=(const Race, const Race);
-	friend bool operator==(const Race, const TRace);
-	friend bool operator==(const TRace, const Race);
-	friend bool operator!=(const Race, const TRace);
-	friend bool operator!=(const TRace, const Race);
-	
-	operator TRace() const;
-	operator std::string() const;
-	friend std::string operator+(const std::string&, const Race);
-	friend std::string operator+(const Race, const std::string&);
-private:
-	const TRace value;
-	static const bool initmap;
-	static bool Init_Map();
-	static std::unordered_map< int_t, String> racemap;
 };
+	friend bool Same_Base_Race(const TRace,const TRace);
+};
+
+typedef HRace::Race Race;
 
