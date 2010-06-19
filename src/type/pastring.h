@@ -38,6 +38,8 @@ std::string Get_Article(_T a) {
     return Get_Article((String)a);
 }
 
-std::string operator+(const std::string&,const String);
+std::string operator+(const std::string&, const String);
+std::string operator+(const String, const std::string&);
 
 #endif // PASTRING_H
+

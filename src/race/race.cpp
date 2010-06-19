@@ -20,6 +20,8 @@
 
 unordered_map< HRace::int_t, String> Race::stringmap;
 template<> const bool Enum<Race,HRace::TRace>::init_map = Race::Init_Map();
+template<> const String Enum<Race,HRace::TRace>::adjective = String{""};
+template<> const String Enum<Race,HRace::TRace>::classname = String{"Race"};
 
 bool Race::Init_Map()
 {

@@ -19,6 +19,7 @@
 #define ENUM_H
 
 #include <string>
+#include "pastring.h"
 
 template<class T,class TEnum>
 class Enum
@@ -60,9 +61,24 @@ public:
     friend std::string operator+(const T t, const std::string& s) {
 	return (std::string)t + s;
     }
+    friend std::string operator+(const String s, const T t) {
+	return s + (std::string)t;
+    }
+    friend std::string operator+(const T t, const String s) {
+	return (std::string)t + s;
+    }
+    
+    String _adjective() const {
+	return adjective;
+    }
+    String _classname() const {
+	return classname;
+    }
 protected:
-	static const bool init_map;
 	TEnum value;
+	static const bool init_map;
+	static const String adjective;
+	static const String classname;
 };
 
 template<class T,class TEnum>

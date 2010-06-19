@@ -20,7 +20,8 @@
 
 unordered_map< Size::int_t, String> Size::stringmap;
 template<> const bool Enum<Size, HSize::TSize>::init_map = Size::Init_Map();
-
+template<> const String Enum<Size, HSize::TSize>::adjective = String{"sized"};
+template<> const String Enum<Size, HSize::TSize>::classname = String{"Size"};
 
 bool Size::Init_Map()
 {

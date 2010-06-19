@@ -17,8 +17,13 @@
 
 #include "../patype.h"
 
-std::string operator+(const std::string& a,const String b) {
+
+std::string operator+(const std::string& a, const String b) {
     return a + b.get();
+}
+
+std::string operator+(const String a, const std::string& b) {
+    return a.get() + b;
 }
 
 std::string Get_Article(const String s) 
