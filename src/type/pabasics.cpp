@@ -47,6 +47,4 @@ void Exit(const std::string& msg)
     exit(1);
 }
 
-bool operator>(Size a,Size b) {
-    return (Volume)a > (Volume)b;
-}
+

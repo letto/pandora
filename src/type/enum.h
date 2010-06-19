@@ -51,8 +51,8 @@ public:
     }
     
     operator std::string() const {
-	static_assert(sizeof(TEnum) <= sizeof(int_least32_t),"truncating casting");
-	return T::stringmap[(int_least32_t)operator TEnum()];
+	static_assert(sizeof(TEnum) <= sizeof(int32_t),"truncated casting");
+	return T::stringmap[(int32_t)operator TEnum()];
     }
     friend std::string operator+(const std::string& s, const T t) {
 	return s + (std::string)t;
@@ -61,8 +61,68 @@ public:
 	return (std::string)t + s;
     }
 protected:
-    static const bool initmap;
-    TEnum value;
+	static const bool init_map;
+	TEnum value;
+};
+
+template<class T,class TEnum>
+class Comparable
+{
+public:
+    friend bool operator>(T a, T b) {
+	return a > b;
+    }
+    friend bool operator>=(T a, T b) {
+	return a >= b;
+    }
+    friend bool operator<(T a, T b) {
+	return a < b;
+    }
+    friend bool operator<=(T a, T b) {
+	return a <= b;
+    }
+    
+    
+    friend bool operator>(T a, TEnum b) {
+	return a > b;
+    }
+    friend bool operator>=(T a, TEnum b) {
+	return a >= b;
+    }
+    friend bool operator<(T a, TEnum b) {
+	return a < b;
+    }
+    friend bool operator<=(T a, TEnum b) {
+	return a <= b;
+    }
+    
+    
+    friend bool operator>(TEnum a, T b) {
+	return a > b;
+    }
+    friend bool operator>=(TEnum a, T b) {
+	return a >= b;
+    }
+    friend bool operator<(TEnum a, T b) {
+	return a < b;
+    }
+    friend bool operator<=(TEnum a, T b) {
+	return a <= b;
+    }
+    
+    
+    friend bool operator>(TEnum a, TEnum b) {
+	return a > b;
+    }
+    friend bool operator>=(TEnum a, TEnum b) {
+	return a >= b;
+    }
+    friend bool operator<(TEnum a, TEnum b) {
+	return a < b;
+    }
+    friend bool operator<=(TEnum a, TEnum b) {
+	return a <= b;
+    }
 };
 
 #endif // ENUM_H

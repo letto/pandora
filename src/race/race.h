@@ -37,7 +37,8 @@ enum class TRace : int_t  {
     orc
 };
 public:
-class Race : public Enum<Race,TRace>
+class Race :
+	public Enum<Race,TRace>
 {
 public:
 static const TRace human	= TRace::human;

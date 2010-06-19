@@ -19,25 +19,25 @@
 #include "race.h"
 
 unordered_map< HRace::int_t, String> Race::stringmap;
-template<> const bool Enum<Race,HRace::TRace>::initmap = Race::Init_Map();
+template<> const bool Enum<Race,HRace::TRace>::init_map = Race::Init_Map();
 
 bool Race::Init_Map()
 {
     // use switch so that compiler warns on missing values
-    TRace a = TRace::human;
-    switch(a) {
-	case TRace::human:
-	    stringmap.insert(make_pair((int_t)TRace::human,	String{"human"}));
-	case TRace::elf:
-	    stringmap.insert(make_pair((int_t)TRace::elf,	String{"elf"}));
-	case TRace::high_elf:
-	    stringmap.insert(make_pair((int_t)TRace::high_elf,	String{"high elf"}));
-	case TRace::half_elf:
-	    stringmap.insert(make_pair((int_t)TRace::half_elf,	String{"half elf"}));
-	case TRace::dwarf:
-	    stringmap.insert(make_pair((int_t)TRace::dwarf,	String{"dwarf"}));
-	case TRace::orc:
-	    stringmap.insert(make_pair((int_t)TRace::orc,	String{"orc"}));
+    TRace a = Race::human;
+    switch( a ) {
+	case Race::human:
+	    stringmap.insert(make_pair((int_t)Race::human,	String{"human"}));
+	case Race::elf:
+	    stringmap.insert(make_pair((int_t)Race::elf,	String{"elf"}));
+	case Race::high_elf:
+	    stringmap.insert(make_pair((int_t)Race::high_elf,	String{"high elf"}));
+	case Race::half_elf:
+	    stringmap.insert(make_pair((int_t)Race::half_elf,	String{"half elf"}));
+	case Race::dwarf:
+	    stringmap.insert(make_pair((int_t)Race::dwarf,	String{"dwarf"}));
+	case Race::orc:
+	    stringmap.insert(make_pair((int_t)Race::orc,	String{"orc"}));
     }
     return true;
 }

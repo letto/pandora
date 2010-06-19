@@ -74,7 +74,7 @@ bool Creature::Take_Entity(Entity* item)
     if(holding != NULL) {
 	return false;
     }
-    if(item->Get_Size() > Get_Max_Holding_Size()) {
+    if( item->Get_Size() > Get_Max_Holding_Size()) {
 	return false;
     }
 

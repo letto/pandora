@@ -68,5 +68,5 @@ String Wall::Get_Description() const {
 }
 
 Size Wall::Get_Size() const {
-    return static_cast<Size>(Terrain::Get_Volume());
+    return Terrain::Get_Volume();
 }

@@ -49,7 +49,7 @@ bool Entity_Iterator::operator!=(Entity_Iterator b) {
     return !operator==(b);
 }
 
-EntityContainer::EntityContainer(Volume volume):
+EntityContainer::EntityContainer(Size volume):
 	volume_used{0},
 	volume_max{volume},
 	entities{NULL}
@@ -66,7 +66,7 @@ Entity_Iterator EntityContainer::end() {
 
 void EntityContainer::Insert_Entity(Entity* entity)
 {
-    volume_used += (Volume)entity->Get_Size();
+    volume_used += entity->Get_Size();
     entity->next = entities;
     entity->holder = this;
     entities = entity;
@@ -103,7 +103,7 @@ bool EntityContainer::Remove_Entity(Entity* entity)
     
     entity->holder = NULL;
     entity->next = NULL;
-    volume_used -= (Volume)entity->Get_Size();
+    volume_used -= entity->Get_Size();
     return true;
 }
 
@@ -112,7 +112,7 @@ bool EntityContainer::Is_Empty() const {
 }
 
 bool EntityContainer::Has_Space_For(const Entity* entity) const {
-    return (Volume)entity->Get_Size() <= volume_max - volume_used;
+    return entity->Get_Size() <= volume_max - volume_used;
 }
 
 bool EntityContainer::Has_Entity(const Entity* entity) const

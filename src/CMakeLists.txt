@@ -3,6 +3,7 @@ Set (
     type/pabasics.cpp
     type/pastring.cpp
     type/color.cpp
+    type/size.cpp
     type/puid.cpp
     type/entity.cpp
     type/item.cpp

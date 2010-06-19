@@ -49,24 +49,11 @@ enum class Direction {
     southeast
 };
 
-typedef int16_t Volume;
-
-enum class Size : Volume {
-    none = 0,
-    tiny = 1, //insects
-    small = 16, //cats
-    medium = 64, //dogs
-    large = 128, //humans
-    tree = 132,
-    huge = 256, //elephants
-    gigantic = 1024 //
-};
-
 int_fast32_t Random(const int_fast32_t, const int_fast32_t);
 int_fast32_t Dice(const int_fast32_t);
 
 
 void Exit(const std::string&);
-bool operator>(Size,Size);
+
 
 #endif // PABASICS_H

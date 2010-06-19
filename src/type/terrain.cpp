@@ -21,14 +21,14 @@
 Surface surface_grass;
 
 Terrain::Terrain(Location&& location):
-	EntityContainer{volume},
+	EntityContainer{Size::terrain},
 	location{location},
 	entities_display_it{NULL}
 {
 }
 
 Terrain::Terrain(Terrain&& t):
-	EntityContainer{volume},
+	EntityContainer{Size::terrain},
 	location{t.location},
 	entities_display_it{t.entities_display_it}
 {
@@ -92,8 +92,8 @@ Color Terrain::Get_Surface_Color() const {
     return surface_grass.Get_Color();
 }
 
-Volume Terrain::Get_Volume() {
-    return volume;
+Size Terrain::Get_Volume() {
+    return Size::terrain;
 }
 
 Image Terrain::Get_Next_Display_Image()

@@ -20,6 +20,7 @@
 
 #include "paobject.h"
 #include "puid.h"
+#include "size.h"
 
 
 class EntityContainer;

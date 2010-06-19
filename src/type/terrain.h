@@ -34,7 +34,7 @@ public:
 	Terrain& operator=(Terrain&& );
 	Image  Get_Image() const;
 	Location Get_Location() const;
-	static Volume Get_Volume();
+	static Size Get_Volume();
 	Color Get_Surface_Color() const;
 	String Get_Description() const;
 	Image Get_Next_Display_Image();
@@ -44,7 +44,6 @@ public:
 	Tree* Get_Tree();
 	bool Chop_Tree();
 private:
-	static const Volume volume = Volume(350);
 	Location location;
 	EntityContainer::iterator entities_display_it;
 };

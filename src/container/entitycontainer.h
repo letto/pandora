@@ -40,7 +40,7 @@ private:
 class EntityContainer : virtual public PaObject
 {
 public:
-	EntityContainer(Volume);
+	EntityContainer(Size);
 	
 	bool Has_Space_For(const Entity*) const;
 	bool Is_Empty() const;
@@ -57,8 +57,8 @@ public:
 	
 	Entity* Get_First_Entity_Except(Entity*);
 protected:
-	Volume volume_used;
-	Volume volume_max;
+	Size::int_t volume_used;
+	Size::int_t volume_max;
 	
 	Entity* entities;
 };

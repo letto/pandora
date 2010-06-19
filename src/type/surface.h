@@ -19,6 +19,7 @@
 #define SURFACE_H
 
 #include "pabasics.h"
+#include "size.h"
 #include "pastring.h"
 
 
