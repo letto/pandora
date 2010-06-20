@@ -28,7 +28,7 @@ class Creature : public Entity
 public:
 	Creature();
 	bool Go_Direction(const Direction&);
-	virtual Size Get_Max_Holding_Size() const = 0;
+	virtual Size _Max_Holding_Size() const = 0;
 
 	bool Take_Entity(Entity*);
 	bool Drop_Entity();

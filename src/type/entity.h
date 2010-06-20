@@ -29,10 +29,10 @@ class Entity : virtual public PaObject
 {
 public:
 	Entity();
-	Location Get_Location() const;
-	EntityContainer* Get_Holder();
+	Location _Location() const;
+	EntityContainer* _Holder();
 
-	virtual Size Get_Size() const = 0;
+	virtual Size _Size() const = 0;
 
 	Puid id;
 protected:

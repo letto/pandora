@@ -27,14 +27,14 @@ void Tree::Chop()
     delete this;
 }
 
-Image Tree::Get_Image() const {
+Image Tree::_Image() const {
     return Image{ 9035, Color::bright_green};
 }
 
-String Tree::Get_Description() const {
+String Tree::_Description() const {
     return String{"beautiful tree"};
 }
 
-Size Tree::Get_Size() const {
+Size Tree::_Size() const {
     return Size::tree;
 }

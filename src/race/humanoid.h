@@ -26,11 +26,10 @@ class Humanoid : public Creature
 {
 public:
     Humanoid(const Race);
-    virtual String Get_Description() const;
-    virtual Image Get_Image() const;
-    
-    virtual Size Get_Size() const;
-    Size Get_Max_Holding_Size() const;
+    String _Description() const;
+    Image _Image() const;
+    Size _Size() const;
+    Size _Max_Holding_Size() const;
     
     bool Chop_Tree() const;
     bool Build_Wall();

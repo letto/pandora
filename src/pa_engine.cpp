@@ -30,11 +30,11 @@ void PandoraEngine::Run()
     
 }
 
-int16_t PandoraEngine::Get_Map_Max_X(){
+int16_t PandoraEngine::_Map_Max_X(){
     return map.max_x;
 }
 
-int16_t PandoraEngine::Get_Map_Max_Y(){
+int16_t PandoraEngine::_Map_Max_Y(){
     return map.max_y;
 }
 

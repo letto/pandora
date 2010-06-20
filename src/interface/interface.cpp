@@ -95,7 +95,7 @@ Interface::Interface():
     
     Add_Player( Location{ 9,12}, new Wall);
 
-    cursor_loc = current_ent->Get_Location();
+    cursor_loc = current_ent->_Location();
 
     Resize();
 }
@@ -152,59 +152,67 @@ void Interface::Resize()
     SDL_Rect rec;
     rec.x = rec.y = 0;
     rec.w = screen->w;
-    rec.h = 5 * Terminal::Get_Glyph_Height();
+    rec.h = 5 * Terminal::_Glyph_Height();
     actions.Resize(rec);
     
-    rec.y = actions.Get_Height();
-    rec.h = Terminal::Get_Glyph_Height();
+    rec.y = actions._Height();
+    rec.h = Terminal::_Glyph_Height();
     rec.x = 0;
     rec.w = screen->w;
     info.Resize(rec);
     
-    rec.y = rec.y + info.Get_Height();
+    rec.y = rec.y + info._Height();
     rec.h = screen->h - rec.y;
-    rec.w = 15*Terminal::Get_Glyph_Width();
+    rec.w = 15*Terminal::_Glyph_Width();
     rec.x = screen->w - rec.w;
     events.Resize(rec);
     
-    rec.y = actions.Get_Height() + info.Get_Height();
+    rec.y = actions._Height() + info._Height();
     rec.h = screen->h - rec.y;
     rec.x = 0;
-    rec.w = screen->w - events.Get_Width();
+    rec.w = screen->w - events._Width();
     display.Resize(rec);
 
-    cursor_loc = current_ent->Get_Location();
+    cursor_loc = current_ent->_Location();
 }
 
 void Interface::Draw_Display()
 {
     switch(follow_mode) {
 	case FollowMode::centered:
-	    cursor_loc = current_ent->Get_Location();
+	    cursor_loc = current_ent->_Location();
 	    break;
 	case FollowMode::following:
-	    if(current_ent->Get_Location().x - cursor_loc.x > display.Get_Max_X()/2 - 4) cursor_loc.x++;
-	    if(current_ent->Get_Location().y - cursor_loc.y > display.Get_Max_Y()/2 - 2) cursor_loc.y++;
-	    if(cursor_loc.x - current_ent->Get_Location().x > display.Get_Max_X()/2 - 4) cursor_loc.x--;
-	    if(cursor_loc.y - current_ent->Get_Location().y > display.Get_Max_Y()/2 - 2) cursor_loc.y--;
-	    break;    
+	    if( current_ent->_Location().x - cursor_loc.x > display._Max_X()/2 - 4 ) {
+		cursor_loc.x++;
+	    }
+	    if( current_ent->_Location().y - cursor_loc.y > display._Max_Y()/2 - 2 ) {
+		cursor_loc.y++;
+	    }
+	    if(cursor_loc.x - current_ent->_Location().x > display._Max_X()/2 - 4) {
+		cursor_loc.x--;
+	    }
+	    if(cursor_loc.y - current_ent->_Location().y > display._Max_Y()/2 - 2) {
+		cursor_loc.y--;
+	    }
+	    break;
     }
     
     display_counter++;
-    int pos_x = cursor_loc.x - display.Get_Max_X()/2;
-    int pos_y = cursor_loc.y - display.Get_Max_Y()/2;
+    int pos_x = cursor_loc.x - display._Max_X()/2;
+    int pos_y = cursor_loc.y - display._Max_Y()/2;
     Image img{ '?', Color::red};
     Color col = Color::black;
-    for(int cy = 0; cy <= display.Get_Max_Y();cy++) {
-	for(int cx = 0; cx <= display.Get_Max_X(); cx++) {
-	    if(	cx+pos_x >= engine.Get_Map_Max_X()||
-		cy+pos_y >= engine.Get_Map_Max_Y()||
+    for(int cy = 0; cy <= display._Max_Y();cy++) {
+	for(int cx = 0; cx <= display._Max_X(); cx++) {
+	    if(	cx+pos_x >= engine._Map_Max_X()||
+		cy+pos_y >= engine._Map_Max_Y()||
 		cx+ pos_x < 0 || cy+pos_y < 0) {
 		    img = Image{ '#', Color::dark_gray};
 		    col = Color::black;
 	    } else {
-		    img = map(cx+pos_x ,cy+pos_y).Get_Next_Display_Image();
-		    col = map(cx+pos_x ,cy+pos_y).Get_Surface_Color();
+		    img = map(cx+pos_x ,cy+pos_y)._Next_Display_Image();
+		    col = map(cx+pos_x ,cy+pos_y)._Surface_Color();
 	    }
 	    display.Print_Char(img.ch, cx, cy, img.color, col);
 	}
@@ -216,7 +224,7 @@ void Interface::Draw_Info()
     std::string ss;
     ss += "\nID: " + (std::string)player->id;
     ss += " Disp Count " + lexical_cast<std::string>(display_counter);
-    ss += " Loc " + (std::string)current_ent->Get_Location();
+    ss += " Loc " + (std::string)(current_ent->_Location());
     info.Print(ss);
 }
 
@@ -233,8 +241,8 @@ void Interface::Draw_Actions()
 
     std::string ss = "\n";
 
-    auto end = current_ent->Get_Holder()->end();
-    auto ent = current_ent->Get_Holder()->begin();
+    auto end = current_ent->_Holder()->end();
+    auto ent = current_ent->_Holder()->begin();
     if( *ent == current_ent) {
 	++ent;
     }
@@ -247,7 +255,7 @@ void Interface::Draw_Actions()
 	    if( !ent ) {
 		break;
 	    }
-	    ss += Get_Article(ent->Get_Description()) + ent->Get_Description();
+	    ss += Get_Article(ent->_Description()) + ent->_Description();
 	    auto ent_next = ent;
 	    ++ent_next;
 	    if( *ent_next == current_ent) {
@@ -320,15 +328,15 @@ void Interface::Keyboard_Handler(const SDL_keysym& key)
 		case Mode::online:
 		    mode = Mode::cursor;
 		    current_ent = cursor;
-		    map(player->Get_Location()).Insert_Entity(cursor);
+		    map(player->_Location()).Insert_Entity(cursor);
 		    break;
 		case Mode::cursor:
 		    mode = Mode::online;
 		    current_ent = player;
-		    map(cursor->Get_Location()).Remove_Entity(cursor);
+		    map(cursor->_Location()).Remove_Entity(cursor);
 		    break;
 	    }
-	    cursor_loc = current_ent->Get_Location();
+	    cursor_loc = current_ent->_Location();
 	    break;
 	case SDLK_c:
 	    if(player->Chop_Tree()) {
@@ -338,8 +346,8 @@ void Interface::Keyboard_Handler(const SDL_keysym& key)
 	    }
 	    break;
 	case SDLK_QUOTE:
-	    if(player->Take_Entity(player->Get_Holder()->Get_First_Entity_Except(player))) {
-		actions.Print("\nYou take "+ player->holding->Get_Description());
+	    if(player->Take_Entity(player->_Holder()->_First_Entity_Except(player))) {
+		actions.Print("\nYou take "+ player->holding->_Description());
 	    } else {
 		actions.Print("\nNo item to take.");
 	    }
@@ -353,7 +361,7 @@ void Interface::Keyboard_Handler(const SDL_keysym& key)
 	    break;
 	case SDLK_d:
 	    if(player->Drop_Entity()) {
-		actions.Print("\nYou dropped "+ player->Get_Holder()->begin()->Get_Description());
+		actions.Print("\nYou dropped "+ player->_Holder()->begin()->_Description());
 	    }
 	    break;
 	case SDLK_KP4:

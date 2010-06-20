@@ -20,9 +20,9 @@
 
 extern World map;
 
-Image Wall::Get_Image() const
+Image Wall::_Image() const
 {
-    Location loc = holder->Get_Location();
+    Location loc = holder->_Location();
     Color col = Color::brown;
     bool wall_up = map(loc.x,loc.y+1).Has_Wall();
     bool wall_down = map(loc.x,loc.y-1).Has_Wall();
@@ -63,10 +63,10 @@ Image Wall::Get_Image() const
     return Image{ 10799, col};
 }
 
-String Wall::Get_Description() const {
+String Wall::_Description() const {
     return String{"wall"};
 }
 
-Size Wall::Get_Size() const {
-    return Terrain::Get_Volume();
+Size Wall::_Size() const {
+    return Terrain::_Volume();
 }

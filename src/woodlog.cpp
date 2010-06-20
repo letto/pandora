@@ -18,14 +18,14 @@
 
 #include "woodlog.h"
 
-Image WoodLog::Get_Image() const {
+Image WoodLog::_Image() const {
     return Image{ 8803, Color::brown};
 }
 
-Size WoodLog::Get_Size() const {
+Size WoodLog::_Size() const {
     return Size::medium;
 }
 
-String WoodLog::Get_Description() const {
+String WoodLog::_Description() const {
     return String{"wood log"};
 }

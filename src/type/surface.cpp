@@ -19,18 +19,18 @@
 #include "../patype.h"
 
 
-Image Surface::Get_Image() const {
+Image Surface::_Image() const {
     return Image{ 9617, Color::dark_green};
 }
 
-String Surface::Get_Description() const {
+String Surface::_Description() const {
     return String{"grass surface"};
 }
 
-Color Surface::Get_Color() const {
+Color Surface::_Color() const {
     return Color::soil_green;
 }
 
-Size Surface::Get_Size() const {
+Size Surface::_Size() const {
     return Size::tiny;
 }

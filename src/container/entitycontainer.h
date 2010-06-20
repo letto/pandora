@@ -55,7 +55,7 @@ public:
 	bool Remove_Entity(Entity*);
 	void Insert_Entity(Entity*); //no volume|size checks
 	
-	Entity* Get_First_Entity_Except(Entity*);
+	Entity* _First_Entity_Except(Entity*);
 protected:
 	Size::int_t volume_used;
 	Size::int_t volume_max;

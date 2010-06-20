@@ -32,12 +32,12 @@ public:
 	Terrain(Location&&);
 	Terrain(Terrain&&);
 	Terrain& operator=(Terrain&& );
-	Image  Get_Image() const;
-	Location Get_Location() const;
-	static Size Get_Volume();
-	Color Get_Surface_Color() const;
-	String Get_Description() const;
-	Image Get_Next_Display_Image();
+	Image  _Image() const;
+	Location _Location() const;
+	String _Description() const;
+	static Size _Volume();
+	Color _Surface_Color() const;
+	Image _Next_Display_Image();
 
 	bool Has_Wall();
 

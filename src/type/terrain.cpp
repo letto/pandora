@@ -38,15 +38,15 @@ Terrain& Terrain::operator=(Terrain&& t) {
     return t;
 }
 
-Location Terrain::Get_Location() const {
+Location Terrain::_Location() const {
     return location;
 }
 
-Image Terrain::Get_Image() const {
-    return surface_grass.Get_Image();
+Image Terrain::_Image() const {
+    return surface_grass._Image();
 }
 
-String Terrain::Get_Description() const
+String Terrain::_Description() const
 {
     std::string desc;
     if(Is_Empty()) {
@@ -54,7 +54,7 @@ String Terrain::Get_Description() const
     } else {
 	desc = "a patch of land";
     }
-    desc += " with " + surface_grass.Get_Description();
+    desc += " with " + surface_grass._Description();
     return String(desc);
 }
 
@@ -88,18 +88,18 @@ bool Terrain::Has_Wall()
     return false;
 }
 
-Color Terrain::Get_Surface_Color() const {
-    return surface_grass.Get_Color();
+Color Terrain::_Surface_Color() const {
+    return surface_grass._Color();
 }
 
-Size Terrain::Get_Volume() {
+Size Terrain::_Volume() {
     return Size::terrain;
 }
 
-Image Terrain::Get_Next_Display_Image()
+Image Terrain::_Next_Display_Image()
 {
     if(Is_Empty()) {
-	return Get_Image();
+	return _Image();
     }
     if( Has_Entity(*entities_display_it)) {
 	if(entities_display_it) {
@@ -111,5 +111,5 @@ Image Terrain::Get_Next_Display_Image()
     } else {
 	entities_display_it = begin();
     }
-    return entities_display_it->Get_Image();
+    return entities_display_it->_Image();
 }

@@ -26,7 +26,7 @@ Creature::Creature():
 
 bool Creature::Go_Direction(const Direction& direction)
 {
-    Location loc = Get_Location();
+    Location loc = _Location();
     Location dest = loc;
     switch(direction) {
 	case Direction::northeast:
@@ -74,7 +74,7 @@ bool Creature::Take_Entity(Entity* item)
     if(holding != NULL) {
 	return false;
     }
-    if( item->Get_Size() > Get_Max_Holding_Size()) {
+    if( item->_Size() > _Max_Holding_Size()) {
 	return false;
     }
 

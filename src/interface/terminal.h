@@ -65,13 +65,13 @@ public:
 	void Refresh();
 	void Resize(const SDL_Rect&);
 	
-	int Get_Max_X();
-	int Get_Max_Y();
+	int _Max_X();
+	int _Max_Y();
 	
-	int Get_Width();
-	int Get_Height();
-	static int Get_Glyph_Width();
-	static int Get_Glyph_Height();
+	int _Width();
+	int _Height();
+	static int _Glyph_Width();
+	static int _Glyph_Height();
 private:
 	static TTF_Font* font;
 	static int glyph_w,glyph_h;

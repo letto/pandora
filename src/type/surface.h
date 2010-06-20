@@ -18,18 +18,19 @@
 #ifndef SURFACE_H
 #define SURFACE_H
 
+#include "paobject.h"
 #include "pabasics.h"
 #include "size.h"
 #include "pastring.h"
 
 
-class Surface //: public Entity
+class Surface //: public PaObject
 {
 public:
-	Color Get_Color() const;
-	Image Get_Image() const;
-	String Get_Description() const;
-	Size Get_Size() const;
+	Color _Color() const;
+	Image _Image() const;
+	String _Description() const;
+	Size _Size() const;
 };
 
 

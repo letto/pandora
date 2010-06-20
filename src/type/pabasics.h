@@ -33,7 +33,7 @@ struct Image {
 };
 
 struct Location {
-    Location(int16_t x,int16_t y):x{x},y{y}{}
+    Location(int16_t x,int16_t y):x{x},y{y} {}
     operator std::string () const { return boost::lexical_cast<std::string>(x)+","+boost::lexical_cast<std::string>(y);}
     int16_t x,y;
 };

@@ -26,9 +26,9 @@ class WoodLog : public Material
 {
 public:
 	//WoodLog();
-	Size Get_Size() const;
-	Image Get_Image() const;
-	String Get_Description() const;
+	Size _Size() const;
+	Image _Image() const;
+	String _Description() const;
 };
 
 #endif // WOODLOG_H

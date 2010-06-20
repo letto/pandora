@@ -25,10 +25,10 @@
 class Cursor : public Creature
 {
 public:
-	Size Get_Size() const;
-	Image Get_Image() const;
-	String Get_Description() const;
-	Size Get_Max_Holding_Size() const;
+	Size _Size() const;
+	Image _Image() const;
+	String _Description() const;
+	Size _Max_Holding_Size() const;
 };
 
 #endif // CURSOR_H

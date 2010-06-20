@@ -25,9 +25,9 @@
 class Tree : public Entity
 {
 public:
-	String Get_Description() const;
-	Image Get_Image() const;
-	Size Get_Size() const;
+	String _Description() const;
+	Image _Image() const;
+	Size _Size() const;
 	void Chop();
 };
 

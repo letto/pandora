@@ -85,59 +85,60 @@ template<class T,class TEnum>
 class Comparable
 {
 public:
+    static_assert(sizeof(TEnum) <= sizeof(int32_t),"truncated casting");
     friend bool operator>(T a, T b) {
-	return a > b;
+	return (int32_t)(TEnum)a > (int32_t)(TEnum)b;
     }
     friend bool operator>=(T a, T b) {
-	return a >= b;
+	return (int32_t)(TEnum)a >= (int32_t)(TEnum)b;
     }
     friend bool operator<(T a, T b) {
-	return a < b;
+	return (int32_t)(TEnum)a < (int32_t)(TEnum)b;
     }
     friend bool operator<=(T a, T b) {
-	return a <= b;
+	return (int32_t)(TEnum)a <= (int32_t)(TEnum)b;
     }
     
     
     friend bool operator>(T a, TEnum b) {
-	return a > b;
+	return (int32_t)(TEnum)a > (int32_t)b;
     }
     friend bool operator>=(T a, TEnum b) {
-	return a >= b;
+	return (int32_t)(TEnum)a >= (int32_t)b;
     }
     friend bool operator<(T a, TEnum b) {
-	return a < b;
+	return (int32_t)(TEnum)a < (int32_t)b;
     }
     friend bool operator<=(T a, TEnum b) {
-	return a <= b;
+	return (int32_t)(TEnum)a <= (int32_t)b;
     }
     
     
     friend bool operator>(TEnum a, T b) {
-	return a > b;
+	return (int32_t)a > (int32_t)(TEnum)b;
     }
     friend bool operator>=(TEnum a, T b) {
-	return a >= b;
+	return (int32_t)a >= (int32_t)(TEnum)b;
     }
     friend bool operator<(TEnum a, T b) {
-	return a < b;
+	return (int32_t)a < (int32_t)(TEnum)b;
     }
     friend bool operator<=(TEnum a, T b) {
-	return a <= b;
+	return (int32_t)a <= (int32_t)(TEnum)b;
     }
     
     
     friend bool operator>(TEnum a, TEnum b) {
-	return a > b;
+	return (int32_t)a > (int32_t)b;
     }
     friend bool operator>=(TEnum a, TEnum b) {
-	return a >= b;
+	return (int32_t)a >= (int32_t)b;
     }
     friend bool operator<(TEnum a, TEnum b) {
-	return a < b;
+	return (int32_t)a < (int32_t)b;
     }
     friend bool operator<=(TEnum a, TEnum b) {
-	return a <= b;
+	return (int32_t)a <= (int32_t)b;
     }
 };
 

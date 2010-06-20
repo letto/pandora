@@ -23,9 +23,9 @@
 class Wall : public Item
 {
 public:
-	Image Get_Image() const;
-	String Get_Description() const;
-	Size Get_Size() const;
+	Image _Image() const;
+	String _Description() const;
+	Size _Size() const;
 };
 
 #endif // WALL_H

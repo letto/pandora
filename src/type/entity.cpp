@@ -24,10 +24,10 @@ Entity::Entity():
 {
 }
 
-Location Entity::Get_Location() const {
-    return holder->Get_Location();
+Location Entity::_Location() const {
+    return holder->_Location();
 }
 
-EntityContainer* Entity::Get_Holder() {
+EntityContainer* Entity::_Holder() {
     return holder;
 }

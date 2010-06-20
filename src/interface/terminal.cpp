@@ -67,27 +67,27 @@ Terminal::Terminal():
 {
 }
 
-int Terminal::Get_Max_X() {
+int Terminal::_Max_X() {
     return cursor_max_x;
 }
 
-int Terminal::Get_Max_Y() {
+int Terminal::_Max_Y() {
     return cursor_max_y;
 }
 
-int Terminal::Get_Glyph_Width() {
+int Terminal::_Glyph_Width() {
     return glyph_w;
 }
 
-int Terminal::Get_Glyph_Height() {
+int Terminal::_Glyph_Height() {
     return glyph_h;
 }
 
-int Terminal::Get_Width() {
+int Terminal::_Width() {
     return term_rect.w;
 }
 
-int Terminal::Get_Height() {
+int Terminal::_Height() {
     return term_rect.h;
 }
 

@@ -28,11 +28,11 @@ Humanoid::Humanoid(const Race race):
 {
 }
 
-String Humanoid::Get_Description() const {
+String Humanoid::_Description() const {
     return (String)race;
 }
 
-Image Humanoid::Get_Image() const
+Image Humanoid::_Image() const
 {
     switch(race) {
 	case  Race::human:
@@ -52,11 +52,11 @@ Image Humanoid::Get_Image() const
     return Image{ 'X', Color::red};
 }
 
-Size Humanoid::Get_Size() const {
+Size Humanoid::_Size() const {
     return Size::large;
 }
 
-Size Humanoid::Get_Max_Holding_Size() const {
+Size Humanoid::_Max_Holding_Size() const {
     return Size::large;
 }
 
@@ -69,10 +69,10 @@ bool Humanoid::Build_Wall()
 {
     if(holding == NULL ||
        typeid(*holding) != typeid(WoodLog) ||
-       !map(holder->Get_Location().x+1,holder->Get_Location().y).Is_Empty()) {
+       !map(holder->_Location().x+1,holder->_Location().y).Is_Empty()) {
 	    return false;
     } else {
-	    map(holder->Get_Location().x+1,holder->Get_Location().y).Add_Entity(new Wall);
+	    map(holder->_Location().x+1,holder->_Location().y).Add_Entity(new Wall);
 	    delete holding;
 	    holding = NULL;
 	    return true;

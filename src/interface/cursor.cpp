@@ -17,19 +17,19 @@
 
 #include "cursor.h"
 
-Size Cursor::Get_Size() const {
+Size Cursor::_Size() const {
     return Size::none;
 }
 
-Image Cursor::Get_Image() const {
+Image Cursor::_Image() const {
     return Image{ 'X', Color::gold};
 }
 
-String Cursor::Get_Description() const {
+String Cursor::_Description() const {
     return String{"the cursor"};
 }
 
-Size Cursor::Get_Max_Holding_Size() const {
+Size Cursor::_Max_Holding_Size() const {
     return Size::none;
 }
 

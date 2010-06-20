@@ -26,9 +26,10 @@ class PaObject
 {
 public:
 	PaObject() = default;
-	virtual String Get_Description() const = 0;
-	virtual Image Get_Image() const = 0;
-	virtual Location Get_Location() const = 0;
+	virtual String _Description() const = 0;
+	virtual Image _Image() const = 0;
+	virtual Location _Location() const = 0;
+	virtual ~PaObject() = default;
 private:
 	PaObject(PaObject&) = delete;
 	PaObject& operator=(PaObject&) = delete;
