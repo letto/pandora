@@ -44,15 +44,16 @@ class Size :
 {
 public:
 	typedef HSize::int_t int_t;
-static const TSize none =	TSize::none;
-static const TSize tiny =	TSize::tiny;
-static const TSize small =	TSize::small;
-static const TSize medium =	TSize::medium;
-static const TSize large =	TSize::large;
-static const TSize huge =	TSize::huge;
-static const TSize gigantic =	TSize::gigantic;
-static const TSize tree =	TSize::tree;
-static const TSize terrain =	TSize::terrain;
+static const TSize
+    none	= TSize::none,
+    tiny	= TSize::tiny,
+    small	= TSize::small,
+    medium	= TSize::medium,
+    large	= TSize::large,
+    huge	= TSize::huge,
+    gigantic	= TSize::gigantic,
+    tree	= TSize::tree,
+    terrain	= TSize::terrain;
 	
 	
 	Size(const TSize a):Enum<Size,TSize>{a} {}
@@ -62,7 +63,6 @@ private:
 	static bool Init_Map();
 	static std::unordered_map< int_t, String> stringmap;
 public:
-
 };
 };
 

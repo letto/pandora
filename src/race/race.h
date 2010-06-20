@@ -41,13 +41,13 @@ class Race :
 	public Enum<Race,TRace>
 {
 public:
-static const TRace human	= TRace::human;
-static const TRace elf		= TRace::elf;
-static const TRace high_elf	= TRace::high_elf;
-static const TRace half_elf	= TRace::half_elf;
-static const TRace dwarf	= TRace::dwarf;
-static const TRace orc		= TRace::orc;
-	
+static const TRace
+    human	= TRace::human,
+    elf		= TRace::elf,
+    high_elf	= TRace::high_elf,
+    half_elf	= TRace::half_elf,
+    dwarf	= TRace::dwarf,
+    orc		= TRace::orc;
 	
 	Race(const TRace a):Enum<Race,TRace>{a} {}
 private:
