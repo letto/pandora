@@ -55,5 +55,7 @@ int_fast32_t Dice(const int_fast32_t);
 
 void Exit(const std::string&);
 
+struct Void {
+};
 
 #endif // PABASICS_H

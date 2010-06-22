@@ -19,6 +19,8 @@
 #include "interface.h"
 
 #include "../wall.h"
+#include "../race/humanoid.h"
+#include "cursor.h"
 
 using boost::lexical_cast;
 

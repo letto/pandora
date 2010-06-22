@@ -20,9 +20,10 @@
 
 #include "terminal.h"
 #include "../pa_engine.h"
-#include "cursor.h"
-#include "../race/humanoid.h"
 
+
+class Cursor;
+class Humanoid;
 class Interface
 {
 public:

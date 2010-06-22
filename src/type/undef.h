@@ -15,35 +15,33 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef SIZE_H
-#define SIZE_H
 
-#include "pabasics.h"
-#include "enum.hpp"
+#ifdef PREVENT_UNDEF
+#	undef PREVENT_UNDEF
+#else
+#	undef ENUM_INT
+#	undef ENUM_PROPERTIES
 
-
-#define ENUM_CLASS Size
-#define ENUM_ADJECTIVE "sized"
-#undef  ENUM_PROPERTIES
-#define ENUM_PROPERTIES  (Comparable)
-#define ENUM_VALUES	\
-    ((none	)( = 0	))\
-    ((tiny	)( = 1	))\
-    ((small	)( = 16	))\
-    ((medium	)( = 64	))\
-    ((large	)( = 128))\
-    ((huge	)( = 256))\
-    ((gigantic 	)(= 1024))\
-    ((tree	)( = 132))\
-    ((terrain	)( = 350))
+#	undef ENUM_CLASS
+#	undef ENUM_ADJECTIVE
+#	undef ENUM_VALUES
 
 
-ENUM_BEGIN
-	operator int_t() const { return (int_t)value;}
-};
-ENUM_END
+#	undef ENUM_EXPAND_PROPERTIES_MACRO
+#	undef ENUM_EXPAND_PROPERTIES
 
-#include "../type/undef.h"
+#	undef ENUM_EXPAND_ENUM_MACRO
+#	undef ENUM_EXPAND_ENUM
 
-#endif // SIZE_H
+#	undef ENUM_EXPAND_VALUES_MACRO
+#	undef ENUM_EXPAND_VALUES
+
+#	undef ENUM_EXPAND_INITMAP_MACRO
+#	undef ENUM_EXPAND_INITMAP
+
+#	undef ENUM_END
+#	undef ENUM_BEGIN
+#	undef ENUM_DEFINE
+
+#endif
 

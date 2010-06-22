@@ -15,51 +15,31 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "../type/pastring.h"
-#include "../type/pabasics.h"
-#include "../type/enum.h"
-#include <unordered_map>
+#ifndef RACE_H
+#define RACE_H
 
 
-class HRace
-{
-	HRace() = delete;
-	typedef int_enum_t int_t;
-enum class TRace : int_t  {
-    human = 1,
-    
-    elf,
-    high_elf,
-    half_elf,
-    
-    dwarf,
-    
-    orc
-};
-public:
-class Race :
-	public Enum<Race,TRace>
-{
-public:
-static const TRace
-    human	= TRace::human,
-    elf		= TRace::elf,
-    high_elf	= TRace::high_elf,
-    half_elf	= TRace::half_elf,
-    dwarf	= TRace::dwarf,
-    orc		= TRace::orc;
-	
-	Race(const TRace a):Enum<Race,TRace>{a} {}
-private:
-	friend class Enum<Race,TRace>;
-	static bool Init_Map();
-	static std::unordered_map< int_t, String> stringmap;
-public:
+#include "../type/enum.hpp"
+
+#define ENUM_CLASS  Race
+#define ENUM_ADJECTIVE ""
+#define ENUM_VALUES\
+    ((human)(= 1)) \
+    ((elf	)) \
+    ((high_elf	)) \
+    ((half_elf	)) \
+    ((dwarf	)) \
+    ((orc	))
+
+
+ENUM_BEGIN
 	bool Is_Subrace_Of(const TRace);
 	TRace Get_Base_Race();
 };
 	friend bool Same_Base_Race(const TRace,const TRace);
-};
+ENUM_END
 
-typedef HRace::Race Race;
+#include "../type/undef.h"
+
+#endif // RACE_H
 

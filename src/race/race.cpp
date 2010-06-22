@@ -16,33 +16,12 @@
 */
 
 #include "../patype.h"
+
+#define PREVENT_UNDEF
 #include "race.h"
+ENUM_DEFINE
+#include "../type/undef.h"
 
-unordered_map< HRace::int_t, String> Race::stringmap;
-template<> const bool Enum<Race,HRace::TRace>::init_map = Race::Init_Map();
-template<> const String Enum<Race,HRace::TRace>::adjective = String{""};
-template<> const String Enum<Race,HRace::TRace>::classname = String{"Race"};
-
-bool Race::Init_Map()
-{
-    // use switch so that compiler warns on missing values
-    TRace a = Race::human;
-    switch( a ) {
-	case Race::human:
-	    stringmap.insert(make_pair((int_t)Race::human,	String{"human"}));
-	case Race::elf:
-	    stringmap.insert(make_pair((int_t)Race::elf,	String{"elf"}));
-	case Race::high_elf:
-	    stringmap.insert(make_pair((int_t)Race::high_elf,	String{"high elf"}));
-	case Race::half_elf:
-	    stringmap.insert(make_pair((int_t)Race::half_elf,	String{"half elf"}));
-	case Race::dwarf:
-	    stringmap.insert(make_pair((int_t)Race::dwarf,	String{"dwarf"}));
-	case Race::orc:
-	    stringmap.insert(make_pair((int_t)Race::orc,	String{"orc"}));
-    }
-    return true;
-}
 
 HRace::TRace Race::Get_Base_Race()
 {
