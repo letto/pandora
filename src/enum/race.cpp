@@ -17,11 +17,6 @@
 
 #include "../patype.h"
 
-#define PREVENT_UNDEF
-#include "race.h"
-ENUM_DEFINE
-#include "../type/undef.h"
-
 
 HRace::TRace Race::Get_Base_Race()
 {
@@ -60,7 +55,7 @@ bool Race::Is_Subrace_Of(const HRace::TRace race)
 		return true;
 	    } else {
 		return false;
-	    } 
+	    }
 	case Race::dwarf:
 	    if( (int_t)value >= (int_t)Race::dwarf && (int_t)value < (int_t)Race::orc ) {
 		return true;

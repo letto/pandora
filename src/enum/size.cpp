@@ -15,23 +15,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef PA_ENGINE_H
-#define PA_ENGINE_H
+#include "../patype.h"
 
-#include "type/pabasics.h"
-#include <cstdint>
 
-class Entity;
-class PandoraEngine
-{
-public:
-	PandoraEngine();
-	void Run();
-	Entity* Add_Entity(const Location& ,Entity*);
-	int16_t _Map_Max_X();
-	int16_t _Map_Max_Y();
-private:
-	
-};
-
-#endif // PA_ENGINE_H

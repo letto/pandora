@@ -37,7 +37,10 @@ using boost::lexical_cast;
 
 #include "type/pabasics.h"
 #include "type/pastring.h"
-#include "type/color.h"
+#include "enum/color.h"
+#include "enum/direction.h"
+#include "enum/race.h"
+#include "enum/size.h"
 #include "type/paobject.h"
 #include "type/entity.h"
 #include "type/puid.h"

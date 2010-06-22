@@ -24,6 +24,7 @@
 
 class Cursor;
 class Humanoid;
+class Creature;
 class Interface
 {
 public:

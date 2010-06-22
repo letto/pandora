@@ -16,7 +16,23 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "pastring.h"
+
+#define ENUM_INT int_enum_t
+#define ENUM_PROPERTIES
+
+
+#ifndef ENUM_HPP
+#define ENUM_HPP
+
+
+// #pragma message PP_STRINGIZE(( ENUM_BEGIN ))
+// #pragma message PP_STRINGIZE(ENUM_END)
+// #pragma message PP_STRINGIZE(ENUM_CLASS)
+// #pragma message PP_STRINGIZE(ENUM_VALUES)
+// #pragma message PP_STRINGIZE(ENUM_ADJECTIVE)
+// #pragma message PP_STRINGIZE(ENUM_PROPERTIES)
+
+
 #include <boost/algorithm/string/replace.hpp>
 
 #include <boost/preprocessor/cat.hpp>
@@ -38,15 +54,7 @@
 #include <boost/preprocessor/stringize.hpp>
 #define PP_STRINGIZE BOOST_PP_STRINGIZE
 
-// #pragma message PP_STRINGIZE(( ENUM_BEGIN ))
-// #pragma message PP_STRINGIZE(ENUM_END)
-// #pragma message PP_STRINGIZE(ENUM_CLASS)
-// #pragma message PP_STRINGIZE(ENUM_VALUES)
-// #pragma message PP_STRINGIZE(ENUM_ADJECTIVE)
-// #pragma message PP_STRINGIZE(ENUM_PROPERTIES)
 
-#ifndef ENUM_HPP
-#define ENUM_HPP
 
 template<class T,class TEnum>
 class Enum
@@ -95,10 +103,10 @@ class Enum
 	    return (std::string)t + s;
 	}
 	
-	String _adjective() const {
+	String _Adjective() const {
 	    return adjective;
 	}
-	String _classname() const {
+	String _Classname() const {
 	    return classname;
 	}
     protected:
@@ -169,17 +177,9 @@ class Comparable
 	}
 };
 
-#endif // ENUM_HPP
 
 
 #define PP_VOID
-#ifndef ENUM_INT
-#	define ENUM_INT int_enum_t
-#endif
-
-#ifndef ENUM_PROPERTIES
-#	define ENUM_PROPERTIES
-#endif
 
 
 #define ENUM_EXPAND_PROPERTIES_MACRO(r, data, elem) 		\
@@ -285,3 +285,5 @@ bool ENUM_CLASS::Init_Map()								\
 	return true;									\
 }
 
+
+#endif // ENUM_HPP

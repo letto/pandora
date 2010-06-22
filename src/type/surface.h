@@ -20,7 +20,7 @@
 
 #include "paobject.h"
 #include "pabasics.h"
-#include "size.h"
+#include "../enum/size.h"
 #include "pastring.h"
 
 

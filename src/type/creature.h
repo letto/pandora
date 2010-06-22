@@ -19,8 +19,8 @@
 #define CREATURE_H
 
 #include "pabasics.h"
+#include "../enum/direction.h"
 #include "entity.h"
-#include "../container/entitycontainer.h"
 
 
 class Creature : public Entity

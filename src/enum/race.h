@@ -15,23 +15,30 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef PA_ENGINE_H
-#define PA_ENGINE_H
+#ifndef RACE_H
+#define RACE_H
 
-#include "type/pabasics.h"
-#include <cstdint>
+#include "enum.hpp"
 
-class Entity;
-class PandoraEngine
-{
-public:
-	PandoraEngine();
-	void Run();
-	Entity* Add_Entity(const Location& ,Entity*);
-	int16_t _Map_Max_X();
-	int16_t _Map_Max_Y();
-private:
-	
+#define ENUM_CLASS  Race
+#define ENUM_ADJECTIVE ""
+#define ENUM_VALUES\
+    ((human)(= 1)) \
+    ((elf	)) \
+    ((high_elf	)) \
+    ((half_elf	)) \
+    ((dwarf	)) \
+    ((orc	))
+
+
+ENUM_BEGIN
+	bool Is_Subrace_Of(const TRace);
+	TRace Get_Base_Race();
 };
+	friend bool Same_Base_Race(const TRace,const TRace);
+ENUM_END
 
-#endif // PA_ENGINE_H
+#include "undef.h"
+
+#endif // RACE_H
+

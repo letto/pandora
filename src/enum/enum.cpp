@@ -16,25 +16,24 @@
 */
 
 
-#ifndef HUMANOID_H
-#define HUMANOID_H
+// can't include patype.h
+#include <unordered_map>
+using std::unordered_map;
+#include "../type/pastring.h"
 
-#include "../patype.h"
+#define PREVENT_UNDEF
+#include "size.h"
+ENUM_DEFINE
+#include "undef.h"
+
+
+#define PREVENT_UNDEF
+#include "direction.h"
+ENUM_DEFINE
+#include "undef.h"
+
+
+#define PREVENT_UNDEF
 #include "race.h"
-
-class Humanoid : public Creature
-{
-public:
-    Humanoid(const Race);
-    String _Description() const;
-    Image _Image() const;
-    Size _Size() const;
-    Size _Max_Holding_Size() const;
-    
-    bool Chop_Tree() const;
-    bool Build_Wall();
-    
-    Race race;
-};
-
-#endif // HUMANOID_H
+ENUM_DEFINE
+#include "undef.h"

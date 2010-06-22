@@ -19,8 +19,8 @@
 #define COLOR_H
 
 #include <unordered_map>
-#include "pastring.h"
 #include <SDL/SDL_video.h>
+#include "../type/pastring.h"
 
 class Color
 {

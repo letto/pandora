@@ -2,9 +2,13 @@ Set (
     SOURCES
     type/pabasics.cpp
     type/pastring.cpp
-    type/color.cpp
-    type/size.cpp
     type/puid.cpp
+    type/humanoid.cpp
+    enum/enum.cpp
+    enum/color.cpp
+    enum/size.cpp
+    enum/direction.cpp
+    enum/race.cpp
     type/entity.cpp
     type/item.cpp
     type/creature.cpp
@@ -19,8 +23,6 @@ Set (
     material.cpp
     tree.cpp
     woodlog.cpp
-    race/race.cpp
-    race/humanoid.cpp
     pa_engine.cpp
     main.cpp
 )

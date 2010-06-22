@@ -15,6 +15,7 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include "../patype.h"
 #include "../tree.h"
 #include "../wall.h"
 

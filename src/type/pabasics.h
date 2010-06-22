@@ -20,11 +20,13 @@
 #define PABASICS_H
 
 #include <boost/lexical_cast.hpp>
-#include "pastring.h"
-#include "color.h"
+#include "../enum/color.h"
 
 typedef uint16_t Char;
 typedef int16_t int_enum_t;
+
+struct Void {
+};
 
 struct Image {
     Image(Char,Color);
@@ -38,16 +40,6 @@ struct Location {
     int16_t x,y;
 };
 
-enum class Direction {
-    north,
-    south,
-    east,
-    west,
-    northeast,
-    northwest,
-    southwest,
-    southeast
-};
 
 int_fast32_t Random(const int_fast32_t, const int_fast32_t);
 int_fast32_t Dice(const int_fast32_t);
@@ -55,7 +47,5 @@ int_fast32_t Dice(const int_fast32_t);
 
 void Exit(const std::string&);
 
-struct Void {
-};
 
 #endif // PABASICS_H

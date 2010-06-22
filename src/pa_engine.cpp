@@ -16,7 +16,9 @@
 */
 
 
+#include "patype.h"
 #include "pa_engine.h"
+
 
 World map{631,863};
 

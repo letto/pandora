@@ -15,23 +15,16 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef PA_ENGINE_H
-#define PA_ENGINE_H
 
-#include "type/pabasics.h"
-#include <cstdint>
+#ifdef PREVENT_UNDEF
+#	undef PREVENT_UNDEF
+#else
+#	undef ENUM_INT
+#	undef ENUM_PROPERTIES
 
-class Entity;
-class PandoraEngine
-{
-public:
-	PandoraEngine();
-	void Run();
-	Entity* Add_Entity(const Location& ,Entity*);
-	int16_t _Map_Max_X();
-	int16_t _Map_Max_Y();
-private:
-	
-};
+#	undef ENUM_CLASS
+#	undef ENUM_ADJECTIVE
+#	undef ENUM_VALUES
 
-#endif // PA_ENGINE_H
+#endif // PREVENT_UNDEF
+

@@ -15,23 +15,28 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef PA_ENGINE_H
-#define PA_ENGINE_H
+#ifndef DIRECTION_H
+#define DIRECTION_H
 
-#include "type/pabasics.h"
-#include <cstdint>
+#include "enum.hpp"
 
-class Entity;
-class PandoraEngine
-{
-public:
-	PandoraEngine();
-	void Run();
-	Entity* Add_Entity(const Location& ,Entity*);
-	int16_t _Map_Max_X();
-	int16_t _Map_Max_Y();
-private:
-	
+#define ENUM_CLASS  	Direction
+#define ENUM_ADJECTIVE	"headed"
+#define ENUM_VALUES \
+    (( north	))\
+    (( south	))\
+    (( east	))\
+    (( west	))\
+    (( northeast))\
+    (( northwest))\
+    (( southwest))\
+    (( southeast))
+    
+ENUM_BEGIN
 };
+ENUM_END
 
-#endif // PA_ENGINE_H
+#include "undef.h"
+
+#endif // DIRECTION_H
+
