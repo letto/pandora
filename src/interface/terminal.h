@@ -79,7 +79,7 @@ private:
 	static std::unordered_map< Uint16, TermGlyph> charmap;
 	static TermGlyph Get_Glyph(const Uint16&);
 	
-	static SDL_Surface *screen; //The app screen
+	static SDL_Surface* screen; //The app screen
 	SDL_Rect term_rect;     // The terminal screen
 	
 	int cursor_x,cursor_max_x;

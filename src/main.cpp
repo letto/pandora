@@ -15,14 +15,19 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
+#include "patype.h"
 #include "interface/interface.h"
 
 
 int main(int argc, char **argv) 
 {
-    Interface* const interface = Interface::_Interface();
+    Terminal::Set_Font("/usr/share/fonts/dejavu/DejaVuSansMono.ttf",32);
+    Interface* interface = Interface::_Interface();
     
     interface->Run();
+    Interface::Delete();
+    World::Delete();
+    
     return 0;
 }
 

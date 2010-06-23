@@ -27,6 +27,7 @@ class Creature : public Entity
 {
 public:
 	Creature();
+	~Creature();
 	bool Go_Direction(const Direction&);
 	virtual Size _Max_Holding_Size() const = 0;
 

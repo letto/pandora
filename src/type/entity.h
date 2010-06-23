@@ -29,6 +29,7 @@ class Entity : virtual public PaObject
 {
 public:
 	Entity();
+	~Entity();
 	Location _Location() const;
 	EntityContainer* _Holder();
 

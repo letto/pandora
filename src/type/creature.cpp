@@ -23,6 +23,11 @@ Creature::Creature():
 {
 }
 
+Creature::~Creature()
+{
+    delete holding;
+}
+
 bool Creature::Go_Direction(const Direction& direction)
 {
     Location loc = _Location();

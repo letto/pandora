@@ -56,6 +56,11 @@ EntityContainer::EntityContainer(Size volume):
 {
 }
 
+EntityContainer::~EntityContainer()
+{
+    delete entities;
+}
+
 Entity_Iterator EntityContainer::begin() {
     return Entity_Iterator{entities};
 }

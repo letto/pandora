@@ -42,7 +42,6 @@ Interface::Interface():
     if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER) != 0)
 	Exit("SDL_Init failed");
     SDL_WM_SetCaption(" Pandora ",NULL);
-    Terminal::Set_Font("/usr/share/fonts/dejavu/DejaVuSansMono.ttf",32);
     
     video_Flags = SDL_OPENGL;
     video_Flags |= SDL_GL_DOUBLEBUFFER ;
@@ -96,8 +95,18 @@ Interface::Interface():
     Resize();
 }
 
+void Interface::Delete()
+{
+    delete instance;
+    instance = NULL;
+}
+
 Interface::~Interface()
 {
+    delete cursor;
+    instance = NULL;
+    player = NULL;
+    SDL_FreeSurface(screen);
     SDL_Quit();
 }
 
@@ -297,6 +306,7 @@ void Interface::Event_Handler(const SDL_Event& event)
     switch(event.type) {
 	case SDL_VIDEORESIZE:
 	    glClear(GL_COLOR_BUFFER_BIT);
+	    SDL_FreeSurface(screen);
 	    screen = SDL_SetVideoMode(event.resize.w,event.resize.h,32,video_Flags);
 	    Resize();
 	    break;
@@ -311,7 +321,8 @@ void Interface::Event_Handler(const SDL_Event& event)
 	    Keyboard_Handler(event.key.keysym);
 	    break;
 	case SDL_QUIT:
-	    SDL_Quit();
+	    Interface::Delete();
+	    World::Delete();
 	    exit(1);
 	    break;
     }

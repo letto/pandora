@@ -29,6 +29,7 @@ class Interface
 {
 public:
 	static Interface* _Interface(); //singleton pattern
+	static void Delete();
 	void Run();
 private:
 	Terminal display;

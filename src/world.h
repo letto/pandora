@@ -27,6 +27,7 @@ class World
 {
 public:
 	static World* _World();
+	static void Delete();
 	Terrain& operator()(const int16_t, const int16_t);
 	Terrain& operator()(const Location);
 	int16_t max_x,max_y;
@@ -35,7 +36,7 @@ private:
 	World(const int16_t max_x,const int16_t max_y);
 	World(const World&) = delete;
 	World operator=(const World&) = delete;
-	~World();
+	~World() = default;
 	static World* instance;
 	std::vector<Terrain> map;
 };

@@ -24,6 +24,11 @@ Entity::Entity():
 {
 }
 
+Entity::~Entity()
+{
+    delete next;
+}
+
 Location Entity::_Location() const {
     return holder->_Location();
 }

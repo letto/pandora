@@ -41,6 +41,7 @@ class EntityContainer : virtual public PaObject
 {
 public:
 	EntityContainer(Size);
+	~EntityContainer();
 	
 	bool Has_Space_For(const Entity*) const;
 	bool Is_Empty() const;
