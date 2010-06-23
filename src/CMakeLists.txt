@@ -15,7 +15,6 @@ Set (
     type/surface.cpp
     type/terrain.cpp
     container/entitycontainer.cpp
-    container/world.cpp
     interface/terminal.cpp
     interface/cursor.cpp
     interface/interface.cpp
@@ -23,6 +22,7 @@ Set (
     material.cpp
     tree.cpp
     woodlog.cpp
+    world.cpp
     pa_engine.cpp
     main.cpp
 )

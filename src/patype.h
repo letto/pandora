@@ -50,7 +50,7 @@ using boost::lexical_cast;
 #include "type/surface.h"
 
 #include "container/entitycontainer.h"
-#include "container/world.h"
+#include "world.h"
 
 #endif // PATYPE_H
 
