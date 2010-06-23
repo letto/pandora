@@ -28,7 +28,7 @@ class Creature;
 class Interface
 {
 public:
-	static Interface* Get_Interface(); //singleton pattern
+	static Interface* _Interface(); //singleton pattern
 	void Run();
 private:
 	Terminal display;
@@ -45,10 +45,9 @@ private:
 	enum class Mode 	{ online , cursor} mode;
 	enum class Action 	{none,move} action_type;
 	enum class FollowMode 	{centered,following} follow_mode;
-	Location cursor_loc;
-
-	Humanoid* player;
+	
 	Humanoid* Add_Player(const Location&,Entity*);
+	Humanoid* player;
 	Cursor* cursor;
 	Creature* current_ent;
 	
@@ -62,7 +61,7 @@ private:
 	void Keyboard_Handler(const SDL_keysym&);
 	
 	//singleton pattern
-	static Interface* interface_instance;
+	static Interface* instance;
 	Interface();
 	~Interface();
 	Interface(const Interface&) = delete;

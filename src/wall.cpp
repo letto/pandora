@@ -18,10 +18,10 @@
 
 #include "wall.h"
 
-extern World map;
 
 Image Wall::_Image() const
 {
+    World_Ptr map;
     Location loc = holder->_Location();
     Color col = Color::brown;
     bool wall_up = map(loc.x,loc.y+1).Has_Wall();

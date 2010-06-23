@@ -20,7 +20,7 @@
 
 int main(int argc, char **argv) 
 {
-    Interface* const interface = Interface::Get_Interface();
+    Interface* const interface = Interface::_Interface();
     
     interface->Run();
     return 0;

@@ -21,8 +21,6 @@
 #include "../wall.h"
 
 
-extern World map;
-
 Humanoid::Humanoid(const Race race):
 	race{race}
 {
@@ -67,6 +65,7 @@ bool Humanoid::Chop_Tree() const {
 
 bool Humanoid::Build_Wall()
 {
+    World_Ptr map;
     if(holding == NULL ||
        typeid(*holding) != typeid(WoodLog) ||
        !map(holder->_Location().x+1,holder->_Location().y).Is_Empty()) {

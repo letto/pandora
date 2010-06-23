@@ -25,10 +25,13 @@
 class Cursor : public Creature
 {
 public:
+	Cursor();
 	Size _Size() const;
 	Image _Image() const;
 	String _Description() const;
 	Size _Max_Holding_Size() const;
+	Location _Location() const;
+	Location location;
 };
 
 #endif // CURSOR_H

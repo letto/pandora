@@ -19,7 +19,6 @@
 #ifndef PABASICS_H
 #define PABASICS_H
 
-#include <boost/lexical_cast.hpp>
 #include "../enum/color.h"
 
 typedef uint16_t Char;
@@ -36,7 +35,7 @@ struct Image {
 
 struct Location {
     Location(int16_t x,int16_t y):x{x},y{y} {}
-    operator std::string () const { return boost::lexical_cast<std::string>(x)+","+boost::lexical_cast<std::string>(y);}
+    operator std::string () const;
     int16_t x,y;
 };
 

@@ -20,11 +20,9 @@
 #include "pa_engine.h"
 
 
-World map{631,863};
-
 PandoraEngine::PandoraEngine()
 {
-    map.Generate();
+    World::_World()->Generate();
 }
 
 void PandoraEngine::Run()
@@ -32,16 +30,9 @@ void PandoraEngine::Run()
     
 }
 
-int16_t PandoraEngine::_Map_Max_X(){
-    return map.max_x;
-}
-
-int16_t PandoraEngine::_Map_Max_Y(){
-    return map.max_y;
-}
-
 Entity* PandoraEngine::Add_Entity(const Location& loc ,Entity * entity)
 {
+    World_Ptr map;
     if( map(loc).Add_Entity( entity ) == true) {
 	return entity;
     } else {
@@ -49,3 +40,4 @@ Entity* PandoraEngine::Add_Entity(const Location& loc ,Entity * entity)
 	return NULL;
     }
 }
+

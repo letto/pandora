@@ -17,7 +17,6 @@
 
 #include "../patype.h"
 
-extern World map;
 
 Creature::Creature():
 	holding{NULL}
@@ -52,7 +51,8 @@ bool Creature::Go_Direction(const Direction& direction)
 	    dest.x++;
 	    break;
     }
-    if(dest.x < 0 || dest.y < 0 || dest.x >= map.max_x || dest.y >= map.max_y) {
+    World_Ptr map;
+    if(dest.x < 0 || dest.y < 0 || dest.x >= map->max_x || dest.y >= map->max_y) {
 	return false;
     }
     

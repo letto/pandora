@@ -18,6 +18,15 @@
 #include "patype.h"
 #include "tree.h"
 
+World* World::instance = NULL;
+
+World* World::_World()
+{
+    if( instance == NULL) {
+	instance = new World{631,863};
+    }
+    return instance;
+}
 
 World::World(int16_t max_x, int16_t max_y):
 	max_x{max_x},

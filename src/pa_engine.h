@@ -28,8 +28,6 @@ public:
 	PandoraEngine();
 	void Run();
 	Entity* Add_Entity(const Location& ,Entity*);
-	int16_t _Map_Max_X();
-	int16_t _Map_Max_Y();
 private:
 	
 };

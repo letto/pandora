@@ -16,6 +16,7 @@
 */
 
 #include "../patype.h"
+#include <SDL/SDL.h>
 #include <boost/random.hpp>
 #include <ctime>
 
@@ -31,6 +32,11 @@ Image::Image(Char ch, Color color):
 	color{color}
 {
 }
+
+Location::operator std::string () const {
+    return boost::lexical_cast<std::string>(x)+","+boost::lexical_cast<std::string>(y);
+}
+
 
 int_fast32_t Random(const int_fast32_t a ,const int_fast32_t b) {
     return randgen()%(b-a+1)+a;

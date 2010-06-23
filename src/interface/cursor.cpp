@@ -17,6 +17,12 @@
 
 #include "cursor.h"
 
+
+Cursor::Cursor():
+	location(0,0)
+{
+}
+
 Size Cursor::_Size() const {
     return Size::none;
 }
@@ -26,7 +32,15 @@ Image Cursor::_Image() const {
 }
 
 String Cursor::_Description() const {
-    return String{"the cursor"};
+    return String{"cursor"};
+}
+
+Location Cursor::_Location() const {
+    if( holder == NULL) {
+	return location;
+    } else {
+	return Entity::_Location();
+    }
 }
 
 Size Cursor::_Max_Holding_Size() const {

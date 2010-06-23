@@ -22,16 +22,13 @@
 #include "../type/humanoid.h"
 #include "cursor.h"
 
-using boost::lexical_cast;
+Interface* Interface::instance = NULL;
 
-extern World map;
-Interface* Interface::interface_instance = NULL;
-
-Interface* Interface::Get_Interface() {
-    if (interface_instance == NULL) {
-	interface_instance = new Interface;
+Interface* Interface::_Interface() {
+    if (instance == NULL) {
+	instance = new Interface;
     }
-    return interface_instance;
+    return instance;
 }
 
 Interface::Interface():
@@ -40,7 +37,6 @@ Interface::Interface():
 	mode{ Mode::online},
 	action_type{ Action::none},
 	follow_mode{ FollowMode::following},
-	cursor_loc{0,0},
 	cursor{new Cursor}
 {
     if(SDL_Init(SDL_INIT_VIDEO|SDL_INIT_TIMER) != 0)
@@ -96,8 +92,6 @@ Interface::Interface():
     Add_Player( Location{ 6,11}, new Humanoid{Race::elf});
     
     Add_Player( Location{ 9,12}, new Wall);
-
-    cursor_loc = current_ent->_Location();
 
     Resize();
 }
@@ -175,40 +169,41 @@ void Interface::Resize()
     rec.w = screen->w - events._Width();
     display.Resize(rec);
 
-    cursor_loc = current_ent->_Location();
+    cursor->location = current_ent->_Location();
 }
 
 void Interface::Draw_Display()
 {
     switch(follow_mode) {
 	case FollowMode::centered:
-	    cursor_loc = current_ent->_Location();
+	    cursor->location = current_ent->_Location();
 	    break;
 	case FollowMode::following:
-	    if( current_ent->_Location().x - cursor_loc.x > display._Max_X()/2 - 4 ) {
-		cursor_loc.x++;
+	    if( current_ent->_Location().x - cursor->location.x > display._Max_X()/2 - 4 ) {
+		cursor->location.x++;
 	    }
-	    if( current_ent->_Location().y - cursor_loc.y > display._Max_Y()/2 - 2 ) {
-		cursor_loc.y++;
+	    if( current_ent->_Location().y - cursor->location.y > display._Max_Y()/2 - 2 ) {
+		cursor->location.y++;
 	    }
-	    if(cursor_loc.x - current_ent->_Location().x > display._Max_X()/2 - 4) {
-		cursor_loc.x--;
+	    if(cursor->location.x - current_ent->_Location().x > display._Max_X()/2 - 4) {
+		cursor->location.x--;
 	    }
-	    if(cursor_loc.y - current_ent->_Location().y > display._Max_Y()/2 - 2) {
-		cursor_loc.y--;
+	    if(cursor->location.y - current_ent->_Location().y > display._Max_Y()/2 - 2) {
+		cursor->location.y--;
 	    }
 	    break;
     }
     
+    World_Ptr map;
     display_counter++;
-    int pos_x = cursor_loc.x - display._Max_X()/2;
-    int pos_y = cursor_loc.y - display._Max_Y()/2;
+    int pos_x = cursor->location.x - display._Max_X()/2;
+    int pos_y = cursor->location.y - display._Max_Y()/2;
     Image img{ '?', Color::red};
     Color col = Color::black;
     for(int cy = 0; cy <= display._Max_Y();cy++) {
 	for(int cx = 0; cx <= display._Max_X(); cx++) {
-	    if(	cx+pos_x >= engine._Map_Max_X()||
-		cy+pos_y >= engine._Map_Max_Y()||
+	    if(	cx+pos_x >= map->max_x ||
+		cy+pos_y >= map->max_y ||
 		cx+ pos_x < 0 || cy+pos_y < 0) {
 		    img = Image{ '#', Color::dark_gray};
 		    col = Color::black;
@@ -324,6 +319,7 @@ void Interface::Event_Handler(const SDL_Event& event)
 
 void Interface::Keyboard_Handler(const SDL_keysym& key)
 {
+    World_Ptr map;
     switch(key.sym) {
 	case SDLK_ESCAPE:
 	    switch(mode) {
@@ -338,7 +334,7 @@ void Interface::Keyboard_Handler(const SDL_keysym& key)
 		    map(cursor->_Location()).Remove_Entity(cursor);
 		    break;
 	    }
-	    cursor_loc = current_ent->_Location();
+	    cursor->location = current_ent->_Location();
 	    break;
 	case SDLK_c:
 	    if(player->Chop_Tree()) {

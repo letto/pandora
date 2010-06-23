@@ -23,17 +23,33 @@
 #include "type/terrain.h"
 #include <vector>
 
-
 class World
 {
 public:
+	static World* _World();
 	Terrain& operator()(const int16_t, const int16_t);
 	Terrain& operator()(const Location);
-	World(const int16_t max_x,const int16_t max_y);
 	int16_t max_x,max_y;
 	void Generate();
 private:
+	World(const int16_t max_x,const int16_t max_y);
+	World(const World&) = delete;
+	World operator=(const World&) = delete;
+	~World();
+	static World* instance;
 	std::vector<Terrain> map;
+};
+
+class World_Ptr
+{
+public:
+	World_Ptr():world{ World::_World()} {}
+	Terrain& operator()(const int16_t a, const int16_t b) { return world->operator()(a,b);}
+	Terrain& operator()(const Location loc) { return world->operator()(loc);}
+	World* operator->() { return world;}
+	World* operator*() { return world;}
+private:
+	World* world;
 };
 
 #endif // WORLD_H
