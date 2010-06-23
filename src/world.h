@@ -16,27 +16,24 @@
 */
 
 
-// can't include patype.h
-#include <unordered_map>
-#include <utility>
-#include "../type/pastring.h"
-#include "../type/pabasics.h"
+#ifndef WORLD_H
+#define WORLD_H
+
+#include "type/pabasics.h"
+#include "type/terrain.h"
+#include <vector>
 
 
-#define PREVENT_UNDEF
-#include "size.h"
-ENUM_DEFINE
-#include "undef.h"
+class World
+{
+public:
+	Terrain& operator()(const int16_t, const int16_t);
+	Terrain& operator()(const Location);
+	World(const int16_t max_x,const int16_t max_y);
+	int16_t max_x,max_y;
+	void Generate();
+private:
+	std::vector<Terrain> map;
+};
 
-
-#define PREVENT_UNDEF
-#include "direction.h"
-ENUM_DEFINE
-#include "undef.h"
-
-
-#define PREVENT_UNDEF
-#include "race.h"
-ENUM_DEFINE
-#include "undef.h"
-
+#endif // WORLD_H
