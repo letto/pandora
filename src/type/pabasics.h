@@ -27,6 +27,13 @@ typedef int16_t int_enum_t;
 struct Void {
 };
 
+class Int_t {
+	int16_t value;
+public:
+	Int_t(const int16_t a):value{a} {}
+	operator int16_t() const { return value;}
+};
+
 struct Image {
     Image(Char,Color);
     Char ch;

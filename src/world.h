@@ -30,7 +30,7 @@ public:
 	static void Delete();
 	Terrain& operator()(const int16_t, const int16_t);
 	Terrain& operator()(const Location);
-	int16_t max_x,max_y;
+	Int_t max_x,max_y;
 	void Generate();
 private:
 	World(const int16_t max_x,const int16_t max_y);

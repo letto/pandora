@@ -18,13 +18,9 @@
 #include "patype.h"
 #include "tree.h"
 
-World* World::instance = NULL;
+World* World::instance = new World{80,43};
 
-World* World::_World()
-{
-    if( instance == NULL) {
-	instance = new World{631,863};
-    }
+World* World::_World() {
     return instance;
 }
 
@@ -68,3 +64,4 @@ void World::Generate()
 	}
     }
 }
+
