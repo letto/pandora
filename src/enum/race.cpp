@@ -18,7 +18,7 @@
 #include "../patype.h"
 
 
-HRace::TRace Race::Get_Base_Race()
+Race Race::Get_Base_Race()
 {
     switch( value ) {
 	case Race::human:

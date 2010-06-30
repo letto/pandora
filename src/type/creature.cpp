@@ -101,3 +101,5 @@ bool Creature::Drop_Entity()
 	return false;
     }
 }
+
+

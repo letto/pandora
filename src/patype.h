@@ -32,7 +32,6 @@ using std::make_pair;
 #include <boost/lexical_cast.hpp>
 using boost::lexical_cast;
 
-
 #include "type/pabasics.h"
 #include "type/pastring.h"
 #include "enum/color.h"

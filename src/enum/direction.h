@@ -20,23 +20,17 @@
 
 #include "enum.hpp"
 
-#define ENUM_CLASS  	Direction
-#define ENUM_ADJECTIVE	"headed"
-#define ENUM_VALUES \
-    (( north	))\
-    (( south	))\
-    (( east	))\
-    (( west	))\
-    (( northeast))\
-    (( northwest))\
-    (( southwest))\
+ENUM_CLASS( Direction, "headed", ,
+    (( north	))
+    (( south	))
+    (( east	))
+    (( west	))
+    (( northeast))
+    (( northwest))
+    (( southwest))
     (( southeast))
-    
-ENUM_BEGIN
-};
-ENUM_END
-
-#include "undef.h"
+    , ,
+)
 
 #endif // DIRECTION_H
 

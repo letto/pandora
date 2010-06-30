@@ -22,19 +22,22 @@
 #include "../patype.h"
 #include "../enum/race.h"
 
-class Humanoid : public Creature
+class Humanoid :
+	public Creature
 {
 public:
-    Humanoid(const Race);
-    String _Description() const;
-    Image _Image() const;
-    Size _Size() const;
-    Size _Max_Holding_Size() const;
-    
-    bool Chop_Tree() const;
-    bool Build_Wall();
-    
-    Race race;
+	Humanoid(const Race);
+	String _Description() const;
+	Image _Image() const;
+	Size _Size() const;
+	Size _Max_Holding_Size() const;
+	
+	bool Chop_Tree() const;
+	bool Build_Wall();
+	
+	Race race;
 };
 
 #endif // HUMANOID_H
+
+

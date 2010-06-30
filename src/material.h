@@ -20,7 +20,8 @@
 
 #include "patype.h"
 
-class Material : public Item
+class Material :
+	public Item
 {
 };
 

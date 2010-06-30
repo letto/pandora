@@ -70,3 +70,5 @@ String Wall::_Description() const {
 Size Wall::_Size() const {
     return Terrain::_Volume();
 }
+
+

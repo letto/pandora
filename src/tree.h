@@ -21,8 +21,8 @@
 
 #include "patype.h"
 
-
-class Tree : public Entity
+class Tree :
+	public Entity
 {
 public:
 	String _Description() const;
@@ -32,3 +32,5 @@ public:
 };
 
 #endif // TREE_H
+
+

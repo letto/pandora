@@ -19,7 +19,6 @@
 #define PA_ENGINE_H
 
 #include "type/pabasics.h"
-#include <cstdint>
 
 class Entity;
 class PandoraEngine
@@ -29,7 +28,6 @@ public:
 	void Run();
 	Entity* Add_Entity(const Location& ,Entity*);
 private:
-	
 };
 
 #endif // PA_ENGINE_H

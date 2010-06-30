@@ -52,3 +52,5 @@ std::string Get_Article(const String s)
 	}
     }
 }
+
+

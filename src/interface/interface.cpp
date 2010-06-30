@@ -25,7 +25,7 @@
 Interface* Interface::instance = NULL;
 
 Interface* Interface::_Interface() {
-    if (instance == NULL) {
+    if( instance == NULL ) {
 	instance = new Interface;
     }
     return instance;
@@ -85,6 +85,7 @@ Interface::Interface():
     Add_Player( Location{ 7,11}, new Humanoid{Race::elf});
     Add_Player( Location{14,13}, new Humanoid{Race::high_elf});
     Add_Player( Location{15,17}, new Humanoid{Race::half_elf});
+    Add_Player( Location{12,33}, new Humanoid{Race::high_elf});
     
     Add_Player( Location{ 7,10}, new Humanoid{Race::human});
     Add_Player( Location{ 7,13}, new Humanoid{Race::human});
@@ -103,6 +104,8 @@ void Interface::Delete()
 
 Interface::~Interface()
 {
+    World_Ptr map;
+    map(cursor->_Location()).Remove_Entity(cursor);
     delete cursor;
     instance = NULL;
     player = NULL;
@@ -209,11 +212,11 @@ void Interface::Draw_Display()
     int pos_y = cursor->location.y - display._Max_Y()/2;
     Image img{ '?', Color::red};
     Color col = Color::black;
-    for(int cy = 0; cy <= display._Max_Y();cy++) {
-	for(int cx = 0; cx <= display._Max_X(); cx++) {
+    for(int cy = 0; cy <= display._Max_Y();cy++ ) {
+	for(int cx = 0; cx <= display._Max_X(); cx++ ) {
 	    if(	cx+pos_x >= map->max_x ||
 		cy+pos_y >= map->max_y ||
-		cx+ pos_x < 0 || cy+pos_y < 0) {
+		cx+ pos_x < 0 || cy+pos_y < 0 ) {
 		    img = Image{ '#', Color::dark_gray};
 		    col = Color::black;
 	    } else {
@@ -413,3 +416,5 @@ void Interface::Keyboard_Handler(const SDL_keysym& key)
 	    action_type = Action::none;
     }
 }
+
+

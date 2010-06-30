@@ -60,7 +60,12 @@ Size Humanoid::_Max_Holding_Size() const {
 
 bool Humanoid::Chop_Tree() const {
     // TODO: warn if holder is not terrain
-    return static_cast<Terrain*>(holder)->Chop_Tree();
+    if( Terrain* t = dynamic_cast<Terrain*>(holder)) {
+	return t->Chop_Tree();
+    } else {
+	Exit("Cast to Terrain* falied in Chop_Tree");
+	return false;
+    }
 }
 
 bool Humanoid::Build_Wall()
@@ -68,10 +73,10 @@ bool Humanoid::Build_Wall()
     World_Ptr map;
     if(holding == NULL ||
        typeid(*holding) != typeid(WoodLog) ||
-       !map(holder->_Location().x+1,holder->_Location().y).Is_Empty()) {
+       !map(_Location().x+1,_Location().y).Is_Empty()) {
 	    return false;
     } else {
-	    map(holder->_Location().x+1,holder->_Location().y).Add_Entity(new Wall);
+	    map(_Location().x+1,_Location().y).Add_Entity(new Wall);
 	    delete holding;
 	    holding = NULL;
 	    return true;

@@ -21,8 +21,11 @@
 #include "entity.h"
 
 
-class Item : public Entity
+class Item :
+	public Entity
 {
 };
 
 #endif // ITEM_H
+
+

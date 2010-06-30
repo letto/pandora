@@ -20,7 +20,8 @@
 
 #include "patype.h"
 
-class Wall : public Item
+class Wall :
+	public Item
 {
 public:
 	Image _Image() const;
@@ -29,3 +30,5 @@ public:
 };
 
 #endif // WALL_H
+
+

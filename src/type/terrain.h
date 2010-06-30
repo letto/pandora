@@ -26,7 +26,8 @@
 
 class Tree;
 
-class Terrain : virtual public PaObject, public EntityContainer
+class Terrain :
+	public EntityContainer
 {
 public:
 	Terrain(Location&&);
@@ -49,3 +50,5 @@ private:
 };
 
 #endif // TERRAIN_H
+
+

@@ -15,28 +15,6 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-
-// can't include patype.h
-#include <unordered_map>
-#include <utility>
-#include "../type/pastring.h"
-#include "../type/pabasics.h"
-
-
-#define PREVENT_UNDEF
-#include "size.h"
-ENUM_DEFINE
-#include "undef.h"
-
-
-#define PREVENT_UNDEF
-#include "direction.h"
-ENUM_DEFINE
-#include "undef.h"
-
-
-#define PREVENT_UNDEF
-#include "race.h"
-ENUM_DEFINE
-#include "undef.h"
+#define ENUM_INIT
+#include "../patype.h"
 

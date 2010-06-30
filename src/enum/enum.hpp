@@ -1,4 +1,3 @@
-
 /*
     Copyright (C)  2010  Marius Stoica
 
@@ -18,7 +17,7 @@
 
 
 #define ENUM_INT int_enum_t
-#define ENUM_PROPERTIES
+
 
 
 #ifndef ENUM_HPP
@@ -102,6 +101,12 @@ class Enum
 	friend std::string operator+(const T t, const String s) {
 	    return (std::string)t + s;
 	}
+	friend std::string operator+(const char* s, const T t) {
+	    return s + (std::string)t;
+	}
+	friend std::string operator+(const T t, const char* s) {
+	    return (std::string)t + s;
+	}
 	
 	String _Adjective() const {
 	    return adjective;
@@ -179,21 +184,19 @@ class Comparable
 
 
 #define PP_VOID
-#define T_ENUM_CLASS PP_CAT( T, ENUM_CLASS)
-#define H_ENUM_CLASS PP_CAT( H, ENUM_CLASS)
 
-#define ENUM_EXPAND_PROPERTIES_MACRO(r, data, elem) 		\
-    public elem<ENUM_CLASS, T_ENUM_CLASS>,
+#define ENUM_EXPAND_PROPERTIES_MACRO(r, CLASS, elem) 		\
+    public elem<CLASS, PP_CAT( T, CLASS)>,
 
 
-#define ENUM_EXPAND_PROPERTIES( enums ) 			\
-    PP_SEQ_FOR_EACH(ENUM_EXPAND_PROPERTIES_MACRO, ~, enums)
+#define ENUM_EXPAND_PROPERTIES( CLASS, enums) 			\
+    PP_SEQ_FOR_EACH(ENUM_EXPAND_PROPERTIES_MACRO, CLASS, enums)
 
 
 
 
 #define ENUM_EXPAND_ENUM_MACRO(r, data, elem)			\
-    (	PP_SEQ_HEAD(elem)						\
+    (	PP_SEQ_HEAD(elem)					\
 	PP_IIF( BOOST_PP_SEQ_SIZE( PP_SEQ_TAIL(elem)),		\
 	    PP_SEQ_HEAD(PP_SEQ_TAIL(elem)()),			\
 	    PP_VOID ) )
@@ -205,74 +208,78 @@ class Comparable
 
 
 
-#define ENUM_EXPAND_VALUES_MACRO(r, data, elem) 		\
-    (	PP_SEQ_HEAD(elem) = T_ENUM_CLASS::PP_SEQ_HEAD(elem) )
+#define ENUM_EXPAND_VALUES_MACRO(r, CLASS, elem) 		\
+    (	PP_SEQ_HEAD(elem) = PP_CAT( T, CLASS)::PP_SEQ_HEAD(elem))
 
 
-#define ENUM_EXPAND_VALUES( enums ) 				\
+#define ENUM_EXPAND_VALUES( CLASS, enums ) 			\
     PP_SEQ_ENUM ( 						\
-	PP_SEQ_FOR_EACH(ENUM_EXPAND_VALUES_MACRO, ~, enums))
+	PP_SEQ_FOR_EACH(ENUM_EXPAND_VALUES_MACRO, CLASS, enums))
 
 
 
 
+#define ENUM_EXPAND_INITMAP_MACRO(r, CLASS, elem) 		\
+    (	{ (int_t)CLASS::PP_SEQ_HEAD(elem))			\
+    (	String{ boost::replace_all_copy( std::string{		\
+	    PP_STRINGIZE(PP_SEQ_HEAD(elem))}, "_"," ")}} )
 
-#define ENUM_BEGIN 						\
-class H_ENUM_CLASS						\
+
+#define ENUM_EXPAND_INITMAP( CLASS, enums )				\
+    {	PP_SEQ_ENUM ( 							\
+	    PP_SEQ_FOR_EACH(ENUM_EXPAND_INITMAP_MACRO, CLASS, enums)) }
+
+
+
+
+#ifdef ENUM_INIT
+#define ENUM_DEFINE( CLASS, ADJECTIVE, VALUES )				\
+std::unordered_map< CLASS::int_t, String> CLASS				\
+	::stringmap = ENUM_EXPAND_INITMAP( CLASS, VALUES);		\
+template<> const String Enum<CLASS, PP_CAT(H,CLASS)::PP_CAT(T,CLASS)>	\
+	::adjective = String{ADJECTIVE};				\
+template<> const String Enum<CLASS, PP_CAT(H,CLASS)::PP_CAT(T,CLASS)>	\
+	::classname = String{PP_STRINGIZE(CLASS)};
+#else
+#define ENUM_DEFINE( CLASS, ADJECTIVE, VALUES )
+#endif
+
+
+
+
+#define ENUM_CLASS(CLASS,ADJECTIVE,PROPERTIES,VALUES, FUNCS, TFUNCS )	\
+class PP_CAT(H, CLASS)						\
 {								\
-	H_ENUM_CLASS() = delete;				\
+	PP_CAT( H, CLASS) () = delete;				\
 	typedef ENUM_INT int_t;					\
-enum class T_ENUM_CLASS : int_t {				\
-	ENUM_EXPAND_ENUM(ENUM_VALUES)				\
+enum class PP_CAT( T, CLASS) : int_t {				\
+	ENUM_EXPAND_ENUM(VALUES)				\
 };								\
 public:								\
-class ENUM_CLASS:						\
-	public Enum<ENUM_CLASS,T_ENUM_CLASS>,			\
-	ENUM_EXPAND_PROPERTIES(ENUM_PROPERTIES)			\
+class CLASS:							\
+	public Enum<CLASS,PP_CAT( T, CLASS)>,			\
+	ENUM_EXPAND_PROPERTIES( CLASS, PROPERTIES)		\
 	public Void						\
 {								\
 public:								\
-	typedef H_ENUM_CLASS::int_t int_t;			\
-	static const T_ENUM_CLASS				\
-		ENUM_EXPAND_VALUES(ENUM_VALUES);		\
-	ENUM_CLASS( const T_ENUM_CLASS a):			\
-		Enum<ENUM_CLASS, T_ENUM_CLASS>{a}{}		\
+	typedef PP_CAT( H, CLASS)::int_t int_t;			\
+	static const PP_CAT( T, CLASS)				\
+		ENUM_EXPAND_VALUES( CLASS, VALUES);		\
+	CLASS( const PP_CAT( T, CLASS) a):			\
+		Enum<CLASS, PP_CAT( T, CLASS)>{a}{}		\
+	FUNCS							\
 private:							\
-	friend class Enum<ENUM_CLASS, T_ENUM_CLASS>;		\
+	friend class Enum<CLASS, PP_CAT( T, CLASS)>;		\
 	static std::unordered_map< int_t, String> stringmap;	\
-public:
-
-
-
-#define ENUM_END 						\
-    };								\
-    typedef H_ENUM_CLASS::ENUM_CLASS ENUM_CLASS;		\
-    static_assert(sizeof(ENUM_CLASS)==sizeof(ENUM_CLASS::int_t),\
-	"Size of ENUM_CLASS got bloated");
-
-
-
-
-
-#define ENUM_EXPAND_INITMAP_MACRO(r, data, elem) 		\
-    ( 	std::make_pair( (int_t)ENUM_CLASS::PP_SEQ_HEAD(elem),	\
-	String{ boost::replace_all_copy( std::string{		\
-	    PP_STRINGIZE(PP_SEQ_HEAD(elem))}, "_"," ")} ) )
-
-
-#define ENUM_EXPAND_INITMAP( enums ) 					\
-    {	PP_SEQ_ENUM ( 							\
-	    PP_SEQ_FOR_EACH(ENUM_EXPAND_INITMAP_MACRO, ~, enums)) }
-
-
-#define ENUM_DEFINE							\
-std::unordered_map< ENUM_CLASS::int_t, String> ENUM_CLASS		\
-	::stringmap = ENUM_EXPAND_INITMAP(ENUM_VALUES);			\
-template<> const String Enum<ENUM_CLASS, H_ENUM_CLASS::T_ENUM_CLASS>	\
-	::adjective = String{ENUM_ADJECTIVE};				\
-template<> const String Enum<ENUM_CLASS, H_ENUM_CLASS::T_ENUM_CLASS>	\
-	::classname = String{PP_STRINGIZE(ENUM_CLASS)};
-
+};								\
+TFUNCS								\
+};								\
+typedef PP_CAT( H, CLASS)::CLASS CLASS;				\
+static_assert(sizeof(CLASS)==sizeof(CLASS::int_t),		\
+	"Size of Enum got bloated");				\
+ENUM_DEFINE( CLASS, ADJECTIVE, VALUES )
 
 
 #endif // ENUM_HPP
+
+

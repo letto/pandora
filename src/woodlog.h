@@ -22,7 +22,8 @@
 #include "material.h"
 
 
-class WoodLog : public Material
+class WoodLog :
+	public Material
 {
 public:
 	//WoodLog();
@@ -32,3 +33,5 @@ public:
 };
 
 #endif // WOODLOG_H
+
+

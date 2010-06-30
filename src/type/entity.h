@@ -25,7 +25,8 @@
 
 class EntityContainer;
 
-class Entity : virtual public PaObject
+class Entity :
+	public PaObject
 {
 public:
 	Entity();
@@ -46,3 +47,4 @@ private:
 };
 
 #endif // ENTITY_H
+

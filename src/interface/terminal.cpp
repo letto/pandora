@@ -364,3 +364,5 @@ bool operator==(const TermChar& tb_a,const TermChar& tb_b)
 bool operator!=(const TermChar& tb_a,const TermChar& tb_b) {
     return !(tb_a == tb_b);
 }
+
+

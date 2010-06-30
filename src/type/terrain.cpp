@@ -114,3 +114,5 @@ Image Terrain::_Next_Display_Image()
     }
     return entities_display_it->_Image();
 }
+
+

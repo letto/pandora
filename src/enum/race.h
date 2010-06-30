@@ -20,25 +20,19 @@
 
 #include "enum.hpp"
 
-#define ENUM_CLASS  Race
-#define ENUM_ADJECTIVE ""
-#define ENUM_VALUES\
-    ((human)(= 1)) \
-    ((elf	)) \
-    ((high_elf	)) \
-    ((half_elf	)) \
-    ((dwarf	)) \
+ENUM_CLASS( Race, "", ,
+    ((human)(= 1))
+    ((elf	))
+    ((high_elf	))
+    ((half_elf	))
+    ((dwarf	))
     ((orc	))
-
-
-ENUM_BEGIN
+    ,
 	bool Is_Subrace_Of(const TRace);
-	TRace Get_Base_Race();
-};
+	Race Get_Base_Race();
+    ,
 	friend bool Same_Base_Race(const TRace,const TRace);
-ENUM_END
-
-#include "undef.h"
+)
 
 #endif // RACE_H
 

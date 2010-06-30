@@ -35,15 +35,15 @@ public:
 };
 
 struct Image {
-    Image(Char,Color);
-    Char ch;
-    Color color;
+	Image(Char,Color);
+	Char ch;
+	Color color;
 };
 
 struct Location {
-    Location(int16_t x,int16_t y):x{x},y{y} {}
-    operator std::string () const;
-    int16_t x,y;
+	Location(int16_t x,int16_t y):x{x},y{y} {}
+	operator std::string () const;
+	int16_t x,y;
 };
 
 
@@ -55,3 +55,5 @@ void Exit(const std::string&);
 
 
 #endif // PABASICS_H
+
+

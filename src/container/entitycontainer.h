@@ -37,7 +37,8 @@ private:
 	Entity* entity;
 };
 
-class EntityContainer : virtual public PaObject
+class EntityContainer :
+	virtual public PaObject
 {
 public:
 	EntityContainer(Size);

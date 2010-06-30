@@ -16,6 +16,7 @@
 */
 
 #include "cursor.h"
+#include "interface.h"
 
 
 Cursor::Cursor():

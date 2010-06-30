@@ -87,10 +87,8 @@ private:
 	//int buffer_start;
 	static const int buffer_max = 300 ; 
 	TermChar buffer[100][buffer_max];
-	
-	
-	//Debug functions
-	//void Dump_Charmap();
 };
-                                               
+
 #endif // TERMINAL_H
+
+

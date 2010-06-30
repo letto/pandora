@@ -7,4 +7,5 @@ build/*
 [pP]andora.kdev4
 
 src/patype.h.gch
+src/tags
 

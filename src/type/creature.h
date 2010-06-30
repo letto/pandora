@@ -23,7 +23,8 @@
 #include "entity.h"
 
 
-class Creature : public Entity
+class Creature :
+	public Entity
 {
 public:
 	Creature();
@@ -37,3 +38,5 @@ public:
 };
 
 #endif // CREATURE_H
+
+
