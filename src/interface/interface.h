@@ -49,6 +49,7 @@ private:
 	
 	Humanoid* Add_Player(const Location&,Entity*);
 	Humanoid* player;
+	friend class Cursor;
 	Cursor* cursor;
 	Creature* current_ent;
 	

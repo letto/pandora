@@ -57,12 +57,12 @@ Interface::Interface():
     if(!videoInfo) {
 	Exit("SDL_GetVideoInfo failed");
     }
-    if ( videoInfo->hw_available ) {
+    if( videoInfo->hw_available) {
 	video_Flags |= SDL_HWSURFACE;
     } else {
 	video_Flags |= SDL_SWSURFACE;
     }
-    if ( videoInfo->blit_hw ) {
+    if( videoInfo->blit_hw) {
 	video_Flags |= SDL_HWACCEL;
     }
     SDL_SetEventFilter(Event_Filter);
@@ -104,9 +104,13 @@ void Interface::Delete()
 
 Interface::~Interface()
 {
-    World_Ptr map;
-    map(cursor->_Location()).Remove_Entity(cursor);
-    delete cursor;
+    if( cursor != NULL) {
+	World_Ptr map;
+	if( *map != NULL) {
+	    map(cursor->_Location()).Remove_Entity(cursor);
+	}
+	delete cursor;
+    }
     instance = NULL;
     player = NULL;
     SDL_FreeSurface(screen);
@@ -191,16 +195,16 @@ void Interface::Draw_Display()
 	    cursor->location = current_ent->_Location();
 	    break;
 	case FollowMode::following:
-	    if( current_ent->_Location().x - cursor->location.x > display._Max_X()/2 - 4 ) {
+	    if( current_ent->_Location().x - cursor->location.x > display._Max_X()/2 - 4) {
 		cursor->location.x++;
 	    }
-	    if( current_ent->_Location().y - cursor->location.y > display._Max_Y()/2 - 2 ) {
+	    if( current_ent->_Location().y - cursor->location.y > display._Max_Y()/2 - 2) {
 		cursor->location.y++;
 	    }
-	    if(cursor->location.x - current_ent->_Location().x > display._Max_X()/2 - 4) {
+	    if( cursor->location.x - current_ent->_Location().x > display._Max_X()/2 - 4) {
 		cursor->location.x--;
 	    }
-	    if(cursor->location.y - current_ent->_Location().y > display._Max_Y()/2 - 2) {
+	    if( cursor->location.y - current_ent->_Location().y > display._Max_Y()/2 - 2) {
 		cursor->location.y--;
 	    }
 	    break;
@@ -212,16 +216,16 @@ void Interface::Draw_Display()
     int pos_y = cursor->location.y - display._Max_Y()/2;
     Image img{ '?', Color::red};
     Color col = Color::black;
-    for(int cy = 0; cy <= display._Max_Y();cy++ ) {
-	for(int cx = 0; cx <= display._Max_X(); cx++ ) {
+    for(int cy = 0; cy <= display._Max_Y(); cy++) {
+	for(int cx = 0; cx <= display._Max_X(); cx++) {
 	    if(	cx+pos_x >= map->max_x ||
 		cy+pos_y >= map->max_y ||
-		cx+ pos_x < 0 || cy+pos_y < 0 ) {
+		cx+pos_x < 0 || cy+pos_y < 0) {
 		    img = Image{ '#', Color::dark_gray};
 		    col = Color::black;
 	    } else {
-		    img = map(cx+pos_x ,cy+pos_y)._Next_Display_Image();
-		    col = map(cx+pos_x ,cy+pos_y)._Surface_Color();
+		    img = map(cx+pos_x, cy+pos_y)._Next_Display_Image();
+		    col = map(cx+pos_x, cy+pos_y)._Surface_Color();
 	    }
 	    display.Print_Char(img.ch, cx, cy, img.color, col);
 	}
@@ -239,29 +243,28 @@ void Interface::Draw_Info()
 
 void Interface::Draw_Actions()
 {
-    if(action_type == Action::none) {
+    if( action_type == Action::none) {
 	return;
     }
     action_type = Action::none;
-    if(!action_succes) {
+    if( !action_succes) {
 	actions.Print("\nYou are blocked.");
 	return;
     }
 
     std::string ss = "\n";
-
     auto end = current_ent->_Holder()->end();
     auto ent = current_ent->_Holder()->begin();
     if( *ent == current_ent) {
 	++ent;
     }
-    if( ent ) {
+    if( ent) {
 	ss += "You see ";
 	for(; ent; ++ent) {
 	    if (*ent == current_ent) {
 		++ent;
 	    }
-	    if( !ent ) {
+	    if( !ent) {
 		break;
 	    }
 	    ss += Get_Article(ent->_Description()) + ent->_Description();
@@ -271,14 +274,14 @@ void Interface::Draw_Actions()
 		++ent_next;
 	    }
 	    auto ent_next_next = ent_next;
-	    if( ent_next_next ) {
+	    if( ent_next_next) {
 		++ent_next_next;
 	    }
 	    if( *ent_next_next == current_ent) {
 		++ent_next_next;
 	    }
-	    if( ent_next ) {
-		if( !ent_next_next ) {
+	    if( ent_next) {
+		if( !ent_next_next) {
 		    ss += " and ";
 		} else {
 		    ss += ", ";
@@ -351,28 +354,28 @@ void Interface::Keyboard_Handler(const SDL_keysym& key)
 	    cursor->location = current_ent->_Location();
 	    break;
 	case SDLK_c:
-	    if(player->Chop_Tree()) {
+	    if( player->Chop_Tree()) {
 		actions.Print("\nYou cut a tree.");
 	    } else {
 		actions.Print("\nNo tree to cut.");
 	    }
 	    break;
 	case SDLK_QUOTE:
-	    if(player->Take_Entity(player->_Holder()->_First_Entity_Except(player))) {
+	    if( player->Take_Entity(player->_Holder()->_First_Entity_Except(player))) {
 		actions.Print("\nYou take "+ player->holding->_Description());
 	    } else {
 		actions.Print("\nNo item to take.");
 	    }
 	    break;
 	case SDLK_b:
-	    if(player->Build_Wall()) {
+	    if( player->Build_Wall()) {
 		actions.Print("\nYou build a wall.");
 	    } else {
 		actions.Print("\nYou fail to build a wall.");
 	    }
 	    break;
 	case SDLK_d:
-	    if(player->Drop_Entity()) {
+	    if( player->Drop_Entity()) {
 		actions.Print("\nYou dropped "+ player->_Holder()->begin()->_Description());
 	    }
 	    break;

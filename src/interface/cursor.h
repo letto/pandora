@@ -22,10 +22,12 @@
 #include "../type/pabasics.h"
 #include "../type/creature.h"
 
-class Cursor : public Creature
+class Cursor :
+	public Creature
 {
 public:
 	Cursor();
+	~Cursor();
 	Size _Size() const;
 	Image _Image() const;
 	String _Description() const;

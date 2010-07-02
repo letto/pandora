@@ -24,6 +24,12 @@ Cursor::Cursor():
 {
 }
 
+Cursor::~Cursor() {
+    if( Interface::_Interface() != NULL) {
+	Interface::_Interface()->cursor = NULL;
+    }
+}
+
 Size Cursor::_Size() const {
     return Size::none;
 }
