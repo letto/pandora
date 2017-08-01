@@ -4,7 +4,6 @@ Set (
     type/pastring.cpp
     type/puid.cpp
     type/humanoid.cpp
-    enum/enum.cpp
     enum/color.cpp
     enum/size.cpp
     enum/direction.cpp

@@ -43,26 +43,26 @@ class EntityContainer :
 public:
 	EntityContainer(Size);
 	~EntityContainer();
-	
+
 	bool Has_Space_For(const Entity*) const;
 	bool Is_Empty() const;
 	bool Has_Entity(const Entity*) const; //expensive: needs to search all the entities
-	
+
 	typedef Entity_Iterator iterator;
-	
+
 	iterator begin();
 	iterator end();
-	
+
 	bool Add_Entity(Entity*);
 	bool Remove_Entity(Entity*);
 	void Insert_Entity(Entity*); //no volume|size checks
 	
 	Entity* _First_Entity_Except(Entity*);
 protected:
-	Size::int_t volume_used;
-	Size::int_t volume_max;
+    Size volume_used = Size::none;
+    Size volume_max = Size::none;
 	
-	Entity* entities;
+    Entity* entities = nullptr;
 };
 
 #endif // ENTITYCONTAINER_H

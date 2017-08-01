@@ -21,6 +21,26 @@
 #include "enum.hpp"
 
 
+enum class Size {
+    none =      0,
+    tiny =      1,
+    small =     16,
+    medium =    64,
+    large =     128,
+    huge =      256,
+    gigantic =  1024,
+    tree =      132,
+    terrain =   350
+};
+
+int operator-( const Size a, const Size b);
+int operator-=( const Size a, const Size b);
+int operator+=( const Size a, const Size b);
+bool operator<( const Size a, const Size b);
+bool operator<=( const Size a, const Size b);
+bool operator<=( const Size a, int b);
+
+/*
 ENUM_CLASS( Size, "sized", (Comparable),
     (( none	)( = 0	))
     (( tiny	)( = 1	))
@@ -34,7 +54,7 @@ ENUM_CLASS( Size, "sized", (Comparable),
     ,
 	operator int_t() const { return (int_t)value;}
     ,
-)
+)*/
 
 #endif // SIZE_H
 

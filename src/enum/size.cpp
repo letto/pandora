@@ -17,4 +17,23 @@
 
 #include "../patype.h"
 
+int operator+=( Size a, const Size b) {
+    return (int)a + (int)b;
+}
+
+int operator-(Size a, Size b) {
+    return (int)a - (int)b;
+}
+
+int operator-=( const Size a, const Size b) {
+    return (int)a - (int)b;
+}
+
+bool operator<( const Size a, const Size b) {
+    return (int)a < (int)b;
+}
+
+bool operator<=( const Size a, int b) {
+    return (int)a <= b;
+}
 

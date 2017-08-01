@@ -17,6 +17,7 @@
 
 #include "entitycontainer.h"
 #include "../type/entity.h"
+#include "../enum/size.h"
 
 #include <iostream>
 
@@ -50,9 +51,9 @@ bool Entity_Iterator::operator!=(Entity_Iterator b) {
 }
 
 EntityContainer::EntityContainer(Size volume):
-	volume_used{0},
-	volume_max{volume},
-	entities{NULL}
+    entities{nullptr},
+	volume_used{Size::none},
+	volume_max{volume}
 {
 }
 
