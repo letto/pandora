@@ -27,7 +27,7 @@ Set (
 )
 
 ADD_EXECUTABLE(
-    ../pandora
+    pandora
     ${SOURCES}
 )
 

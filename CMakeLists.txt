@@ -1,4 +1,5 @@
 project(pandora)
+cmake_minimum_required(VERSION 3.13)
 
 Find_Package ( SDL REQUIRED )
 
